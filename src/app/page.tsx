@@ -1,49 +1,57 @@
-async function fetchGraphQL(query: string, preview = false) {
-  return fetch(
-    `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.CONTENTFUL_TOKEN}`,
-      },
-      body: JSON.stringify({ query: query }),
-    }
-  ).then((response) => response.json())
-  .catch((error) => {
-    throw new Error(error);
-  });
-}
+import { fetchGraphQL } from '@helpers/graphql'
+import Image from 'next/image';
+import Link from 'next/link';
 
-async function getItems() {
+async function getProducts() {
    const {data} = await fetchGraphQL(`
-          query {
-            productoCollection {
-              items {
-                nombre
-                descripcion
-                precio
-                url
-                portada {
-                  url
-                }
-                categoriasCollection {
-                  items {
-                    nombre
-                  }
-                }
-              }
-            }
+   query {
+    productoCollection {
+      items {
+        nombre
+        descripcion
+        precio
+        url
+        categoriaPrincipal {
+          slug
+        }
+        portada {
+          url
+        }
+        categoriasCollection {
+          items {
+            nombre
           }
-        `)
-        return data
+        }
+      }
+    }
+  }
+        `
+        )
+        return data?.productoCollection?.items
 
   }
 
 export default async function Home() {
-  const data = await getItems()
+  const data = await getProducts()
+
   return (
-   <h1>{JSON.stringify(data)}</h1>
+    <div>
+      <h1>Productos</h1>
+      <ul>
+        {data?.map((producto:any) => (
+          <li key={producto.nombre}>
+            <Link href={`/${producto.categoriaPrincipal.slug}/${producto.url}`}>
+              <h2>{producto.nombre}</h2>
+              <p>{producto.descripcion}</p>
+              <p>{producto.precio}</p>
+              <p>{producto.url}</p>
+              <Image src={producto.portada.url} alt="Picture of the author" width={200} height={200} />
+              <p>{producto.categoriasCollection.items.nombre}</p>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   )
 }
 
