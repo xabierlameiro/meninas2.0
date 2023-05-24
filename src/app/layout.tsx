@@ -1,7 +1,10 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
 import Menu from '@components/Menu';
-import BreadCrumb from '@/components/BreadCrumb';
+/* import BreadCrumb from '@/components/BreadCrumb';
+ */ import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import styles from './page.module.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -13,11 +16,16 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="es">
-            <body className={inter.className}>
-                {/* @ts-expect-error Server Component */}
-                <Menu />
-                <BreadCrumb />
-                {children}
+            <body className={styles.body}>
+                <Header />
+                <main className={styles.main}>
+                    {/* @ts-expect-error Server Component */}
+                    <Menu />
+                    {/*                     <BreadCrumb />
+                     */}
+                    {children}
+                </main>
+                <Footer />
             </body>
         </html>
     );

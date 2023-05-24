@@ -1,0 +1,21 @@
+.aside {
+    background-color: #fff;
+    z-index: 1;
+}
+
+.menu {
+    position: sticky;
+    top: 69px;
+    padding: 1rem 2rem;
+}
+
+.menu ul {
+    list-style: none;
+}
+
+.menu a {
+    display: block;
+    padding: 10px 0;
+    text-transform: uppercase;
+    font-size: small;
+}
