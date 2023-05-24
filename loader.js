@@ -5,4 +5,4 @@ export default function contentfulLoader({ src, quality, width }) {
     url.searchParams.set('w', width.toString());
     url.searchParams.set('q', quality.toString() || '75');
     return url.href;
-  }
+}
