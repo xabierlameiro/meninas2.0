@@ -1,6 +1,7 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
 import Menu from '@components/Menu'
+import BreadCrumb from '@/components/BreadCrumb'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,6 +21,7 @@ export default function RootLayout({
       <body className={inter.className}>
         {/* @ts-expect-error Server Component */}
         <Menu />
+        <BreadCrumb />
         {children}
         </body>
     </html>

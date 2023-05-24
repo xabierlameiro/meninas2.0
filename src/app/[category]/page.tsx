@@ -6,7 +6,7 @@ import Link from 'next/link';
 async function getProductsByCategory(category: string) {
     const {data} = await fetchGraphQL(`
     query {
-            productoCollection(where:{categorias:{slug:"${category}"}}) {
+        productoCollection(where:{categorias:{slug:"${category}"}}) {
           items {
             nombre
             descripcion

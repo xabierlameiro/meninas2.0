@@ -4,54 +4,43 @@ import Link from 'next/link'
 
 export async function getMenus() {
     const { data } = await fetchGraphQL(`
-        query {
-            categorias: categoriaCollection(where: { marca: false }, order:nombre_ASC) {
-              items {
-                nombre
-                descuento
-                marca
-                resaltar
-                slug    
-              }
-            }
-            marcas: categoriaCollection(where: { marca: true }, order: nombre_ASC) {
-              items {
-                nombre
-                descuento
-                marca
-                resaltar
-                slug
+    query {
+        menu:categoriaCollection(order: [marca_ASC, nombre_ASC]) {
+          items {
+            nombre
+            descuento
+            marca
+            resaltar
+            slug
+            disponible:linkedFrom {
+              prendas:productoCollection {
+                total
               }
             }
           }
+        }
+      }
     `)
     return data
 }
 
 export default async function Menu() {
-    const menu = await getMenus();
+    const {menu} = await getMenus();
 
     return (
         <div>
-            <h1>Menu</h1>
+            <Link href="/"><h1>Menu</h1></Link>
+            <ul>
             {
-                menu?.categorias.items.map((categoria: any) => {
+                menu.items.filter((cat:any) => cat.disponible.prendas.total > 0).map((categoria: any) => {
                     return (
-                        <Link key={categoria.nombre} href={`/${categoria.slug}`}>
+                        <li key={categoria.nombre} ><Link href={`/${categoria.slug}`}>
                             {categoria.nombre}
-                        </Link>
+                        </Link></li>
                     )
                 })
             }
-            {
-                menu?.marcas.items.map((marca: any) => {
-                    return (
-                        <Link key={marca.nombre} href={`/${marca.slug}`}>
-                            {marca.nombre}
-                        </Link>
-                    )
-                })
-            }
+            </ul>
         </div>
     )
 }
