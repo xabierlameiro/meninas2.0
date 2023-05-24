@@ -49,6 +49,7 @@ export default async function Home() {
         <div className={styles.grid}>
             {data?.map((producto: any) => (
                 <div key={producto.nombre}>
+                    {/* Try to send in a link the previus and next product like a context */}
                     <Link href={`/${producto.categoriaPrincipal.slug}/${producto.url}`}>
                         {/*  <h2>{producto.nombre}</h2>
                         <p>{producto.descripcion}</p>

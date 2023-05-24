@@ -1,10 +1,11 @@
 import { fetchGraphQL } from '@helpers/graphql';
 import Image from 'next/image';
+import Link from 'next/link';
 
-async function getProductBySlug(slug: string) {
+async function getProductBySlug(product: string, category: string) {
     const { data } = await fetchGraphQL(`
     query {
-        productoCollection(where: {url: "${slug}"}) {
+        detail:productoCollection(where: {url: "${product}"}) {
           items {
             nombre
             descripcion
@@ -23,18 +24,43 @@ async function getProductBySlug(slug: string) {
             }
           }
         }
+        products:productoCollection(where:{categorias:{slug:"${category}"}}) {
+          items {
+            url
+          }
+        }
       }
     `);
-    return data?.productoCollection?.items;
+    return {
+        detail: data?.detail.items[0],
+        products: data?.products.items,
+    };
 }
-export default async function Page({ params }: { params: { product: string } }) {
-    const [product] = await getProductBySlug(params.product);
+export default async function Page({ params }: { params: { product: string; category: string } }) {
+    const {
+        detail: { nombre, descripcion, precio, portada },
+        products,
+    } = await getProductBySlug(params.product, params.category);
+
+    const { prevItem, nextItem } = products.reduce(
+        (acc: any, item: any, index: number) => {
+            if (item.url === params.product) {
+                acc.prevItem = products[index - 1]?.url;
+                acc.nextItem = products[index + 1]?.url;
+            }
+            return acc;
+        },
+        { prevItem: null, nextItem: null }
+    );
+
     return (
         <div>
-            <h1>{product.nombre}</h1>
-            <h2>{product.descripcion}</h2>
-            <h3>{product.precio}</h3>
-            <Image src={product.portada.url} alt={product.nombre} width={500} height={500} priority={true} />
+            {prevItem && <Link href={`/${params.category}/${prevItem}`}>Anterior</Link>}
+            {nextItem && <Link href={`/${params.category}/${nextItem}`}>Siguiente</Link>}
+            <h1>{nombre}</h1>
+            <h2>{descripcion}</h2>
+            <h3>{precio}</h3>
+            <Image src={portada.url} alt={nombre} width={500} height={500} priority={true} />
         </div>
     );
 }
