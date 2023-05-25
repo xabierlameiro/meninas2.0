@@ -21,8 +21,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <main className={styles.main}>
                     {/* @ts-expect-error Server Component */}
                     <Menu />
-                    {/*                     <BreadCrumb />
-                     */}
                     {children}
                 </main>
                 <Footer />
