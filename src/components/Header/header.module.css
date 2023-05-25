@@ -1,6 +1,7 @@
 .header {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-items: center;
     position: sticky;
     top: 0;
     background-color: #fff;

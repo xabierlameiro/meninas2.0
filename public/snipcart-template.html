@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>Templates</title>
+    </head>
+
+    <body>
+        <div id="snipcart-templates">
+            <item-line>
+                <li class="snipcart__item__line snipcart__box">
+                    <div class="snipcart__item__line__product">
+                        <div class="snipcart__item__line__header">
+                            <h2 class="snipcart__item__line__header__title">{{ item.name }}</h2>
+                            <item-quantity class="snipcart__item__line__quantity" v-if="!adding"></item-quantity>
+                        </div>
+                    </div>
+                </li>
+            </item-line>
+        </div>
+    </body>
+</html>
