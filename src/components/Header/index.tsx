@@ -1,9 +1,11 @@
 import styles from './header.module.css';
+import Cart from '@components/Cart';
 
 const Header = () => {
     return (
         <header className={styles.header}>
             <h1>Header</h1>
+            <Cart />
         </header>
     );
 };

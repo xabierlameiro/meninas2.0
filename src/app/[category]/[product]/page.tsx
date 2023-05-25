@@ -1,6 +1,7 @@
 import { fetchGraphQL } from '@helpers/graphql';
 import Image from 'next/image';
 import Link from 'next/link';
+import AddToCartButton from '@/components/Cart/Button';
 
 async function getProductBySlug(product: string, category: string) {
     const { data } = await fetchGraphQL(`
@@ -61,6 +62,7 @@ export default async function Page({ params }: { params: { product: string; cate
             <h2>{descripcion}</h2>
             <h3>{precio}</h3>
             <Image src={portada.url} alt={nombre} width={500} height={500} priority={true} />
+            <AddToCartButton item={{ id: '1', name: 'Test', price: 10, size: 'M', quantity: 1 }} />
         </div>
     );
 }

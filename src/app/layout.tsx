@@ -1,10 +1,11 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
 import Menu from '@components/Menu';
-/* import BreadCrumb from '@/components/BreadCrumb';
- */ import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+/* import BreadCrumb from '@components/BreadCrumb';
+ */ import Header from '@components/Header';
+import Footer from '@components/Footer';
 import styles from './page.module.css';
+import { Breadcrumb } from '@/components/BreadCrumb';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <html lang="es">
             <body className={styles.body}>
                 <Header />
+                <Breadcrumb />
                 <main className={styles.main}>
                     {/* @ts-expect-error Server Component */}
                     <Menu />

@@ -10,9 +10,13 @@ const Breadcrumb = () => {
         const href = `/${path.slice(0, i + 1).join('/')}`;
         const name = p.replace(/-/g, ' ').toUpperCase();
         return (
-            <Link key={href} href={href}>
-                {name}
-            </Link>
+            <>
+                {href.length > 1 && <span>{'>>'}</span>}
+                <Link key={href} href={href}>
+                    {name}
+                </Link>
+                {i === path.length - 1 && path.length === i && <span>{'>>'}</span>}
+            </>
         );
     });
 
