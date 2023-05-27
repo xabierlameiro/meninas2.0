@@ -7,7 +7,16 @@ const cart = create(
         (set, get) => ({
             items: [],
             total: () => get().items.length,
-            addToCart: (item) => set((state) => ({ items: [...state.items, item] })),
+            addToCart: (item) =>
+                set((state) => {
+                    const exists = state.items.find((i) => i.id === item.id);
+                    if (exists && exists.size === item.size) {
+                        exists.quantity += 1;
+                        return { items: [...state.items] };
+                    }
+                    return { items: [...state.items, { ...item, quantity: 1 }] };
+                }),
+
             removeFromCart: (id) => set((state) => ({ items: state.items.filter((i) => i.id !== id) })),
             clearCart: () => set({ items: [] }),
         }),

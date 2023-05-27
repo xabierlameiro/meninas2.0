@@ -8,8 +8,12 @@ async function getProductBySlug(product: string, category: string) {
     query {
         detail:productoCollection(where: {url: "${product}"}) {
           items {
+            sys {
+              id
+            }
             nombre
             descripcion
+            stock
             precio
             url
             categoriaPrincipal {
@@ -39,7 +43,7 @@ async function getProductBySlug(product: string, category: string) {
 }
 export default async function Page({ params }: { params: { product: string; category: string } }) {
     const {
-        detail: { nombre, descripcion, precio, portada },
+        detail: { sys, nombre, descripcion, precio, portada, stock },
         products,
     } = await getProductBySlug(params.product, params.category);
 
@@ -62,7 +66,18 @@ export default async function Page({ params }: { params: { product: string; cate
             <h2>{descripcion}</h2>
             <h3>{precio}</h3>
             <Image src={portada.url} alt={nombre} width={500} height={500} priority={true} />
-            <AddToCartButton item={{ id: '1', name: 'Test', price: 10, size: 'M', quantity: 1 }} />
+
+            <AddToCartButton
+                item={{
+                    id: sys.id,
+                    name: nombre,
+                    price: precio,
+                    image: portada.url,
+                    quantity: 1,
+                    size: 'M',
+                }}
+                sizes={stock}
+            />
         </div>
     );
 }

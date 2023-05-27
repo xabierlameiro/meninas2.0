@@ -18,4 +18,5 @@ type CartState = {
 
 type AddtoCartProps = {
     item: Product;
+    sizes: string[];
 };

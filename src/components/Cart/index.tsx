@@ -8,10 +8,15 @@ const Cart = () => {
         <div>
             <h1>Cart</h1>
             <p>Items in cart: {cart.total()}</p>
-            <button onClick={() => cart.addToCart({ id: '1', name: 'Test', price: 10, size: 'M', quantity: 1 })}>
-                Add to cart
-            </button>
-            <button onClick={() => cart.removeFromCart('1')}>Remove from cart</button>
+            {cart.items.map((item) => (
+                <div key={item.id}>
+                    <p>
+                        {item.name} - {item.price} - {item.quantity} - {item.size}
+                    </p>
+
+                    <button onClick={() => cart.removeFromCart(item.id)}>Remove</button>
+                </div>
+            ))}
         </div>
     );
 };
