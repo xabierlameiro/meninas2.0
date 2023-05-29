@@ -1,43 +1,87 @@
 'use client';
 import useCart from '@/hooks/useCart';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
+// TODO: Pending split and refactor this part
 const AddToCartButton: React.FC<AddtoCartProps> = ({ item, sizes }) => {
     const cart = useCart();
-    const [size, setSize] = useState<string>(sizes[0].split(':')[0]);
+    const [selectedSize, setSelectedSize] = useState<string | undefined>(undefined);
+    const [selectedQuantity, setSelectedQuantity] = useState<number | undefined>(undefined);
 
-    return (
-        <div>
-            <button
-                onClick={() =>
-                    cart.addToCart({
-                        ...item,
-                        id: `${item.id}-${size}`,
-                        size,
-                    })
-                }
+    const Sizes = useCallback(() => {
+        const sizesOnCart = cart.items
+            .filter((i) => i.id === item.id && i.quantity >= Number(i.size.split(':')[1]))
+            .map((i) => i.size);
+        const restSizes = sizes.filter((o) => !sizesOnCart.find((s) => s === o));
+
+        if (!restSizes.length) return <p>Out of stock</p>;
+
+        return (
+            <select
+                name="size"
+                id="size"
+                onChange={(e) => {
+                    setSelectedSize(e.target.value);
+                    setSelectedQuantity(1);
+                }}
+                value={selectedSize}
             >
-                Add to cart
-            </button>
+                <option value="">Select size</option>
+                {restSizes.map((stock: any) => {
+                    const [size, quantity] = stock.split(':');
 
-            <select name="size" id="size" onChange={(e) => setSize(e.target.value)}>
-                {sizes.map((o: any) => {
-                    const [size, quantity] = o.split(':');
-                    const isInCart = cart.items.find((i) => i.id === `${item.id}-${size}`);
-
-                    console.log(`${item.id}-${size}`, isInCart);
-
-                    if (quantity === '0' || isInCart) {
-                        return null;
-                    }
+                    if (Number(quantity) <= 0) return null;
 
                     return (
-                        <option key={o} value={o}>
+                        <option key={stock} value={stock}>
                             {size} ({quantity})
                         </option>
                     );
                 })}
             </select>
+        );
+    }, [cart.items, item.id, selectedSize, sizes]);
+
+    const Quantity = useCallback(() => {
+        const quantityOnCart = cart.items
+            .filter((i) => i.id === item.id)
+            .map((i) => i.quantity)
+            .reduce((a, b) => a + b, 0);
+
+        return (
+            <input
+                type="number"
+                name="quantity"
+                id="quantity"
+                min="1"
+                disabled={!selectedSize}
+                max={String(Number(selectedSize?.split(':')[1]) - quantityOnCart)}
+                onChange={(e) => setSelectedQuantity(Number(e.target.value))}
+                value={selectedQuantity}
+            />
+        );
+    }, [selectedSize, selectedQuantity, cart.items, item.id]);
+
+    return (
+        <div>
+            <button
+                disabled={!selectedSize || !selectedQuantity}
+                onClick={() => {
+                    selectedSize &&
+                        cart.addToCart({
+                            ...item,
+                            id: item.id,
+                            size: selectedSize,
+                            quantity: selectedQuantity || 1,
+                        });
+                    setSelectedSize(undefined);
+                    setSelectedQuantity(undefined);
+                }}
+            >
+                Add to cart
+            </button>
+            <Sizes />
+            <Quantity />
         </div>
     );
 };

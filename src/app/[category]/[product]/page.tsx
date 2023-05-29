@@ -73,8 +73,6 @@ export default async function Page({ params }: { params: { product: string; cate
                     name: nombre,
                     price: precio,
                     image: portada.url,
-                    quantity: 1,
-                    size: 'M',
                 }}
                 sizes={stock}
             />

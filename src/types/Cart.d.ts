@@ -10,13 +10,19 @@ type Product = {
 
 type CartState = {
     items: Product[];
-    total: () => number;
+    totalItems: () => number;
+    totalCost: () => number;
     addToCart: (item: Product) => void;
-    removeFromCart: (id: string) => void;
+    removeFromCart: (id: string, size: string) => void;
     clearCart: () => void;
 };
 
 type AddtoCartProps = {
-    item: Product;
+    item: {
+        id: string;
+        name: string;
+        price: number;
+        image?: string;
+    };
     sizes: string[];
 };

@@ -6,18 +6,28 @@ const cart = create(
     persist<CartState>(
         (set, get) => ({
             items: [],
-            total: () => get().items.length,
+            totalItems: () => get().items.reduce((acc, item) => acc + item.quantity, 0),
+            totalCost: () => get().items.reduce((acc, item) => acc + item.price * item.quantity, 0),
             addToCart: (item) =>
                 set((state) => {
                     const exists = state.items.find((i) => i.id === item.id);
                     if (exists && exists.size === item.size) {
-                        exists.quantity += 1;
+                        exists.quantity += item.quantity;
                         return { items: [...state.items] };
                     }
-                    return { items: [...state.items, { ...item, quantity: 1 }] };
+                    return { items: [...state.items, { ...item }] };
                 }),
 
-            removeFromCart: (id) => set((state) => ({ items: state.items.filter((i) => i.id !== id) })),
+            removeFromCart: (id, size) => {
+                set((state) => {
+                    const index = state.items.findIndex((i) => i.id === id && i.size === size);
+                    if (index !== -1) {
+                        state.items.splice(index, 1);
+                        return { items: [...state.items] };
+                    }
+                    return { items: [...state.items] };
+                });
+            },
             clearCart: () => set({ items: [] }),
         }),
         {
@@ -25,10 +35,12 @@ const cart = create(
         }
     )
 );
+
 const useCart = () =>
     useStore(cart, (state) => state) ?? {
         items: [],
-        total: () => 0,
+        totalItems: () => 0,
+        totalCost: () => 0,
         addToCart: () => {},
         removeFromCart: () => {},
         clearCart: () => {},
