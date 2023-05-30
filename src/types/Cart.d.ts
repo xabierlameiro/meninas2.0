@@ -13,6 +13,10 @@ type CartState = {
     totalItems: () => number;
     totalCost: () => number;
     addToCart: (item: Product) => void;
+    incrementQuantity: (id: string, size: string) => void;
+    decrementQuantity: (id: string, size: string) => void;
+    isIncrementable: (id: string, size: string) => boolean;
+    isDecrementable: (id: string, size: string) => boolean;
     removeFromCart: (id: string, size: string) => void;
     clearCart: () => void;
 };

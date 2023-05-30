@@ -58,6 +58,8 @@ const AddToCartButton: React.FC<AddtoCartProps> = ({ item, sizes }) => {
                 max={String(Number(selectedSize?.split(':')[1]) - quantityOnCart)}
                 onChange={(e) => setSelectedQuantity(Number(e.target.value))}
                 value={selectedQuantity}
+                /* no able to write */
+                onWheel={(e) => e.currentTarget.blur()}
             />
         );
     }, [selectedSize, selectedQuantity, cart.items, item.id]);
