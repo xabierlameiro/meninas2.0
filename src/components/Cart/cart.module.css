@@ -29,6 +29,28 @@
     }
 }
 
+.cart__icon__text__animation {
+    animation: cart__icon__text__animation 0.5s ease-in-out;
+}
+
+@keyframes cart__icon__text__animation {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.2);
+    }
+    50% {
+        transform: scale(1);
+    }
+    75% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
 .cart__dialog {
     position: absolute;
     width: 400px;

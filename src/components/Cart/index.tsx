@@ -1,29 +1,46 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useCart from '@/hooks/useCart';
 import styles from './cart.module.css';
 
 const Cart = () => {
     const cart = useCart();
     const [openCart, setOpenCart] = useState<boolean>(false);
+    const [animationStarted, setAnimationStarted] = useState(false);
+
+    useEffect(() => {
+        setAnimationStarted(true);
+    }, [cart.items]);
+
     return (
         <div className={styles.cart}>
             <span onClick={() => setOpenCart(!openCart)}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
-                    viewBox="0 0 24 24"
+                    viewBox="0 -10 64 60"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    width={24}
-                    height={24}
+                    width={64}
+                    height={60}
                     className={styles.cart__icon}
                 >
                     <path
+                        transform="scale(1.2)"
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
                     />
+                    <text
+                        x="30"
+                        y="22"
+                        fontSize="14px"
+                        dy=".3em"
+                        onAnimationEnd={() => setAnimationStarted(false)}
+                        className={` ${animationStarted ? styles.cart__icon__text__animation : ''}`}
+                    >
+                        {cart.totalItems()}
+                    </text>
                 </svg>
             </span>
             <dialog open={openCart} className={styles.cart__dialog}>
@@ -102,8 +119,14 @@ const Cart = () => {
                     ))}
                 </main>
                 <footer>
-                    <p>Número de prendas: {cart.totalItems()}</p>
-                    <p>Precio total: {cart.totalCost()} €</p>
+                    {cart.items.length > 0 ? (
+                        <>
+                            <p>Número de prendas: {cart.totalItems()}</p>
+                            <p>Precio total: {cart.totalCost()} €</p>
+                        </>
+                    ) : (
+                        <p>No hay productos añadidos todavía</p>
+                    )}
                 </footer>
             </dialog>
         </div>
