@@ -1,0 +1,26 @@
+.breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 16px 0;
+}
+
+.breadcrumb a:after {
+    display: inline-block;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    color: #6c757d;
+    content: '/';
+}
+
+.breadcrumb a:last-child:after {
+    display: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb a:last-child:hover {
+    text-decoration: none;
+    cursor: default;
+}

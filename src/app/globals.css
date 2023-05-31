@@ -17,6 +17,7 @@ body {
 a {
     color: inherit;
     text-decoration: none;
+    user-select: none;
 }
 
 /* scroll */

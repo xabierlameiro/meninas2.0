@@ -1,7 +1,7 @@
 import { fetchGraphQL } from '@helpers/graphql';
 import Image from 'next/image';
-import Link from 'next/link';
 import AddToCartButton from '@/components/Cart/Button';
+import NavigationButtons from '@/components/NavigationButtons';
 
 async function getProductBySlug(product: string, category: string) {
     const { data } = await fetchGraphQL(`
@@ -42,26 +42,15 @@ async function getProductBySlug(product: string, category: string) {
     };
 }
 export default async function Page({ params }: { params: { product: string; category: string } }) {
+    const { product, category } = params;
     const {
         detail: { sys, nombre, descripcion, precio, portada, stock },
         products,
-    } = await getProductBySlug(params.product, params.category);
-
-    const { prevItem, nextItem } = products.reduce(
-        (acc: any, item: any, index: number) => {
-            if (item.url === params.product) {
-                acc.prevItem = products[index - 1]?.url;
-                acc.nextItem = products[index + 1]?.url;
-            }
-            return acc;
-        },
-        { prevItem: null, nextItem: null }
-    );
+    } = await getProductBySlug(product, category);
 
     return (
         <div>
-            {prevItem && <Link href={`/${params.category}/${prevItem}`}>Anterior</Link>}
-            {nextItem && <Link href={`/${params.category}/${nextItem}`}>Siguiente</Link>}
+            <NavigationButtons listOfProducts={products} productSlug={product} categorySlug={category} />
             <h1>{nombre}</h1>
             <h2>{descripcion}</h2>
             <h3>{precio}</h3>

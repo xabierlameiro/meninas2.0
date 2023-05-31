@@ -6,6 +6,7 @@ type Product = {
     size: string;
     quantity: number;
     juan?: string;
+    url?: string;
 };
 
 type CartState = {
