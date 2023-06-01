@@ -1,14 +1,20 @@
-import { fetchGraphQL } from '@helpers/graphql';
-import Image from 'next/image';
-import Link from 'next/link';
+import { fetchGraphQL } from '@/helpers/contentful';
+import Image from '@/components/Image';
+import AddToCartButton from '@/components/Cart/Button';
+import NavigationButtons from '@/components/NavigationButtons';
+import styles from './page.module.css';
 
 async function getProductBySlug(product: string, category: string) {
     const { data } = await fetchGraphQL(`
     query {
         detail:productoCollection(where: {url: "${product}"}) {
           items {
+            sys {
+              id
+            }
             nombre
             descripcion
+            stock
             precio
             url
             categoriaPrincipal {
@@ -37,30 +43,34 @@ async function getProductBySlug(product: string, category: string) {
     };
 }
 export default async function Page({ params }: { params: { product: string; category: string } }) {
+    const { product, category } = params;
     const {
-        detail: { nombre, descripcion, precio, portada },
+        detail: { sys, nombre, descripcion, precio, portada, stock },
         products,
-    } = await getProductBySlug(params.product, params.category);
-
-    const { prevItem, nextItem } = products.reduce(
-        (acc: any, item: any, index: number) => {
-            if (item.url === params.product) {
-                acc.prevItem = products[index - 1]?.url;
-                acc.nextItem = products[index + 1]?.url;
-            }
-            return acc;
-        },
-        { prevItem: null, nextItem: null }
-    );
+    } = await getProductBySlug(product, category);
 
     return (
-        <div>
-            {prevItem && <Link href={`/${params.category}/${prevItem}`}>Anterior</Link>}
-            {nextItem && <Link href={`/${params.category}/${nextItem}`}>Siguiente</Link>}
-            <h1>{nombre}</h1>
-            <h2>{descripcion}</h2>
-            <h3>{precio}</h3>
-            <Image src={portada.url} alt={nombre} width={500} height={500} priority={true} />
-        </div>
+        <>
+            <NavigationButtons listOfProducts={products} productSlug={product} categorySlug={category} />
+            <div className={styles.pdp}>
+                <div style={{ position: 'relative' }}>
+                    <Image width={600} height={900} source={portada.url} alt={nombre} />
+                </div>
+                <div className={styles.pdp__info}>
+                    <h1>{nombre}</h1>
+                    <h2>{descripcion}</h2>
+                    <h3>{precio}</h3>
+                    <AddToCartButton
+                        item={{
+                            id: sys.id,
+                            name: nombre,
+                            price: precio,
+                            image: portada.url,
+                        }}
+                        sizes={stock}
+                    />
+                </div>
+            </div>
+        </>
     );
 }

@@ -2,11 +2,15 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    outline-color: orangered;
+    outline-offset: calc(0.5rem - 1px);
+    user-select: none;
 }
 
 html,
 body {
     max-width: 100vw;
+    font-family: var(--font-karla);
 }
 
 body {
@@ -17,4 +21,22 @@ body {
 a {
     color: inherit;
     text-decoration: none;
+}
+
+/* scroll */
+::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+/* Reset button styles by default */
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+/* reset dialog styles */
+dialog {
+    border: none;
+    background: none;
 }

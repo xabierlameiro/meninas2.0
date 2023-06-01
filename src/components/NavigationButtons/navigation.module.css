@@ -1,0 +1,24 @@
+.navigation {
+    display: flex;
+    text-transform: uppercase;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 16px;
+}
+
+.navigation a:after {
+    display: inline-block;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    color: #6c757d;
+    content: '/';
+}
+
+.navigation a:last-child:after {
+    display: none;
+}
+
+.navigation a:hover {
+    text-decoration: underline;
+}

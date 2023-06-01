@@ -1,6 +1,7 @@
 'use client';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import styles from './breadcrumb.module.css';
 
 const Breadcrumb = () => {
     const pathname = usePathname();
@@ -10,14 +11,14 @@ const Breadcrumb = () => {
         const href = `/${path.slice(0, i + 1).join('/')}`;
         const name = p.replace(/-/g, ' ').toUpperCase();
         return (
-            <Link key={href} href={href}>
+            <Link href={href} key={href}>
                 {name}
             </Link>
         );
     });
 
     return (
-        <div>
+        <div className={styles.breadcrumb}>
             <Link href="/">HOME</Link>
             {breadcrumb}
         </div>
