@@ -1,0 +1,10 @@
+.pdp {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.pdp__info {
+    padding: 2rem;
+}

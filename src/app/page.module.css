@@ -6,7 +6,8 @@
 
 .main {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 1fr;
+    padding: 1rem 2rem;
 }
 
 .grid {

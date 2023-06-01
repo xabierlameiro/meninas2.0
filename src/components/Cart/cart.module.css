@@ -1,5 +1,4 @@
 .cart {
-    padding-right: 1rem;
     position: relative;
 }
 
@@ -38,13 +37,13 @@
         transform: scale(1);
     }
     25% {
-        transform: scale(1.2);
+        transform: scale(1.1);
     }
     50% {
         transform: scale(1);
     }
     75% {
-        transform: scale(1.2);
+        transform: scale(1.1);
     }
     100% {
         transform: scale(1);

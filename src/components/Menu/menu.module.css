@@ -4,9 +4,7 @@
 }
 
 .menu {
-    position: sticky;
-    top: 109px;
-    padding: 1rem 2rem;
+    display: none;
 }
 
 .menu ul {

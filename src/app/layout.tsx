@@ -1,10 +1,18 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
-import Menu from '@components/Menu';
 import Header from '@components/Header';
 import Footer from '@components/Footer';
 import styles from './page.module.css';
 import { Breadcrumb } from '@/components/BreadCrumb';
+import { Karla } from 'next/font/google';
+
+export const karla = Karla({
+    weight: ['200', '400', '700'],
+    style: 'normal',
+    subsets: ['latin'],
+    display: 'swap',
+    variable: '--font-karla',
+});
 
 export const metadata = {
     title: 'Meninas Cambados',
@@ -13,12 +21,10 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="es">
+        <html lang="es" className={`${karla.variable}`}>
             <body className={styles.body}>
                 <Header />
                 <main className={styles.main}>
-                    {/* @ts-expect-error Server Component */}
-                    <Menu />
                     <div style={{ position: 'relative' }}>
                         <Breadcrumb />
                         {children}

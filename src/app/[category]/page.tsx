@@ -1,4 +1,4 @@
-import { fetchGraphQL } from '@helpers/graphql';
+import { fetchGraphQL } from '@/helpers/contentful';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './category.module.css';

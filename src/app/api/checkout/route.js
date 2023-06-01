@@ -65,8 +65,6 @@ export async function POST(request) {
         });
         return NextResponse.redirect(session.url, { status: 303 });
     } catch (err) {
-        console.log('BROKED');
-        console.log(err);
         return new Response('Error', {
             status: 409,
         });
