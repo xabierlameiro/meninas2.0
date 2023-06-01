@@ -1,17 +1,10 @@
-import LegacyImage from 'next/legacy/image';
+import LegacyImage from 'next/image';
 
-const cloudinary = 'https://res.cloudinary.com/dlfkxcjkq/image/upload/';
+const cloudinary = 'https://res.cloudinary.com/dlfkxcjkq/image/fetch/';
 
 const Image = ({ source, alt, width, height }: any) => {
     return (
-        <LegacyImage
-            alt={alt}
-            width={width}
-            height={height}
-            src={`${cloudinary}/h_${height},w_${width}/${source}.jpg`}
-            blurDataURL={`${cloudinary}q_1,e_blur:1000/h_${height},w_${width}/${source}.jpg`}
-            placeholder="blur"
-        />
+        <LegacyImage alt={alt} width={width} height={height} src={`${cloudinary}h_${height},w_${width}/${source}`} />
     );
 };
 

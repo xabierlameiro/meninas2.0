@@ -1,5 +1,5 @@
 import { fetchGraphQL } from '@/helpers/contentful';
-import Image from 'next/image';
+import Image from '@/components/Image';
 import Link from 'next/link';
 import styles from './page.module.css';
 
@@ -34,10 +34,16 @@ export default async function Home() {
     const data = await getProducts();
     return (
         <div className={styles.grid}>
-            {data?.map((producto: any) => (
+            {data?.map((producto: any, index: number) => (
                 <div key={producto.nombre}>
                     <Link href={`/${producto.categoriaPrincipal.slug}/${producto.url}`}>
-                        <Image src={producto.portada.url} alt="Picture of the author" width={300} height={300} />
+                        <Image
+                            source={producto.portada.url}
+                            alt={producto.nombre}
+                            width={450}
+                            height={700}
+                            priority={index === 0}
+                        />
                     </Link>
                 </div>
             ))}
