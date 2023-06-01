@@ -12,6 +12,7 @@ async function getProductsByCategory(category: string) {
             descripcion
             precio
             url
+            cloudinary
             categoriaPrincipal {
               slug
             }
@@ -43,6 +44,8 @@ export default async function Page({ params }: { params: { category: string } })
                         <p>{product.precio}</p>
                         <p>{product.url}</p>
                         <p>{product.categoriaPrincipal.slug}</p> */}
+                        <h1>hola</h1>
+                        {products.cloudinary}
                         <Image src={product.portada.url} width={300} height={300} alt="" />
                         {/*        <div>
                             {product.categoriasCollection.items.map((categoria: any) => (

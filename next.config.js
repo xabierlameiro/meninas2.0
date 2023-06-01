@@ -13,7 +13,15 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: '**.ctfassets.net',
             },
+            /* cloudinary */
+            {
+                protocol: 'https',
+                hostname: 'res.cloudinary.com',
+                port: '',
+                pathname: '/**/*',
+            },
         ],
+        deviceSizes: [320, 420, 768, 1024, 1200],
     },
 };
 

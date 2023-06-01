@@ -1,5 +1,5 @@
 import { fetchGraphQL } from '@/helpers/contentful';
-import Image from 'next/image';
+import Image from '@/components/Image';
 import AddToCartButton from '@/components/Cart/Button';
 import NavigationButtons from '@/components/NavigationButtons';
 import styles from './page.module.css';
@@ -12,6 +12,7 @@ async function getProductBySlug(product: string, category: string) {
             sys {
               id
             }
+            cloudinary
             nombre
             descripcion
             stock
@@ -45,11 +46,11 @@ async function getProductBySlug(product: string, category: string) {
 export default async function Page({ params }: { params: { product: string; category: string } }) {
     const { product, category } = params;
     const {
-        detail: { sys, nombre, descripcion, precio, portada, stock },
+        detail: { sys, nombre, descripcion, precio, portada, stock, cloudinary },
         products,
     } = await getProductBySlug(product, category);
 
-    const shimmer = (w: number, h: number) => `
+    /*    const shimmer = (w: number, h: number) => `
       <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <defs>
           <linearGradient id="g">
@@ -64,23 +65,16 @@ export default async function Page({ params }: { params: { product: string; cate
       </svg>`;
 
     const toBase64 = (str: string) =>
-        typeof window === 'undefined' ? Buffer.from(str).toString('base64') : window.btoa(str);
+        typeof window === 'undefined' ? Buffer.from(str).toString('base64') : window.btoa(str); */
     return (
         <>
             <NavigationButtons listOfProducts={products} productSlug={product} categorySlug={category} />
             <div className={styles.pdp}>
                 <div style={{ position: 'relative' }}>
-                    <Image
-                        fill
-                        src={portada.url}
-                        alt={nombre}
-                        priority={true}
-                        style={{ objectFit: 'cover', objectPosition: 'top left' }}
-                        placeholder="blur"
-                        blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`}
-                    />
+                    <Image width={600} height={900} source={cloudinary?.[0]?.public_id} alt={nombre} />
                 </div>
                 <div className={styles.pdp__info}>
+                    <h1>{cloudinary?.[0]?.public_id}</h1>
                     <h1>{nombre}</h1>
                     <h2>{descripcion}</h2>
                     <h3>{precio}</h3>
