@@ -12,6 +12,12 @@
     z-index: 1;
 }
 
+@media (max-width: 768px) {
+    .header {
+        padding: 0.5rem 1rem;
+    }
+}
+
 .brand {
     font-weight: 400;
 }

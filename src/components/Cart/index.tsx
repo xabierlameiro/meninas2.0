@@ -64,8 +64,8 @@ const Cart = () => {
                         xmlns="http://www.w3.org/2000/svg"
                         onClick={() => setOpenCart(false)}
                         fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
+                        viewBox="5 -2 24 24"
+                        strokeWidth={1.3}
                         stroke="currentColor"
                         width={24}
                         height={24}

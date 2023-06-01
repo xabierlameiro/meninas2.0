@@ -58,6 +58,26 @@
     border: none;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 1rem;
+    background-color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+    .cart__dialog {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        max-height: initial;
+        top: 0;
+        left: 0;
+        padding: 2rem;
+        background-color: #fff;
+        z-index: 2;
+        padding: 0.5rem 1rem;
+    }
+    .cart__dialog__close {
+        width: 35px;
+        height: 35px;
+    }
 }
 
 .cart__dialog header {
