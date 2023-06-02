@@ -49,6 +49,14 @@ export default async function Page({ params }: { params: { category: string } })
                     </Link>
                 </Card>
             ))}
+            {products.length <= 5 ? (
+                <>
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                </>
+            ) : null}
         </GridContainer>
     );
 }
