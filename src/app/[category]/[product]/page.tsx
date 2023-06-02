@@ -54,7 +54,7 @@ export default async function Page({ params }: { params: { product: string; cate
             <NavigationButtons listOfProducts={products} productSlug={product} categorySlug={category} />
             <div className={styles.pdp}>
                 <div style={{ position: 'relative' }}>
-                    <Image width={600} height={900} source={portada.url} alt={nombre} />
+                    <Image width={600} height={900} source={portada.url} alt={nombre} prioriy />
                 </div>
                 <div className={styles.pdp__info}>
                     <h1>{nombre}</h1>

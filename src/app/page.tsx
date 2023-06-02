@@ -1,7 +1,8 @@
 import { fetchGraphQL } from '@/helpers/contentful';
 import Image from '@/components/Image';
 import Link from 'next/link';
-import styles from './page.module.css';
+import GridContainer from '@/components/Layout/GridContainer';
+import Card from '@/components/Layout/Card';
 
 async function getProducts() {
     const { data } = await fetchGraphQL(`
@@ -33,20 +34,20 @@ async function getProducts() {
 export default async function Home() {
     const data = await getProducts();
     return (
-        <div className={styles.grid}>
+        <GridContainer>
             {data?.map((producto: any, index: number) => (
-                <div key={producto.nombre}>
+                <Card key={producto.nombre}>
                     <Link href={`/${producto.categoriaPrincipal.slug}/${producto.url}`}>
                         <Image
                             source={producto.portada.url}
                             alt={producto.nombre}
-                            width={450}
-                            height={700}
                             priority={index === 0}
+                            width={600}
+                            height={850}
                         />
                     </Link>
-                </div>
+                </Card>
             ))}
-        </div>
+        </GridContainer>
     );
 }

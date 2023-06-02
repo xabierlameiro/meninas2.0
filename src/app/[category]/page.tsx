@@ -1,7 +1,8 @@
 import { fetchGraphQL } from '@/helpers/contentful';
-import Image from 'next/image';
+import Image from '@/components/Image';
 import Link from 'next/link';
-import styles from './category.module.css';
+import GridContainer from '@/components/Layout/GridContainer';
+import Card from '@/components/Layout/Card';
 
 async function getProductsByCategory(category: string) {
     const { data } = await fetchGraphQL(`
@@ -34,24 +35,20 @@ export default async function Page({ params }: { params: { category: string } })
     const products = await getProductsByCategory(params.category);
 
     return (
-        <div className={styles.grid}>
-            {products?.map((product: any) => (
-                <div key={product.url}>
+        <GridContainer>
+            {products?.map((product: any, index: number) => (
+                <Card key={product.url}>
                     <Link href={`/${params.category}/${product.url}`}>
-                        {/*   <p>{product.nombre}</p>
-                        <p>{product.descripcion}</p>
-                        <p>{product.precio}</p>
-                        <p>{product.url}</p>
-                        <p>{product.categoriaPrincipal.slug}</p> */}
-                        <Image src={product.portada.url} width={300} height={300} alt="" />
-                        {/*        <div>
-                            {product.categoriasCollection.items.map((categoria: any) => (
-                                <span key={categoria.nombre}>{categoria.nombre}</span>
-                            ))}
-                        </div> */}
+                        <Image
+                            source={product.portada.url}
+                            alt={product.nombre}
+                            priority={index === 0}
+                            width={600}
+                            height={850}
+                        />
                     </Link>
-                </div>
+                </Card>
             ))}
-        </div>
+        </GridContainer>
     );
 }

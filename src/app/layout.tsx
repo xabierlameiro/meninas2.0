@@ -1,8 +1,7 @@
 import './globals.css';
-import { Inter } from 'next/font/google';
 import Header from '@components/Header';
 import Footer from '@components/Footer';
-import styles from './page.module.css';
+import styles from './layout.module.css';
 import { Breadcrumb } from '@/components/BreadCrumb';
 import { Karla } from 'next/font/google';
 
