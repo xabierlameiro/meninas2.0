@@ -14,8 +14,16 @@ const NavigationProducts = ({ listOfProducts, productSlug, categorySlug }: Navig
     );
     return (
         <div className={styles.navigation}>
-            {prevItem && <Link href={`/${categorySlug}/${prevItem}`}>Anterior</Link>}
-            {nextItem && <Link href={`/${categorySlug}/${nextItem}`}>Siguiente</Link>}
+            {prevItem && (
+                <Link href={`/${categorySlug}/${prevItem}`} title="ANTERIOR">
+                    Anterior
+                </Link>
+            )}
+            {nextItem && (
+                <Link href={`/${categorySlug}/${nextItem}`} title="SIGUIENTE">
+                    Siguiente
+                </Link>
+            )}
         </div>
     );
 };

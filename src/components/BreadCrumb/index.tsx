@@ -11,7 +11,7 @@ const BreadCrumb = () => {
         const href = `/${path.slice(0, i + 1).join('/')}`;
         const name = p.replace(/-/g, ' ').toUpperCase();
         return (
-            <Link href={href} key={href}>
+            <Link href={href} key={href} title={name}>
                 {name}
             </Link>
         );
@@ -19,7 +19,9 @@ const BreadCrumb = () => {
 
     return (
         <div className={styles.breadcrumb}>
-            <Link href="/">HOME</Link>
+            <Link href="/" title="HOME">
+                HOME
+            </Link>
             {breadcrumb}
         </div>
     );
