@@ -10,6 +10,7 @@ async function getProductBySlug(product: string, category: string) {
     return {
         detail: data?.detail.items[0],
         products: data?.products.items,
+        thumbnails: data?.detail.items[0].thumbnails.items,
     };
 }
 
@@ -18,6 +19,7 @@ export default async function Page({ params }: { params: { product: string; cate
     const {
         detail: { sys, nombre, descripcion, precio, portada, stock },
         products,
+        thumbnails,
     } = await getProductBySlug(product, category);
 
     return (
@@ -25,7 +27,15 @@ export default async function Page({ params }: { params: { product: string; cate
             <NavigationProducts listOfProducts={products} productSlug={product} categorySlug={category} />
             <div className={styles.pdp}>
                 <div style={{ position: 'relative' }} className={styles.pdp__image}>
-                    <Image fill width={1000} height={1900} src={portada.url} alt={nombre} priority />
+                    <Image
+                        fill
+                        width={1000}
+                        height={1900}
+                        src={portada.url}
+                        alt={nombre}
+                        priority
+                        thumbnails={thumbnails}
+                    />
                 </div>
                 <div className={styles.pdp__info}>
                     <h1>{nombre}</h1>

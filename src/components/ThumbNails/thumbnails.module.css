@@ -1,0 +1,22 @@
+.thumbnails__container {
+    position: absolute;
+    width: 100px;
+    right: 5px;
+    top: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.thumbnails__item {
+    width: 100px;
+    height: 100px;
+    aspect-ratio: 1/1;
+}
+
+.thumbnails__item img {
+    width: inherit;
+    height: inherit;
+    aspect-ratio: 1/1;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}

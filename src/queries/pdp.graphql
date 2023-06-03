@@ -9,6 +9,15 @@ query pdp($product: String!, $category: String!) {
             stock
             precio
             url
+            thumbnails: imagenesCollection {
+                items {
+                    sys {
+                        id
+                    }
+                    url
+                    title
+                }
+            }
             categoriaPrincipal {
                 slug
             }
