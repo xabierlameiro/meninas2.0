@@ -24,8 +24,8 @@ export default async function Page({ params }: { params: { product: string; cate
         <>
             <NavigationProducts listOfProducts={products} productSlug={product} categorySlug={category} />
             <div className={styles.pdp}>
-                <div style={{ position: 'relative' }}>
-                    <Image fill width={600} height={900} src={portada.url} alt={nombre} priority />
+                <div style={{ position: 'relative' }} className={styles.pdp__image}>
+                    <Image fill width={1000} height={1900} src={portada.url} alt={nombre} priority />
                 </div>
                 <div className={styles.pdp__info}>
                     <h1>{nombre}</h1>
