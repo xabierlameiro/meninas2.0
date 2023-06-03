@@ -1,5 +1,5 @@
 import { fetchGraphQL } from '@helpers/contentful';
-import Image from '@components/BreadCrumb/Image';
+import Image from '@components/Image';
 import AddToCartButton from '@components/Cart/Button';
 import NavigationProducts from '@components/NavigationProducts';
 import styles from './page.module.css';

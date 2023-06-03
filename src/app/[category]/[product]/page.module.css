@@ -1,7 +1,6 @@
 .pdp {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    height: 1200px;
     min-height: 100vh;
 }
 

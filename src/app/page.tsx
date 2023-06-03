@@ -1,5 +1,5 @@
 import { fetchGraphQL } from '@helpers/contentful';
-import Image from '@components/BreadCrumb/Image';
+import Image from '@components/Image';
 import Link from 'next/link';
 import GridContainer from '@components/Layout/GridContainer';
 import Card from '@components/Layout/Card';
@@ -16,7 +16,15 @@ export default async function Home() {
         <GridContainer>
             {data?.map((producto: any, index: number) => (
                 <Card key={producto.nombre}>
-                    <Link href={`/${producto.categoriaPrincipal.slug}/${producto.url}`}>
+                    <Link
+                        href={`/${producto.categoriaPrincipal.slug}/${producto.url}`}
+                        style={{
+                            display: 'block',
+                            width: '100%',
+                            height: '100%',
+                            position: 'inherit',
+                        }}
+                    >
                         <Image
                             fill
                             src={producto.portada.url}
