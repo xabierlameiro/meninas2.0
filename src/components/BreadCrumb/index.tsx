@@ -3,7 +3,7 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import styles from './breadcrumb.module.css';
 
-const Breadcrumb = () => {
+const BreadCrumb = () => {
     const pathname = usePathname();
     const path = pathname.split('/').filter((p) => p !== '');
 
@@ -25,4 +25,4 @@ const Breadcrumb = () => {
     );
 };
 
-export { Breadcrumb, Breadcrumb as default };
+export default BreadCrumb;

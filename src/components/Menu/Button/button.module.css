@@ -2,10 +2,6 @@
     position: relative;
 }
 
-.menuIcon {
-    cursor: pointer;
-}
-
 .menu {
     position: absolute;
     left: 30px;

@@ -1,6 +1,6 @@
 import styles from './grid.module.css';
 
-const GridContainer = ({ children }: any) => {
+const GridContainer = ({ children }: Children) => {
     return <div className={styles.grid}>{children}</div>;
 };
 

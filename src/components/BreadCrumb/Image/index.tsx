@@ -2,15 +2,15 @@ import LegacyImage from 'next/image';
 
 const cloudinary = 'https://res.cloudinary.com/dlfkxcjkq/image/fetch/';
 
-const Image = ({ source, alt, width, height, priority }: any) => {
+const Image = ({ src, fill = false, alt, width, height, priority }: ImageProps) => {
     return (
         <LegacyImage
             alt={alt}
-            fill
+            fill={fill}
             priority={priority}
-            src={`${cloudinary}h_${height},w_${width}/${source}`}
+            src={`${cloudinary}h_${height},w_${width}/${src}`}
             placeholder="blur"
-            blurDataURL={`${cloudinary}q_20,h_${height},w_${width}/${source}`}
+            blurDataURL={`${cloudinary}q_20,h_${height},w_${width}/${src}`}
         />
     );
 };

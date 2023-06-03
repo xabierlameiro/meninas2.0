@@ -1,0 +1,120 @@
+{
+    "kind": "Document",
+    "definitions": [
+        {
+            "kind": "OperationDefinition",
+            "operation": "query",
+            "variableDefinitions": [],
+            "directives": [],
+            "selectionSet": {
+                "kind": "SelectionSet",
+                "selections": [
+                    {
+                        "kind": "Field",
+                        "alias": { "kind": "Name", "value": "menu" },
+                        "name": { "kind": "Name", "value": "categoriaCollection" },
+                        "arguments": [
+                            {
+                                "kind": "Argument",
+                                "name": { "kind": "Name", "value": "order" },
+                                "value": {
+                                    "kind": "ListValue",
+                                    "values": [
+                                        { "kind": "EnumValue", "value": "marca_ASC" },
+                                        { "kind": "EnumValue", "value": "nombre_ASC" }
+                                    ]
+                                }
+                            }
+                        ],
+                        "directives": [],
+                        "selectionSet": {
+                            "kind": "SelectionSet",
+                            "selections": [
+                                {
+                                    "kind": "Field",
+                                    "name": { "kind": "Name", "value": "items" },
+                                    "arguments": [],
+                                    "directives": [],
+                                    "selectionSet": {
+                                        "kind": "SelectionSet",
+                                        "selections": [
+                                            {
+                                                "kind": "Field",
+                                                "name": { "kind": "Name", "value": "nombre" },
+                                                "arguments": [],
+                                                "directives": []
+                                            },
+                                            {
+                                                "kind": "Field",
+                                                "name": { "kind": "Name", "value": "descuento" },
+                                                "arguments": [],
+                                                "directives": []
+                                            },
+                                            {
+                                                "kind": "Field",
+                                                "name": { "kind": "Name", "value": "marca" },
+                                                "arguments": [],
+                                                "directives": []
+                                            },
+                                            {
+                                                "kind": "Field",
+                                                "name": { "kind": "Name", "value": "resaltar" },
+                                                "arguments": [],
+                                                "directives": []
+                                            },
+                                            {
+                                                "kind": "Field",
+                                                "name": { "kind": "Name", "value": "slug" },
+                                                "arguments": [],
+                                                "directives": []
+                                            },
+                                            {
+                                                "kind": "Field",
+                                                "alias": { "kind": "Name", "value": "disponible" },
+                                                "name": { "kind": "Name", "value": "linkedFrom" },
+                                                "arguments": [],
+                                                "directives": [],
+                                                "selectionSet": {
+                                                    "kind": "SelectionSet",
+                                                    "selections": [
+                                                        {
+                                                            "kind": "Field",
+                                                            "alias": { "kind": "Name", "value": "prendas" },
+                                                            "name": { "kind": "Name", "value": "productoCollection" },
+                                                            "arguments": [],
+                                                            "directives": [],
+                                                            "selectionSet": {
+                                                                "kind": "SelectionSet",
+                                                                "selections": [
+                                                                    {
+                                                                        "kind": "Field",
+                                                                        "name": { "kind": "Name", "value": "total" },
+                                                                        "arguments": [],
+                                                                        "directives": []
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "loc": {
+        "start": 0,
+        "end": 360,
+        "source": {
+            "body": "query {             prendas: productoCollection {                   total",
+            "name": "GraphQL request",
+            "locationOffset": { "line": 1, "column": 1 }
+        }
+    }
+}

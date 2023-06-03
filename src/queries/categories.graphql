@@ -1,0 +1,21 @@
+query categories($category: String!) {
+    productoCollection(where: { categorias: { slug: $category } }) {
+        items {
+            nombre
+            descripcion
+            precio
+            url
+            categoriaPrincipal {
+                slug
+            }
+            portada {
+                url
+            }
+            categoriasCollection {
+                items {
+                    nombre
+                }
+            }
+        }
+    }
+}

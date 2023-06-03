@@ -1,47 +1,18 @@
-import { fetchGraphQL } from '@/helpers/contentful';
-import Image from '@/components/Image';
-import AddToCartButton from '@/components/Cart/Button';
-import NavigationButtons from '@/components/NavigationButtons';
+import { fetchGraphQL } from '@helpers/contentful';
+import Image from '@components/BreadCrumb/Image';
+import AddToCartButton from '@components/Cart/Button';
+import NavigationProducts from '@components/NavigationProducts';
 import styles from './page.module.css';
+import pdp from '@queries/pdp.graphql';
 
 async function getProductBySlug(product: string, category: string) {
-    const { data } = await fetchGraphQL(`
-    query {
-        detail:productoCollection(where: {url: "${product}"}) {
-          items {
-            sys {
-              id
-            }
-            nombre
-            descripcion
-            stock
-            precio
-            url
-            categoriaPrincipal {
-              slug
-            }
-            portada {
-              url
-            }
-            categoriasCollection {
-              items {
-                nombre
-              }
-            }
-          }
-        }
-        products:productoCollection(where:{categorias:{slug:"${category}"}}) {
-          items {
-            url
-          }
-        }
-      }
-    `);
+    const { data } = await fetchGraphQL(pdp, { product, category });
     return {
         detail: data?.detail.items[0],
         products: data?.products.items,
     };
 }
+
 export default async function Page({ params }: { params: { product: string; category: string } }) {
     const { product, category } = params;
     const {
@@ -51,10 +22,10 @@ export default async function Page({ params }: { params: { product: string; cate
 
     return (
         <>
-            <NavigationButtons listOfProducts={products} productSlug={product} categorySlug={category} />
+            <NavigationProducts listOfProducts={products} productSlug={product} categorySlug={category} />
             <div className={styles.pdp}>
                 <div style={{ position: 'relative' }}>
-                    <Image width={600} height={900} source={portada.url} alt={nombre} prioriy />
+                    <Image fill width={600} height={900} src={portada.url} alt={nombre} priority />
                 </div>
                 <div className={styles.pdp__info}>
                     <h1>{nombre}</h1>

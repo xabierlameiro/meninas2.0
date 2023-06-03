@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import styles from './navigation.module.css';
 
-const NavigationButtons = ({ listOfProducts, productSlug, categorySlug }: NavigationButtonsProps) => {
+const NavigationProducts = ({ listOfProducts, productSlug, categorySlug }: NavigationProductsProps) => {
     const { prevItem, nextItem } = listOfProducts.reduce(
-        (acc: any, item: any, index: number) => {
+        (acc: Urls, item: Product, index: number) => {
             if (item.url === productSlug) {
                 acc.prevItem = listOfProducts[index - 1]?.url;
                 acc.nextItem = listOfProducts[index + 1]?.url;
@@ -20,4 +20,4 @@ const NavigationButtons = ({ listOfProducts, productSlug, categorySlug }: Naviga
     );
 };
 
-export default NavigationButtons;
+export default NavigationProducts;

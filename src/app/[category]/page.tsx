@@ -1,33 +1,12 @@
-import { fetchGraphQL } from '@/helpers/contentful';
-import Image from '@/components/Image';
+import { fetchGraphQL } from '@helpers/contentful';
+import Image from '@components/BreadCrumb/Image';
 import Link from 'next/link';
-import GridContainer from '@/components/Layout/GridContainer';
-import Card from '@/components/Layout/Card';
+import GridContainer from '@components/Layout/GridContainer';
+import Card from '@components/Layout/Card';
+import categories from '@queries/categories.graphql';
 
 async function getProductsByCategory(category: string) {
-    const { data } = await fetchGraphQL(`
-    query {
-        productoCollection(where:{categorias:{slug:"${category}"}}) {
-          items {
-            nombre
-            descripcion
-            precio
-            url
-            categoriaPrincipal {
-              slug
-            }
-            portada {
-              url
-            }
-            categoriasCollection {
-              items {
-                nombre
-              }
-            }
-          }
-        }
-      }
-    `);
+    const { data } = await fetchGraphQL(categories, { category });
     return data?.productoCollection?.items;
 }
 
@@ -40,7 +19,8 @@ export default async function Page({ params }: { params: { category: string } })
                 <Card key={product.url}>
                     <Link href={`/${params.category}/${product.url}`}>
                         <Image
-                            source={product.portada.url}
+                            fill
+                            src={product.portada.url}
                             alt={product.nombre}
                             priority={index === 0}
                             width={600}

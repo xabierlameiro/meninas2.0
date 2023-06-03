@@ -1,5 +1,5 @@
 'use client';
-import useCart from '@/hooks/useCart';
+import useCart from '@hooks/useCart';
 import { useCallback, useState } from 'react';
 
 // TODO: Pending split and refactor this part
@@ -27,7 +27,7 @@ const AddToCartButton: React.FC<AddtoCartProps> = ({ item, sizes }) => {
                 value={selectedSize}
             >
                 <option value="">Select size</option>
-                {restSizes.map((stock: any) => {
+                {restSizes.map((stock: string) => {
                     const [size, quantity] = stock.split(':');
 
                     if (Number(quantity) <= 0) return null;
