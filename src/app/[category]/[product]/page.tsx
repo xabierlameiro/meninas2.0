@@ -29,8 +29,8 @@ export default async function Page({ params }: { params: { product: string; cate
                 <div style={{ position: 'relative' }} className={styles.pdp__image}>
                     <Image
                         fill
-                        width={1000}
-                        height={1900}
+                        width={924}
+                        height={1232}
                         src={portada.url}
                         alt={nombre}
                         priority

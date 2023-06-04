@@ -1,6 +1,6 @@
 type IconProps = {
     fill?: string;
-    onClick: Function;
+    onClick?: Function;
     width: number;
     height: number;
     strokeWidth?: number;

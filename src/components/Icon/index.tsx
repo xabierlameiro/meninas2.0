@@ -1,3 +1,4 @@
+'use client';
 import styles from './icon.module.css';
 import icons from './icons.constants';
 

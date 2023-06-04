@@ -1,7 +1,9 @@
 import styles from './header.module.css';
-import Cart from '@components/Cart';
 import Menu from '@components/Menu';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
+
+const Cart = dynamic(() => import('@components/Cart'), { ssr: false, loading: () => <div>Cargando...</div> });
 
 const Header = () => {
     return (
