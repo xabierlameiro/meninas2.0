@@ -5,7 +5,7 @@
 }
 
 .pdp__image {
-    aspect-ratio: 0.71/1;
+    aspect-ratio: 3/4;
 }
 
 .pdp__info {
@@ -18,6 +18,6 @@
         height: auto;
     }
     .pdp__image {
-        aspect-ratio: 0.71/1;
+        aspect-ratio: 3/4;
     }
 }

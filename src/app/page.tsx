@@ -28,6 +28,7 @@ export default async function Home() {
                         }}
                     >
                         <Image
+                            fill
                             src={producto.portada.url}
                             alt={producto.nombre}
                             priority={index === 0}
