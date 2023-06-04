@@ -1,0 +1,39 @@
+query pdp($product: String!, $category: String!) {
+    detail: productoCollection(where: { url: $product }) {
+        items {
+            sys {
+                id
+            }
+            nombre
+            descripcion
+            stock
+            precio
+            url
+            thumbnails: imagenesCollection {
+                items {
+                    sys {
+                        id
+                    }
+                    url
+                    title
+                }
+            }
+            categoriaPrincipal {
+                slug
+            }
+            portada {
+                url
+            }
+            categoriasCollection {
+                items {
+                    nombre
+                }
+            }
+        }
+    }
+    products: productoCollection(where: { categorias: { slug: $category } }) {
+        items {
+            url
+        }
+    }
+}

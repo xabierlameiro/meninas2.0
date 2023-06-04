@@ -2,54 +2,6 @@
     position: relative;
 }
 
-.cart__icon {
-    cursor: pointer;
-}
-
-.cart__icon:active {
-    animation: shake 0.5s ease-in-out;
-}
-
-@keyframes shake {
-    0% {
-        transform: translateX(0);
-    }
-    25% {
-        transform: translateX(-0.5rem);
-    }
-    50% {
-        transform: translateX(0);
-    }
-    75% {
-        transform: translateX(0.5rem);
-    }
-    100% {
-        transform: translateX(0);
-    }
-}
-
-.cart__icon__text__animation {
-    animation: cart__icon__text__animation 0.5s ease-in-out;
-}
-
-@keyframes cart__icon__text__animation {
-    0% {
-        transform: scale(1);
-    }
-    25% {
-        transform: scale(1.1);
-    }
-    50% {
-        transform: scale(1);
-    }
-    75% {
-        transform: scale(1.1);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
 .cart__dialog {
     position: absolute;
     width: 400px;
@@ -74,10 +26,6 @@
         z-index: 2;
         padding: 0.5rem 1rem;
     }
-    .cart__dialog__close {
-        width: 35px;
-        height: 35px;
-    }
 }
 
 .cart__dialog header {
@@ -90,10 +38,6 @@
 .cart__dialog__title {
     font-size: 1.5rem;
     font-weight: 300;
-}
-
-.cart__dialog__close {
-    cursor: pointer;
 }
 
 .cart__dialog main {

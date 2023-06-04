@@ -1,27 +1,11 @@
-import { fetchGraphQL } from '@/helpers/contentful';
+import { fetchGraphQL } from '@helpers/contentful';
 import Link from 'next/link';
 import styles from './menu.module.css';
 import Button from './Button';
+import menu from '@queries/menu.graphql';
 
 export async function getMenus() {
-    const { data } = await fetchGraphQL(`
-    query {
-        menu:categoriaCollection(order: [marca_ASC, nombre_ASC]) {
-          items {
-            nombre
-            descuento
-            marca
-            resaltar
-            slug
-            disponible:linkedFrom {
-              prendas:productoCollection {
-                total
-              }
-            }
-          }
-        }
-      }
-    `);
+    const { data } = await fetchGraphQL(menu);
     return data;
 }
 

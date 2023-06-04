@@ -13,7 +13,6 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: '**.ctfassets.net',
             },
-            /* cloudinary */
             {
                 protocol: 'https',
                 hostname: 'res.cloudinary.com',
@@ -22,6 +21,16 @@ const nextConfig = {
             },
         ],
         deviceSizes: [320, 420, 768, 1024, 1200],
+        minimumCacheTTL: 60 * 60 * 24 * 7,
+    },
+    webpack: (config) => {
+        config.module.rules.push({
+            test: /\.(graphql|gql)/,
+            exclude: /node_modules/,
+            loader: 'graphql-operations-string-loader',
+        });
+
+        return config;
     },
 };
 

@@ -1,0 +1,21 @@
+query plp {
+    productoCollection {
+        items {
+            nombre
+            descripcion
+            precio
+            url
+            categoriaPrincipal {
+                slug
+            }
+            portada {
+                url
+            }
+            categoriasCollection {
+                items {
+                    nombre
+                }
+            }
+        }
+    }
+}

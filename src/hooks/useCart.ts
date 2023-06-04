@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import useStore from '@/hooks/useStore';
+import useStore from '@hooks/useStore';
 
 const cart = create(
     persist<CartState>(

@@ -1,10 +1,23 @@
 .pdp {
     display: grid;
-    grid-template-columns: 60% 40%;
-    width: 100%;
+    grid-template-columns: 1fr 1fr;
     min-height: 100vh;
+}
+
+.pdp__image {
+    aspect-ratio: 0.7/1;
 }
 
 .pdp__info {
     padding: 2rem;
+}
+
+@media (max-width: 768px) {
+    .pdp {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+    .pdp__image {
+        aspect-ratio: 0.7/1;
+    }
 }

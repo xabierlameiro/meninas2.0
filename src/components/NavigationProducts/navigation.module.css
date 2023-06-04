@@ -22,3 +22,10 @@
 .navigation a:hover {
     text-decoration: underline;
 }
+
+@media (max-width: 768px) {
+    .navigation {
+        top: 20px;
+        padding: 16px 0;
+    }
+}

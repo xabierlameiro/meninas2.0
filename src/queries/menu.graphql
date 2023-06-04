@@ -1,0 +1,16 @@
+query menu {
+    menu: categoriaCollection(order: [marca_ASC, nombre_ASC]) {
+        items {
+            nombre
+            descuento
+            marca
+            resaltar
+            slug
+            disponible: linkedFrom {
+                prendas: productoCollection {
+                    total
+                }
+            }
+        }
+    }
+}

@@ -1,52 +1,41 @@
-import { fetchGraphQL } from '@/helpers/contentful';
-import Image from '@/components/Image';
+import { fetchGraphQL } from '@helpers/contentful';
+import Image from '@components/Image';
 import Link from 'next/link';
-import styles from './page.module.css';
+import GridContainer from '@components/Layout/GridContainer';
+import Card from '@components/Layout/Card';
+import plp from '@queries/plp.graphql';
 
 async function getProducts() {
-    const { data } = await fetchGraphQL(`
-          query {
-            productoCollection {
-              items {
-                nombre
-                descripcion
-                precio
-                url
-                categoriaPrincipal {
-                  slug
-                }
-                portada {
-                  url
-                }
-                categoriasCollection {
-                  items {
-                    nombre
-                  }
-                }
-              }
-            }
-          }
-        `);
+    const { data } = await fetchGraphQL(plp);
     return data?.productoCollection?.items;
 }
 
 export default async function Home() {
     const data = await getProducts();
     return (
-        <div className={styles.grid}>
+        <GridContainer>
             {data?.map((producto: any, index: number) => (
-                <div key={producto.nombre}>
-                    <Link href={`/${producto.categoriaPrincipal.slug}/${producto.url}`}>
+                <Card key={producto.nombre}>
+                    <Link
+                        href={`/${producto.categoriaPrincipal.slug}/${producto.url}`}
+                        style={{
+                            display: 'block',
+                            width: '100%',
+                            height: '100%',
+                            position: 'inherit',
+                        }}
+                    >
                         <Image
-                            source={producto.portada.url}
+                            fill
+                            src={producto.portada.url}
                             alt={producto.nombre}
-                            width={450}
-                            height={700}
                             priority={index === 0}
+                            width={600}
+                            height={850}
                         />
                     </Link>
-                </div>
+                </Card>
             ))}
-        </div>
+        </GridContainer>
     );
 }
