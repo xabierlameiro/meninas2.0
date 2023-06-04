@@ -33,7 +33,6 @@ const Image = ({ src, title, fill = false, alt, width, height, priority, onClick
                 fill={fill}
                 onClick={onClick}
                 priority={priority}
-                sizes="(max-width: 640px) 100vw, 640px"
                 src={`${cloudinary}h_${height},w_${width},fl_immutable_cache/${source}`}
                 placeholder="blur"
                 blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(width, height))}`}
