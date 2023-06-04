@@ -23,6 +23,20 @@ const nextConfig = {
         deviceSizes: [320, 420, 768, 1024, 1200],
         minimumCacheTTL: 60 * 60 * 24 * 7,
     },
+    /* Add cache-control in images */
+    async headers() {
+        return [
+            {
+                source: '/_next/image(.*)',
+                headers: [
+                    {
+                        key: 'Cache-Control',
+                        value: 'public, max-age=31536000, immutable',
+                    },
+                ],
+            },
+        ];
+    },
     webpack: (config) => {
         config.module.rules.push({
             test: /\.(graphql|gql)/,

@@ -34,7 +34,7 @@ const Image = ({ src, title, fill = false, alt, width, height, priority, onClick
                 onClick={onClick}
                 priority={priority}
                 sizes="(max-width: 640px) 100vw, 640px"
-                src={`${cloudinary}h_${height},w_${width}/${source}`}
+                src={`${cloudinary}h_${height},w_${width},fl_immutable_cache/${source}`}
                 placeholder="blur"
                 blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(width, height))}`}
                 onError={() => setSource('https://via.placeholder.com/480x640.png?text=Image+not+found')}

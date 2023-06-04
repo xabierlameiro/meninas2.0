@@ -5,6 +5,8 @@ import GridContainer from '@components/Layout/GridContainer';
 import Card from '@components/Layout/Card';
 import plp from '@queries/plp.graphql';
 
+export const runtime = 'edge';
+
 async function getProducts() {
     const { data } = await fetchGraphQL(plp);
     return data?.productoCollection?.items;
