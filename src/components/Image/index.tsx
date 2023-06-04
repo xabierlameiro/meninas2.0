@@ -31,13 +31,13 @@ const Image = ({ src, title, fill = false, alt, width, height, priority, onClick
                 alt={alt}
                 title={title}
                 fill={fill}
-                security=""
                 onClick={onClick}
                 priority={priority}
                 sizes="(max-width: 640px) 100vw, 640px"
                 src={`${cloudinary}h_${height},w_${width}/${source}`}
                 placeholder="blur"
                 blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(width, height))}`}
+                onError={() => setSource('https://via.placeholder.com/480x640.png?text=Image+not+found')}
             />
             {thumbnails && <ThumbNails images={thumbnails} onClick={setSource} />}
         </>

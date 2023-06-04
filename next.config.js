@@ -21,6 +21,7 @@ const nextConfig = {
             },
         ],
         deviceSizes: [320, 420, 768, 1024, 1200],
+        minimumCacheTTL: 60 * 60 * 24 * 7,
     },
     webpack: (config) => {
         config.module.rules.push({
