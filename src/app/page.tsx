@@ -32,8 +32,8 @@ export default async function Home() {
                             src={producto.portada.url}
                             alt={producto.nombre}
                             priority={index === 0}
-                            width={356}
-                            height={475}
+                            width={572}
+                            height={762}
                         />
                     </Link>
                 </Card>

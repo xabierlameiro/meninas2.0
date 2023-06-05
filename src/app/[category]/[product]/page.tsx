@@ -5,6 +5,8 @@ import NavigationProducts from '@components/NavigationProducts';
 import styles from './page.module.css';
 import pdp from '@queries/pdp.graphql';
 
+export const runtime = 'edge';
+
 async function getProductBySlug(product: string, category: string) {
     const { data } = await fetchGraphQL(pdp, { product, category });
     return {

@@ -5,6 +5,8 @@ import GridContainer from '@components/Layout/GridContainer';
 import Card from '@components/Layout/Card';
 import categories from '@queries/categories.graphql';
 
+export const runtime = 'edge';
+
 async function getProductsByCategory(category: string) {
     const { data } = await fetchGraphQL(categories, { category });
     return data?.productoCollection?.items;
@@ -31,8 +33,8 @@ export default async function Page({ params }: { params: { category: string } })
                             src={product.portada.url}
                             alt={product.nombre}
                             priority={index === 0}
-                            width={600}
-                            height={850}
+                            width={572}
+                            height={762}
                         />
                     </Link>
                 </Card>
