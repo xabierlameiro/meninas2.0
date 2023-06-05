@@ -2,9 +2,9 @@
     display: flex;
     text-transform: uppercase;
     position: absolute;
-    top: 0;
+    top: -35px;
     right: 0;
-    padding: 16px;
+    padding: 16px 0;
 }
 
 .navigation a:after {
@@ -23,9 +23,18 @@
     text-decoration: underline;
 }
 
+.navigation__right {
+    margin-left: auto;
+}
+
+.navigation__left {
+    margin-right: auto;
+}
+
 @media (max-width: 768px) {
     .navigation {
-        top: 485px;
+        top: unset;
+        bottom: -40px;
         padding: 16px 0;
         display: flex;
         justify-content: space-between;

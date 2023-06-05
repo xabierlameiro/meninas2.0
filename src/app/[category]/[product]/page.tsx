@@ -26,9 +26,8 @@ export default async function Page({ params }: { params: { product: string; cate
 
     return (
         <>
-            <NavigationProducts listOfProducts={products} productSlug={product} categorySlug={category} />
             <div className={styles.pdp}>
-                <div style={{ position: 'relative' }} className={styles.pdp__image}>
+                <div className={styles.pdp__image}>
                     <Image
                         fill
                         priority
@@ -41,6 +40,7 @@ export default async function Page({ params }: { params: { product: string; cate
                         quality={100}
                         sizes="(max-width: 767px) 342px, (min-width: 768px) 924px"
                     />
+                    <NavigationProducts listOfProducts={products} productSlug={product} categorySlug={category} />
                 </div>
                 <div className={styles.pdp__info}>
                     <h1>{nombre}</h1>

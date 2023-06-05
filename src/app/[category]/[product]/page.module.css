@@ -6,6 +6,7 @@
 
 .pdp__image {
     aspect-ratio: 3/4;
+    position: relative;
 }
 
 .pdp__info {
