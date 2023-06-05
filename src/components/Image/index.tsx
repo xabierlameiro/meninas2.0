@@ -54,6 +54,7 @@ const Image = ({
                 placeholder="blur"
                 blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(width, height))}`}
                 onError={() => setSource('https://via.placeholder.com/480x640.png?text=Image+not+found')}
+                style={{ cursor: 'pointer' }}
             />
             {thumbnails && <ThumbNails images={thumbnails} onClick={setSource} />}
         </>

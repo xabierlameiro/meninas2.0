@@ -1,5 +1,6 @@
 .thumbnails__container {
     position: absolute;
+    user-select: none;
     width: 100px;
     right: 5px;
     top: 5px;

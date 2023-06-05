@@ -4,7 +4,7 @@ import styles from './thumbnails.module.css';
 
 const ThumbNails = ({ images, onClick }: any) => {
     return (
-        <div className={styles.thumbnails__container} style={{ cursor: 'pointer' }}>
+        <div className={styles.thumbnails__container}>
             {images.map((image: any) => (
                 <div key={image.sys.id} className={styles.thumbnails__item}>
                     <Image
