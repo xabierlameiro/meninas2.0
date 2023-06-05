@@ -23,7 +23,7 @@ const Image = ({
 }: ImageProps) => {
     let props = { fill, sizes } as Pick<ImageProps, 'fill' | 'sizes' | 'width' | 'height'>;
     const [source, setSource] = useState(src);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     if (!fill) {
         props = {
@@ -38,10 +38,7 @@ const Image = ({
                 {...props}
                 alt={alt}
                 title={title}
-                onClick={() => {
-                    onClick?.();
-                    setLoading(true);
-                }}
+                onClick={onClick}
                 priority={priority}
                 src={`${cloudinary}h_${height},w_${width},fl_immutable_cache/${source}`}
                 quality={quality}

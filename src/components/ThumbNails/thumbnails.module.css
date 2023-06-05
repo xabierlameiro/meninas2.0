@@ -31,6 +31,8 @@
 @media (max-width: 768px) {
     .thumbnails__container {
         width: 40px;
+        top: unset;
+        bottom: 20px;
     }
     .thumbnails__item {
         width: 40px;
