@@ -28,7 +28,7 @@
 
 @media (max-width: 768px) {
     .breadcrumb {
-        padding: 10px 0 2rem 0;
+        padding: 10px 0;
     }
 
     .breadcrumb a:last-child {

@@ -25,7 +25,13 @@
 
 @media (max-width: 768px) {
     .navigation {
-        top: 20px;
+        top: 485px;
         padding: 16px 0;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+    .navigation a:after {
+        display: none;
     }
 }

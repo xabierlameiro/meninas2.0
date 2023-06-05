@@ -50,7 +50,10 @@ const Image = ({
                 {...props}
                 alt={alt}
                 title={title}
-                onClick={onClick}
+                onClick={() => {
+                    onClick?.();
+                    setLoading(true);
+                }}
                 priority={priority}
                 src={`${cloudinary}h_${height},w_${width},fl_immutable_cache/${source}`}
                 quality={quality}
