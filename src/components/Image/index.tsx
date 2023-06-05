@@ -14,6 +14,10 @@ const Image = ({ src, title, fill = false, alt, width, height, priority, onClick
             width,
             height,
         };
+    } else {
+        props = {
+            sizes: '(max-width: 767px) 572px, 342px, (min-width: 768px) 762px, 457px',
+        };
     }
 
     const shimmer = (w: number, h: number) => `    
