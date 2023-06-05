@@ -43,9 +43,12 @@ export default async function Page({ params }: { params: { product: string; cate
                     <NavigationProducts listOfProducts={products} productSlug={product} categorySlug={category} />
                 </div>
                 <div className={styles.pdp__info}>
-                    <h1>{nombre}</h1>
-                    <h2>{descripcion}</h2>
-                    <h3>{precio}</h3>
+                    <div data-testid="price" className={styles.pdp__price}>
+                        {precio} € <span className={styles.pdp__price__vat}>IVA + envío incluido</span>
+                    </div>
+                    <div data-testid="product-name" className={styles.pdp__name}>
+                        {nombre}
+                    </div>
                     <AddToCartButton
                         item={{
                             id: sys.id,

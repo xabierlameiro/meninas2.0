@@ -1,8 +1,8 @@
 'use client';
 import useCart from '@hooks/useCart';
 import { useCallback, useState } from 'react';
+import styles from './button.module.css';
 
-// TODO: Pending split and refactor this part
 const AddToCartButton: React.FC<AddtoCartProps> = ({ item, sizes }) => {
     const cart = useCart();
     const [selectedSize, setSelectedSize] = useState<string | undefined>(undefined);
@@ -65,8 +65,9 @@ const AddToCartButton: React.FC<AddtoCartProps> = ({ item, sizes }) => {
     }, [selectedSize, selectedQuantity, cart.items, item.id]);
 
     return (
-        <div>
+        <div className={styles.pdp__add_to_cart}>
             <button
+                className={styles.pdp__add_to_cart__button}
                 disabled={!selectedSize || !selectedQuantity}
                 onClick={() => {
                     selectedSize &&
@@ -80,10 +81,10 @@ const AddToCartButton: React.FC<AddtoCartProps> = ({ item, sizes }) => {
                     setSelectedQuantity(undefined);
                 }}
             >
-                Add to cart
+                Añadir al carrito
             </button>
-            <Sizes />
-            <Quantity />
+            {/*   <Sizes />
+            <Quantity /> */}
         </div>
     );
 };
