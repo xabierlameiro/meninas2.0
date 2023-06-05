@@ -15,7 +15,8 @@ const Image = ({
     priority,
     onClick,
     thumbnails,
-    sizes = '(max-width: 767px) 572px, 342px, (min-width: 768px) 762px, 457px',
+    quality = 80,
+    sizes = '(max-width: 767px) 342px, (min-width: 768px)  457px',
 }: ImageProps) => {
     let props;
     const [source, setSource] = useState(src);
@@ -46,10 +47,10 @@ const Image = ({
                 {...props}
                 alt={alt}
                 title={title}
-                quality={100}
                 onClick={onClick}
                 priority={priority}
                 src={`${cloudinary}h_${height},w_${width},fl_immutable_cache/${source}`}
+                quality={quality}
                 placeholder="blur"
                 blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(width, height))}`}
                 onError={() => setSource('https://via.placeholder.com/480x640.png?text=Image+not+found')}

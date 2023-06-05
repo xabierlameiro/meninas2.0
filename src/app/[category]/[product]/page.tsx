@@ -31,13 +31,14 @@ export default async function Page({ params }: { params: { product: string; cate
                 <div style={{ position: 'relative' }} className={styles.pdp__image}>
                     <Image
                         fill
-                        sizes="(max-width: 767px) 830px, 1106px, (min-width: 768px) 830px, 1106px"
-                        width={924}
-                        height={1232}
+                        priority
+                        width={572}
+                        height={762}
                         src={portada.url}
                         alt={nombre}
-                        priority
                         thumbnails={thumbnails}
+                        quality={100}
+                        sizes="(max-width: 767px) 342px, (min-width: 768px) 924px"
                     />
                 </div>
                 <div className={styles.pdp__info}>
