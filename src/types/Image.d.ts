@@ -1,5 +1,6 @@
 type ImageProps = {
     thumbnails?: [];
+    showLoading?: boolean;
     onClick?: () => void;
     alt: string;
     title?: string;

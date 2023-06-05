@@ -37,6 +37,7 @@ export default async function Page({ params }: { params: { product: string; cate
                         src={portada.url}
                         alt={nombre}
                         thumbnails={thumbnails}
+                        showLoading
                         quality={100}
                         sizes="(max-width: 767px) 342px, (min-width: 768px) 924px"
                     />
