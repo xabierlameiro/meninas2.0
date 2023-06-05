@@ -2,6 +2,7 @@
 import useCart from '@hooks/useCart';
 import { useCallback, useState } from 'react';
 import styles from './button.module.css';
+import Modal from '../Modal';
 
 const AddToCartButton: React.FC<AddtoCartProps> = ({ item, sizes }) => {
     const cart = useCart();
@@ -66,11 +67,12 @@ const AddToCartButton: React.FC<AddtoCartProps> = ({ item, sizes }) => {
 
     return (
         <div className={styles.pdp__add_to_cart}>
+            <Modal />
             <button
                 className={styles.pdp__add_to_cart__button}
-                disabled={!selectedSize || !selectedQuantity}
-                onClick={() => {
-                    selectedSize &&
+                /*                 disabled={!selectedSize || !selectedQuantity}
+                 */ onClick={() => {
+                    /*   selectedSize &&
                         cart.addToCart({
                             ...item,
                             id: item.id,
@@ -78,11 +80,13 @@ const AddToCartButton: React.FC<AddtoCartProps> = ({ item, sizes }) => {
                             quantity: selectedQuantity || 1,
                         });
                     setSelectedSize(undefined);
-                    setSelectedQuantity(undefined);
+                    setSelectedQuantity(undefined); */
                 }}
+                disabled={true}
             >
                 Añadir al carrito
             </button>
+
             {/*   <Sizes />
             <Quantity /> */}
         </div>

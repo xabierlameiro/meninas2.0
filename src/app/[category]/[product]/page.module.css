@@ -9,14 +9,14 @@
 }
 
 .pdp__info {
-    padding: 2rem 0;
+    padding: 1rem 0;
 }
 
 .pdp__price {
     font-size: 1.2rem;
     font-weight: 600;
     text-align: center;
-    padding-bottom: 0.5rem;
+    padding-bottom: 1rem;
 }
 .pdp__price__vat {
     font-size: 0.8rem;
