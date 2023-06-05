@@ -31,7 +31,7 @@ export default async function Page({ params }: { params: { product: string; cate
                 <div style={{ position: 'relative' }} className={styles.pdp__image}>
                     <Image
                         fill
-                        sizes="(max-width: 767px) 572px, 342px, (min-width: 768px) 924px, 1232px"
+                        sizes="(max-width: 767px) 830px, 1106px, (min-width: 768px) 830px, 1106px"
                         width={924}
                         height={1232}
                         src={portada.url}
