@@ -5,7 +5,18 @@ import ThumbNails from '@components/ThumbNails';
 
 const cloudinary = 'https://res.cloudinary.com/dlfkxcjkq/image/fetch/';
 
-const Image = ({ src, title, fill = false, alt, width, height, priority, onClick, thumbnails }: ImageProps) => {
+const Image = ({
+    src,
+    title,
+    fill = false,
+    alt,
+    width,
+    height,
+    priority,
+    onClick,
+    thumbnails,
+    sizes = '(max-width: 767px) 572px, 342px, (min-width: 768px) 762px, 457px',
+}: ImageProps) => {
     let props;
     const [source, setSource] = useState(src);
 
@@ -16,7 +27,8 @@ const Image = ({ src, title, fill = false, alt, width, height, priority, onClick
         };
     } else {
         props = {
-            sizes: '(max-width: 767px) 572px, 342px, (min-width: 768px) 762px, 457px',
+            fill,
+            sizes,
         };
     }
 
@@ -34,7 +46,7 @@ const Image = ({ src, title, fill = false, alt, width, height, priority, onClick
                 {...props}
                 alt={alt}
                 title={title}
-                fill={fill}
+                quality={100}
                 onClick={onClick}
                 priority={priority}
                 src={`${cloudinary}h_${height},w_${width},fl_immutable_cache/${source}`}

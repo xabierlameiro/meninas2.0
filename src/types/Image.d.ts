@@ -4,6 +4,7 @@ type ImageProps = {
     alt: string;
     title?: string;
     fill?: boolean;
+    sizes?: string;
     priority?: boolean;
     src: string;
     width: number;
