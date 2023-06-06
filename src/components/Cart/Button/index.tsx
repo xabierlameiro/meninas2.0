@@ -1,16 +1,24 @@
 'use client';
 import useCart from '@hooks/useCart';
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import styles from './button.module.css';
-import Modal from '../Modal';
 import useModal from '@hooks/useModal';
-import Selector from '../Selector';
+import Selector from '@components/SizesSelector';
 
 const AddToCartButton: React.FC<AddtoCartProps> = ({ item, sizes }) => {
     const cart = useCart();
     const [selectedSize, setSelectedSize] = useState<string | undefined>(undefined);
     const [selectedQuantity, setSelectedQuantity] = useState<number | undefined>(undefined);
     const modal = useModal();
+
+    const options = useMemo(() => {
+        const sizesOnCart = cart.items
+            .filter((i) => i.id === item.id && i.quantity >= Number(i.size.split(':')[1]))
+            .map((i) => i.size);
+        const restSizes = sizes.filter((o) => !sizesOnCart.find((s) => s === o));
+
+        return restSizes;
+    }, [cart.items, item.id, sizes]);
 
     const Sizes = useCallback(() => {
         const sizesOnCart = cart.items
@@ -62,7 +70,6 @@ const AddToCartButton: React.FC<AddtoCartProps> = ({ item, sizes }) => {
                 max={String(Number(selectedSize?.split(':')[1]) - quantityOnCart)}
                 onChange={(e) => setSelectedQuantity(Number(e.target.value))}
                 value={selectedQuantity}
-                /* no able to write */
                 onWheel={(e) => e.currentTarget.blur()}
             />
         );
@@ -71,9 +78,7 @@ const AddToCartButton: React.FC<AddtoCartProps> = ({ item, sizes }) => {
     return (
         <div className={styles.pdp__add_to_cart}>
             <>
-                <Modal>
-                    <Selector />
-                </Modal>
+                <Selector options={options} onChange={(e) => console.log(e)} />
                 <button
                     className={styles.pdp__add_to_cart__button}
                     onClick={() => {

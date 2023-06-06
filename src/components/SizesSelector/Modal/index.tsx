@@ -5,7 +5,6 @@ import useModal from '@hooks/useModal';
 const Modal = ({ children }: Children) => {
     const modal = useModal();
 
-    // cuando se abre la modal, el body se bloquea
     if (typeof window !== 'undefined') {
         if (modal?.isOpen) {
             document.body.style.overflow = 'hidden';

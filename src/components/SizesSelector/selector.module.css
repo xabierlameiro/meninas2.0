@@ -1,0 +1,53 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+}
+
+.option {
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-bottom: 1px solid #000;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.option div {
+    color: grey;
+}
+
+.option:last-child {
+    border-bottom: none;
+}
+
+.option div {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.option div > div {
+    position: absolute;
+    width: max-content;
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    text-decoration: initial;
+    color: #000;
+    font-weight: 600;
+}
+
+.option.selected div {
+    color: #000;
+    font-weight: 600;
+}
+
+.out_of_stock div {
+    cursor: not-allowed;
+    text-decoration: line-through;
+}
