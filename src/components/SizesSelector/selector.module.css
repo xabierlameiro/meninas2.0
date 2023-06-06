@@ -4,6 +4,16 @@
     width: 100%;
 }
 
+.select {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #000;
+    max-height: 50px;
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
 .option {
     font-size: 16px;
     padding: 10px 20px;

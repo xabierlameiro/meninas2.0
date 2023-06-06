@@ -15,8 +15,10 @@
 .pdp__price {
     font-size: 1.2rem;
     font-weight: 600;
+    display: flex;
     text-align: center;
-    padding-bottom: 1rem;
+    justify-content: center;
+    flex-direction: column;
 }
 .pdp__price__vat {
     font-size: 0.8rem;

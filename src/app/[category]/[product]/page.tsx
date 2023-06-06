@@ -46,9 +46,6 @@ export default async function Page({ params }: { params: { product: string; cate
                     <div data-testid="price" className={styles.pdp__price}>
                         {precio} € <span className={styles.pdp__price__vat}>IVA + envío incluido</span>
                     </div>
-                    <div data-testid="product-name" className={styles.pdp__name}>
-                        {nombre}
-                    </div>
                     <AddToCartButton
                         item={{
                             id: sys.id,
