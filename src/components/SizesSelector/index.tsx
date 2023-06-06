@@ -4,14 +4,13 @@ import styles from './selector.module.css';
 import useModal from '@hooks/useModal';
 import Icon from '@components/Icon';
 
-const Selector: React.FC<WheelPickerProps> = ({ options, onChange }) => {
-    const [selectedOption, setSelectedOption] = useState<string>('');
+const Selector: React.FC<WheelPickerProps> = ({ options, selectedSize, onChange }) => {
     const modal = useModal();
 
     return (
         <>
             <div className={styles.select} onClick={() => modal?.open()}>
-                <div className={styles.selectedOption}>{selectedOption.split(':')[0] || 'Select size'}</div>
+                <div className={styles.selectedOption}>{selectedSize.split(':')[0] || 'Seleccionar talla'}</div>
                 <Icon width={24} height={24} className={styles.icon}>
                     {Icon.type.chevronDown}
                 </Icon>
@@ -19,7 +18,7 @@ const Selector: React.FC<WheelPickerProps> = ({ options, onChange }) => {
             <Modal>
                 <div className={styles.container}>
                     {!options.length ? (
-                        <div className={`${styles.option} ${styles.no_sizes_message}`}>No sizes available</div>
+                        <div className={`${styles.option} ${styles.no_sizes_message}`}>No hay tallas disponibles</div>
                     ) : (
                         options.map((option) => {
                             const [size, quantity] = option.split(':');
@@ -28,12 +27,12 @@ const Selector: React.FC<WheelPickerProps> = ({ options, onChange }) => {
                                     key={option}
                                     className={`
                                     ${styles.option} 
-                                    ${option === selectedOption ? styles.selected : ''}
+                                    ${option === selectedSize ? styles.selected : ''}
                                     ${Number(quantity) <= 0 ? styles.out_of_stock : ''}
                                 `}
                                     onClick={() => {
                                         if (Number(quantity) <= 0) return;
-                                        setSelectedOption(option);
+                                        onChange?.(option);
                                         modal?.close();
                                     }}
                                 >
