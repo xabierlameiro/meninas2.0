@@ -5,4 +5,5 @@ type IconProps = {
     height: number;
     strokeWidth?: number;
     scale?: number;
+    className?: string;
 };

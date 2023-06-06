@@ -1,22 +1,27 @@
-import React, { useState } from 'react';
 import styles from './modal.module.css';
+import Icon from '@components/Icon';
+import useModal from '@hooks/useModal';
 
-const Modal = () => {
-    const [isOpen, setIsOpen] = useState(false);
+const Modal = ({ children }: Children) => {
+    const modal = useModal();
 
-    const toggleModal = () => {
-        setIsOpen(!isOpen);
-    };
+    // cuando se abre la modal, el body se bloquea
+    if (typeof window !== 'undefined') {
+        if (modal?.isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+    }
 
     return (
         <div className={styles.container}>
-            <button onClick={toggleModal}>Abrir modal</button>
-
-            <div className={`${styles.modal} ${isOpen ? styles.modalOpen : styles.modalClosed}`}>
+            <div className={`${styles.modal} ${modal?.isOpen ? styles.modalOpen : styles.modalClosed}`}>
                 <div className={styles.modalContent}>
-                    <h2>Seleccionar tallas o cantidad</h2>
-                    {/* Aquí va el contenido del modal */}
-                    <button onClick={toggleModal}>Cerrar modal</button>
+                    <Icon width={24} height={24} onClick={() => modal?.close()} className={styles.closeIcon}>
+                        {Icon.type.close}
+                    </Icon>
+                    {children}
                 </div>
             </div>
         </div>

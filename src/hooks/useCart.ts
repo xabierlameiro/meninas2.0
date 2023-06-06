@@ -6,8 +6,8 @@ const cart = create(
     persist<CartState>(
         (set, get) => ({
             items: [],
-            totalItems: () => get().items.reduce((acc, item) => acc + item.quantity, 0),
-            totalCost: () => get().items.reduce((acc, item) => acc + item.price * item.quantity, 0),
+            totalItems: () => get().items.reduce((acc, item) => acc + item.quantity, 0) ?? 0,
+            totalCost: () => get().items.reduce((acc, item) => acc + item.price * item.quantity, 0) ?? 0,
             addToCart: (item) =>
                 set((state) => {
                     const exists = state.items.find((i) => i.id === item.id);

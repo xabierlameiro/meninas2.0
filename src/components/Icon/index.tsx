@@ -10,6 +10,7 @@ const Icon = ({
     fill = 'none',
     scale = 1,
     strokeWidth = 1.5,
+    className,
 }: Children & IconProps) => {
     return (
         <svg
@@ -24,7 +25,7 @@ const Icon = ({
             strokeWidth={strokeWidth}
             width={width}
             height={height}
-            className={styles.icon}
+            className={`${styles.icon} ${className}`}
         >
             {children}
         </svg>

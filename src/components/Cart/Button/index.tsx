@@ -3,11 +3,14 @@ import useCart from '@hooks/useCart';
 import { useCallback, useState } from 'react';
 import styles from './button.module.css';
 import Modal from '../Modal';
+import useModal from '@hooks/useModal';
+import Selector from '../Selector';
 
 const AddToCartButton: React.FC<AddtoCartProps> = ({ item, sizes }) => {
     const cart = useCart();
     const [selectedSize, setSelectedSize] = useState<string | undefined>(undefined);
     const [selectedQuantity, setSelectedQuantity] = useState<number | undefined>(undefined);
+    const modal = useModal();
 
     const Sizes = useCallback(() => {
         const sizesOnCart = cart.items
@@ -67,28 +70,27 @@ const AddToCartButton: React.FC<AddtoCartProps> = ({ item, sizes }) => {
 
     return (
         <div className={styles.pdp__add_to_cart}>
-            <Modal />
-            <button
-                className={styles.pdp__add_to_cart__button}
-                /*                 disabled={!selectedSize || !selectedQuantity}
-                 */ onClick={() => {
-                    /*   selectedSize &&
+            <>
+                <Modal>
+                    <Selector />
+                </Modal>
+                <button
+                    className={styles.pdp__add_to_cart__button}
+                    onClick={() => {
+                        modal?.open();
+                        /*   selectedSize &&
                         cart.addToCart({
                             ...item,
                             id: item.id,
                             size: selectedSize,
                             quantity: selectedQuantity || 1,
                         });
-                    setSelectedSize(undefined);
-                    setSelectedQuantity(undefined); */
-                }}
-                disabled={true}
-            >
-                Añadir al carrito
-            </button>
-
-            {/*   <Sizes />
-            <Quantity /> */}
+           */
+                    }}
+                >
+                    Añadir al carrito
+                </button>
+            </>
         </div>
     );
 };
