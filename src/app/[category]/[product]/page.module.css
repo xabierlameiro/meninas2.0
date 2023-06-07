@@ -1,23 +1,38 @@
 .pdp {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    min-height: 100vh;
 }
 
 .pdp__image {
     aspect-ratio: 3/4;
+    position: relative;
 }
 
 .pdp__info {
-    padding: 2rem;
+    padding: 5px 0;
+}
+
+.pdp__price {
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.pdp__price__vat {
+    font-size: 0.8rem;
+    font-weight: 400;
+    text-align: center;
+    padding-bottom: 0.5rem;
+}
+.pdp__name {
+    font-size: 1rem;
+    margin-bottom: 1rem;
 }
 
 @media (max-width: 768px) {
     .pdp {
         grid-template-columns: 1fr;
-        height: auto;
-    }
-    .pdp__image {
-        aspect-ratio: 3/4;
     }
 }

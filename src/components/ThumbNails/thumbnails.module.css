@@ -1,6 +1,7 @@
 .thumbnails__container {
     position: absolute;
-    width: 100px;
+    user-select: none;
+    width: 60px;
     right: 5px;
     top: 5px;
     display: flex;
@@ -9,9 +10,15 @@
 }
 
 .thumbnails__item {
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
     aspect-ratio: 1/1;
+}
+
+.thumbnails__item_active {
+    opacity: 0.5;
+    user-select: none;
+    cursor: not-allowed;
 }
 
 .thumbnails__item img {
@@ -24,6 +31,8 @@
 @media (max-width: 768px) {
     .thumbnails__container {
         width: 40px;
+        top: unset;
+        bottom: 20px;
     }
     .thumbnails__item {
         width: 40px;

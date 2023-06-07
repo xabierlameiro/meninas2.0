@@ -1,0 +1,12 @@
+.pdp__add_to_cart {
+}
+
+.pdp__add_to_cart__button {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    background-color: #000;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+}

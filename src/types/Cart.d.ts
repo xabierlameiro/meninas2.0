@@ -31,3 +31,10 @@ type AddtoCartProps = {
     };
     sizes: string[];
 };
+
+type WheelPickerProps = {
+    options: string[];
+    onChange: (selectedOption: Option) => void;
+    initialOption?: string;
+    selectedSize: string;
+};

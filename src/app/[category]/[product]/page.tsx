@@ -5,6 +5,8 @@ import NavigationProducts from '@components/NavigationProducts';
 import styles from './page.module.css';
 import pdp from '@queries/pdp.graphql';
 
+export const runtime = 'edge';
+
 async function getProductBySlug(product: string, category: string) {
     const { data } = await fetchGraphQL(pdp, { product, category });
     return {
@@ -24,23 +26,26 @@ export default async function Page({ params }: { params: { product: string; cate
 
     return (
         <>
-            <NavigationProducts listOfProducts={products} productSlug={product} categorySlug={category} />
             <div className={styles.pdp}>
-                <div style={{ position: 'relative' }} className={styles.pdp__image}>
+                <div className={styles.pdp__image}>
                     <Image
                         fill
-                        width={924}
-                        height={1232}
+                        priority
+                        width={572}
+                        height={762}
                         src={portada.url}
                         alt={nombre}
-                        priority
                         thumbnails={thumbnails}
+                        showLoading
+                        quality={100}
+                        sizes="(max-width: 767px) 342px, (min-width: 768px) 924px"
                     />
+                    <NavigationProducts listOfProducts={products} productSlug={product} categorySlug={category} />
                 </div>
                 <div className={styles.pdp__info}>
-                    <h1>{nombre}</h1>
-                    <h2>{descripcion}</h2>
-                    <h3>{precio}</h3>
+                    <div data-testid="price" className={styles.pdp__price}>
+                        {precio} € <span className={styles.pdp__price__vat}>IVA + envío incluido</span>
+                    </div>
                     <AddToCartButton
                         item={{
                             id: sys.id,
