@@ -6,4 +6,5 @@ type IconProps = {
     strokeWidth?: number;
     scale?: number;
     className?: string;
+    onAnimationEnd?: () => void;
 };

@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useCart from '@hooks/useCart';
 import styles from './cart.module.css';
 import Icon from '@components/Icon';
@@ -7,10 +7,23 @@ import Icon from '@components/Icon';
 const Cart = () => {
     const cart = useCart();
     const [openCart, setOpenCart] = useState<boolean>(false);
+    const [animationStarted, setAnimationStarted] = useState(false);
+
+    useEffect(() => {
+        setAnimationStarted(true);
+    }, [cart.items]);
 
     return (
         <div className={styles.cart}>
-            <Icon onClick={() => setOpenCart((open) => !open)} width={43} height={27} strokeWidth={1.2} scale={1.2}>
+            <Icon
+                onClick={() => setOpenCart((open) => !open)}
+                width={43}
+                height={27}
+                strokeWidth={1.2}
+                scale={1.2}
+                onAnimationEnd={() => setAnimationStarted(false)}
+                className={` ${animationStarted ? styles.cart__icon__animation : ''}`}
+            >
                 {Icon.type.cart(cart.totalItems().toString())}
             </Icon>
             <dialog open={openCart} className={styles.cart__dialog}>

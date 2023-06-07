@@ -11,6 +11,7 @@ const Icon = ({
     scale = 1,
     strokeWidth = 1.5,
     className,
+    onAnimationEnd,
 }: Children & IconProps) => {
     return (
         <svg
@@ -26,6 +27,7 @@ const Icon = ({
             width={width}
             height={height}
             className={`${styles.icon} ${className}`}
+            onAnimationEnd={onAnimationEnd}
         >
             {children}
         </svg>
