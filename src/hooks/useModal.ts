@@ -1,14 +1,13 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import useStore from '@hooks/useStore';
 
-const modal = create(
+const useModalStore = create(
     persist<Modal>(
         (set, get) => ({
             isOpen: false,
             open: () => set({ isOpen: true }),
             close: () => set({ isOpen: false }),
-            toogle: () => set({ isOpen: !get().isOpen }),
+            toggle: () => set({ isOpen: !get().isOpen }),
         }),
         {
             name: 'modal',
@@ -16,6 +15,9 @@ const modal = create(
     )
 );
 
-const useModal = () => useStore(modal, (state) => state as Modal);
+const useModal = (): Modal => {
+    const { isOpen, open, close, toggle } = useModalStore();
+    return { isOpen, open, close, toggle };
+};
 
 export default useModal;

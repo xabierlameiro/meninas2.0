@@ -7,8 +7,8 @@ import Selector from '@components/SizesSelector';
 
 const AddToCartButton: React.FC<AddtoCartProps> = ({ item, sizes }) => {
     const cart = useCart();
-    const [selectedSize, setSelectedSize] = useState<string>('');
-    const modal = useModal();
+    const [selectedSize, setSelectedSize]: StringState = useState('');
+    const { open } = useModal();
 
     const options = useMemo(() => {
         const sizesOnCart = cart.items
@@ -35,7 +35,7 @@ const AddToCartButton: React.FC<AddtoCartProps> = ({ item, sizes }) => {
                             });
                             setSelectedSize('');
                         } else {
-                            modal?.open();
+                            open();
                         }
                     }}
                 >

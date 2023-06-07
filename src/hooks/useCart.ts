@@ -84,4 +84,6 @@ const useCart = () =>
         clearCart: () => {},
     };
 
-export default useCart;
+const useCartState = () => useStore(cart, (state) => state);
+
+export { useCart as default, useCartState };

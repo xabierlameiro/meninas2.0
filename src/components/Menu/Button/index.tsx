@@ -4,7 +4,7 @@ import styles from './button.module.css';
 import Icon from '@components/Icon';
 
 const Button = ({ children }: Children) => {
-    const [openMenu, setOpenMenu] = useState(false);
+    const [openMenu, setOpenMenu]: BooleanState = useState(false);
 
     return (
         <div className={styles.container}>

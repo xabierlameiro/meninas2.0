@@ -22,8 +22,8 @@ const Image = ({
     sizes = '(max-width: 767px) 342px, (min-width: 768px)  457px',
 }: ImageProps) => {
     let props = { fill, sizes } as Pick<ImageProps, 'fill' | 'sizes' | 'width' | 'height'>;
-    const [source, setSource] = useState(src);
-    const [loading, setLoading] = useState(true);
+    const [source, setSource]: StringState = useState(src);
+    const [loading, setLoading]: BooleanState = useState(true);
 
     if (!fill) {
         props = {

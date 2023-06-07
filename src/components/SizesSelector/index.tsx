@@ -5,11 +5,11 @@ import useModal from '@hooks/useModal';
 import Icon from '@components/Icon';
 
 const Selector: React.FC<WheelPickerProps> = ({ options, selectedSize, onChange }) => {
-    const modal = useModal();
+    const { open, close } = useModal();
 
     return (
         <>
-            <div className={styles.select} onClick={() => modal?.open()}>
+            <div className={styles.select} onClick={() => open()}>
                 <div className={styles.selectedOption}>{selectedSize.split(':')[0] || 'Seleccionar talla'}</div>
                 <Icon width={24} height={24} className={styles.icon}>
                     {Icon.type.chevronDown}
@@ -33,7 +33,7 @@ const Selector: React.FC<WheelPickerProps> = ({ options, selectedSize, onChange 
                                     onClick={() => {
                                         if (Number(quantity) <= 0) return;
                                         onChange?.(option);
-                                        modal?.close();
+                                        close();
                                     }}
                                 >
                                     <div>

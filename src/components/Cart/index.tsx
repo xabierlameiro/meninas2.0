@@ -6,8 +6,8 @@ import Icon from '@components/Icon';
 
 const Cart = () => {
     const cart = useCart();
-    const [openCart, setOpenCart] = useState<boolean>(false);
-    const [animationStarted, setAnimationStarted] = useState(false);
+    const [openCart, setOpenCart]: BooleanState = useState(false);
+    const [animationStarted, setAnimationStarted]: BooleanState = useState(false);
 
     useEffect(() => {
         setAnimationStarted(true);
