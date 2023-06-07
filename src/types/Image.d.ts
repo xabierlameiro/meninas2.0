@@ -26,3 +26,5 @@ type ThumbNail = {
     url: string;
     title: string;
 };
+
+type LoaderProps = { loading: boolean };

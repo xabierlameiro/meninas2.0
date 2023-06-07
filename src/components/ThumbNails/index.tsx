@@ -5,7 +5,7 @@ import styles from './thumbnails.module.css';
 const ThumbNails = ({ images, src, onClick, onLoading }: ThumbNailsProps) => {
     return (
         <div className={styles.thumbnails__container}>
-            {images.map((image: any) => (
+            {images.map((image: ThumbNail) => (
                 <div
                     key={image.sys.id}
                     className={`${styles.thumbnails__item} ${src === image.url ? styles.thumbnails__item_active : ''}`}

@@ -7,27 +7,19 @@ import categories from '@queries/categories.graphql';
 
 export const runtime = 'edge';
 
-async function getProductsByCategory(category: string) {
+const getProductsByCategory = async (category: string) => {
     const { data } = await fetchGraphQL(categories, { category });
-    return data?.productoCollection?.items;
-}
+    return data.productoCollection.items as ContentfulProduct[];
+};
 
-export default async function Page({ params }: { params: { category: string } }) {
+const CategoryPage = async ({ params }: PathParamsProps) => {
     const products = await getProductsByCategory(params.category);
 
     return (
         <GridContainer>
-            {products?.map((product: any, index: number) => (
+            {products.map((product: ContentfulProduct, index: number) => (
                 <Card key={product.url}>
-                    <Link
-                        href={`/${params.category}/${product.url}`}
-                        style={{
-                            display: 'block',
-                            width: '100%',
-                            height: '100%',
-                            position: 'inherit',
-                        }}
-                    >
+                    <Link href={`/${params.category}/${product.url}`}>
                         <Image
                             fill
                             src={product.portada.url}
@@ -49,4 +41,6 @@ export default async function Page({ params }: { params: { category: string } })
             ) : null}
         </GridContainer>
     );
-}
+};
+
+export default CategoryPage;

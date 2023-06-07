@@ -1,6 +1,6 @@
 type Stock = `${string}:${string}`;
 
-type Detail = {
+type ContentfulProduct = {
     sys: {
         id: string;
     };

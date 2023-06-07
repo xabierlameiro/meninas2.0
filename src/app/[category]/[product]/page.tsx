@@ -7,16 +7,16 @@ import pdp from '@queries/pdp.graphql';
 
 export const runtime = 'edge';
 
-async function getProductBySlug(product: string, category: string) {
+const getProductBySlug = async (product: string, category: string) => {
     const { data } = await fetchGraphQL(pdp, { product, category });
     return {
-        detail: data?.detail.items[0] as Detail,
-        products: data?.products.items as Pick<Product, 'url'>[],
+        detail: data?.detail.items[0] as ContentfulProduct,
+        products: data?.products.items as ContentfulProduct[],
         thumbnails: data?.detail.items[0].thumbnails.items as ThumbNail[],
     };
-}
+};
 
-export default async function Page({ params }: { params: { product: string; category: string } }) {
+const ProductPage = async ({ params }: PathParamsProps) => {
     const { product, category } = params;
     const {
         detail: { sys, nombre, precio, portada, stock },
@@ -59,4 +59,6 @@ export default async function Page({ params }: { params: { product: string; cate
             </div>
         </>
     );
-}
+};
+
+export default ProductPage;

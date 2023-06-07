@@ -5,7 +5,6 @@ type Product = {
     image?: string;
     size: string;
     quantity: number;
-    juan?: string;
     url?: string;
 };
 
