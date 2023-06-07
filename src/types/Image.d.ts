@@ -1,5 +1,5 @@
 type ImageProps = {
-    thumbnails?: [];
+    thumbnails?: ThumbNail[];
     showLoading?: boolean;
     onClick?: () => void;
     alt: string;
@@ -11,4 +11,18 @@ type ImageProps = {
     width: number;
     height: number;
     quality?: number;
+};
+
+type ThumbNailsProps = {
+    images: ThumbNail[];
+    onLoading: (loading: boolean) => void;
+    onClick: (src: string) => void;
+} & Pick<ImageProps, 'src'>;
+
+type ThumbNail = {
+    sys: {
+        id: string;
+    };
+    url: string;
+    title: string;
 };

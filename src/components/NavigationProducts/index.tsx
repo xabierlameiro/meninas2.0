@@ -2,16 +2,9 @@ import Link from 'next/link';
 import styles from './navigation.module.css';
 
 const NavigationProducts = ({ listOfProducts, productSlug, categorySlug }: NavigationProductsProps) => {
-    const { prevItem, nextItem } = listOfProducts.reduce(
-        (acc: Urls, item: Product, index: number) => {
-            if (item.url === productSlug) {
-                acc.prevItem = listOfProducts[index - 1]?.url;
-                acc.nextItem = listOfProducts[index + 1]?.url;
-            }
-            return acc;
-        },
-        { prevItem: null, nextItem: null }
-    );
+    const currentIndex = listOfProducts.findIndex((item) => item.url === productSlug);
+    const prevItem = listOfProducts[currentIndex - 1]?.url;
+    const nextItem = listOfProducts[currentIndex + 1]?.url;
     return (
         <div className={styles.navigation}>
             {prevItem && (

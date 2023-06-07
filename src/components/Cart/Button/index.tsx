@@ -5,7 +5,7 @@ import styles from './button.module.css';
 import useModal from '@hooks/useModal';
 import Selector from '@components/SizesSelector';
 
-const AddToCartButton: React.FC<AddtoCartProps> = ({ item, sizes }) => {
+const AddToCartButton = ({ item, sizes }: AddtoCartProps) => {
     const cart = useCart();
     const [selectedSize, setSelectedSize]: StringState = useState('');
     const { open } = useModal();

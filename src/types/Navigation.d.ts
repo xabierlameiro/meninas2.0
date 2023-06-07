@@ -1,5 +1,5 @@
 type NavigationProductsProps = {
-    listOfProducts: Product[];
+    listOfProducts: Pick<Product, 'url'>[];
     productSlug: string;
     categorySlug: string;
 };
@@ -7,4 +7,10 @@ type NavigationProductsProps = {
 type Urls = {
     prevItem: string | undefined | null;
     nextItem: string | undefined | null;
+};
+
+type SelectorProps = {
+    options: string[];
+    selectedSize: string;
+    onChange: (option: string) => void;
 };

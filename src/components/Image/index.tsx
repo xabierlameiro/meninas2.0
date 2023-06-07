@@ -4,11 +4,10 @@ import LegacyImage from 'next/image';
 import ThumbNails from '@components/ThumbNails';
 import { shimmer, toBase64 } from '@helpers/image';
 import Loading from './Loading';
-
-const cloudinary = 'https://res.cloudinary.com/dlfkxcjkq/image/fetch/';
+import styles from './image.module.css';
 
 const Image = ({
-    src,
+    src: srcByDefault,
     title,
     fill = false,
     alt,
@@ -22,7 +21,7 @@ const Image = ({
     sizes = '(max-width: 767px) 342px, (min-width: 768px)  457px',
 }: ImageProps) => {
     let props = { fill, sizes } as Pick<ImageProps, 'fill' | 'sizes' | 'width' | 'height'>;
-    const [source, setSource]: StringState = useState(src);
+    const [src, setSrc]: StringState = useState(srcByDefault);
     const [loading, setLoading]: BooleanState = useState(true);
 
     if (!fill) {
@@ -39,20 +38,18 @@ const Image = ({
                 alt={alt}
                 title={title}
                 onClick={onClick}
-                priority={priority}
-                src={`${cloudinary}h_${height},w_${width},fl_immutable_cache/${source}`}
                 quality={quality}
                 placeholder="blur"
-                blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(width, height))}`}
-                onError={() => setSource('https://via.placeholder.com/480x640.png?text=Image+not+found')}
+                priority={priority}
+                src={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}h_${height},w_${width},fl_immutable_cache/${src}`}
+                blurDataURL={`${process.env.NEXT_PUBLIC_BASE64_URL}${toBase64(shimmer(width, height))}`}
+                onError={() => setSrc(`${process.env.NEXT_PUBLIC_PLACEHOLDER_URL}`)}
                 onLoadingComplete={() => setLoading(false)}
                 onCompositionEnd={() => setLoading(false)}
                 onLoadedData={() => setLoading(false)}
-                style={{ cursor: 'pointer' }}
+                className={styles.image}
             />
-            {thumbnails && (
-                <ThumbNails images={thumbnails} onClick={setSource} onLoading={setLoading} source={source} />
-            )}
+            {thumbnails && <ThumbNails images={thumbnails} onClick={setSrc} onLoading={setLoading} src={src} />}
             {showLoading && <Loading loading={loading} />}
         </>
     );

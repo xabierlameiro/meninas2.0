@@ -2,15 +2,13 @@
 import Image from '@components/Image';
 import styles from './thumbnails.module.css';
 
-const ThumbNails = ({ images, source, onClick, onLoading }: any) => {
+const ThumbNails = ({ images, src, onClick, onLoading }: ThumbNailsProps) => {
     return (
         <div className={styles.thumbnails__container}>
             {images.map((image: any) => (
                 <div
                     key={image.sys.id}
-                    className={`${styles.thumbnails__item} ${
-                        source === image.url ? styles.thumbnails__item_active : ''
-                    }`}
+                    className={`${styles.thumbnails__item} ${src === image.url ? styles.thumbnails__item_active : ''}`}
                 >
                     <Image
                         key={image.sys.id}
@@ -21,7 +19,7 @@ const ThumbNails = ({ images, source, onClick, onLoading }: any) => {
                         title={image.title}
                         onClick={() => {
                             onClick(image.url);
-                            if (source !== image.url) onLoading(true);
+                            if (src !== image.url) onLoading(true);
                         }}
                     />
                 </div>
@@ -29,4 +27,5 @@ const ThumbNails = ({ images, source, onClick, onLoading }: any) => {
         </div>
     );
 };
+
 export default ThumbNails;

@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Modal from '@components/SizesSelector/Modal';
 import styles from './selector.module.css';
 import useModal from '@hooks/useModal';
 import Icon from '@components/Icon';
 
-const Selector: React.FC<WheelPickerProps> = ({ options, selectedSize, onChange }) => {
+const Selector = ({ options, selectedSize, onChange }: SelectorProps) => {
     const { open, close } = useModal();
 
     return (

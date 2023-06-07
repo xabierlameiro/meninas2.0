@@ -10,16 +10,16 @@ export const runtime = 'edge';
 async function getProductBySlug(product: string, category: string) {
     const { data } = await fetchGraphQL(pdp, { product, category });
     return {
-        detail: data?.detail.items[0],
-        products: data?.products.items,
-        thumbnails: data?.detail.items[0].thumbnails.items,
+        detail: data?.detail.items[0] as Detail,
+        products: data?.products.items as Pick<Product, 'url'>[],
+        thumbnails: data?.detail.items[0].thumbnails.items as ThumbNail[],
     };
 }
 
 export default async function Page({ params }: { params: { product: string; category: string } }) {
     const { product, category } = params;
     const {
-        detail: { sys, nombre, descripcion, precio, portada, stock },
+        detail: { sys, nombre, precio, portada, stock },
         products,
         thumbnails,
     } = await getProductBySlug(product, category);
