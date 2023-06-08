@@ -7,4 +7,5 @@ type IconProps = {
     scale?: number;
     className?: string;
     onAnimationEnd?: () => void;
+    viewBoxAspectRatio?: boolean;
 };

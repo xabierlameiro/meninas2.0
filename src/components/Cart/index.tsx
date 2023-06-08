@@ -16,6 +16,7 @@ const Cart = () => {
     return (
         <div className={styles.cart}>
             <Icon
+                viewBoxAspectRatio
                 onClick={() => setOpenCart((open) => !open)}
                 width={43}
                 height={27}
@@ -34,24 +35,32 @@ const Cart = () => {
                     </Icon>
                 </header>
                 <main>
+                    <div className={styles.cart__dialog__header}>
+                        <div className={styles.cart__dialog__header__name}>Prenda</div>
+                        <div className={styles.cart__dialog__header__price}>Precio</div>
+                        <div className={styles.cart__dialog__header__size}>Talla</div>
+                        <div className={styles.cart__dialog__header__quantity}>Cantidad</div>
+                        <div />
+                    </div>
+
                     {cart.items.map((item) => (
                         <div className={styles.cart__dialog__product} key={`${item.id}-${item.size}`}>
                             <div className={styles.cart__dialog__product__name}>
                                 <div>{item.name}</div>
-                                <div>{`${item.price} €`}</div>
-                                <div>{item.size.split(':')[0]}</div>
                             </div>
+                            <div className={styles.cart__dialog__product__price}>{item.price} €</div>
+                            <div className={styles.cart__dialog__product__size}>{item.size.split(':')[0]}</div>
                             <div className={styles.cart__dialog__product__quantity}>
                                 <Icon onClick={() => cart.decrementQuantity(item.id, item.size)} width={20} height={20}>
                                     {Icon.type.decrement}
                                 </Icon>
                                 {item.quantity}
-                                <Icon onClick={() => cart.incrementQuantity(item.id, item.size)} width={20} height={20}>
+                                <Icon onClick={() => cart.incrementQuantity(item.id, item.size)} width={19} height={19}>
                                     {Icon.type.increment}
                                 </Icon>
                             </div>
                             <div className={styles.cart__dialog__product__delete}>
-                                <Icon onClick={() => cart.removeFromCart(item.id, item.size)} width={24} height={24}>
+                                <Icon onClick={() => cart.removeFromCart(item.id, item.size)} width={18} height={18}>
                                     {Icon.type.remove}
                                 </Icon>
                             </div>
