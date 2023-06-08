@@ -1,10 +1,11 @@
 type NavigationProductsProps = {
-    listOfProducts: Product[];
+    listOfProducts: Pick<CartProduct, 'url'>[];
     productSlug: string;
     categorySlug: string;
 };
 
-type Urls = {
-    prevItem: string | undefined | null;
-    nextItem: string | undefined | null;
+type SelectorProps = {
+    options: string[];
+    selectedSize: string;
+    setSelectedSize: (option: string) => void;
 };

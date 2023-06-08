@@ -1,19 +1,18 @@
-type Product = {
+type CartProduct = {
     id: string;
     name: string;
     price: number;
     image?: string;
     size: string;
     quantity: number;
-    juan?: string;
     url?: string;
 };
 
 type CartState = {
-    items: Product[];
+    items: CartProduct[];
     totalItems: () => number;
     totalCost: () => number;
-    addToCart: (item: Product) => void;
+    addToCart: (item: CartProduct) => void;
     incrementQuantity: (id: string, size: string) => void;
     decrementQuantity: (id: string, size: string) => void;
     isIncrementable: (id: string, size: string) => boolean;

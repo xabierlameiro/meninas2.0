@@ -1,25 +1,25 @@
 import { fetchGraphQL } from '@helpers/contentful';
 import Image from '@components/Image';
-import AddToCartButton from '@components/Cart/Button';
+import AddToCart from '@components/AddToCart';
 import NavigationProducts from '@components/NavigationProducts';
 import styles from './page.module.css';
 import pdp from '@queries/pdp.graphql';
 
 export const runtime = 'edge';
 
-async function getProductBySlug(product: string, category: string) {
+const getProductBySlug = async (product: string, category: string) => {
     const { data } = await fetchGraphQL(pdp, { product, category });
     return {
-        detail: data?.detail.items[0],
-        products: data?.products.items,
-        thumbnails: data?.detail.items[0].thumbnails.items,
+        detail: data?.detail.items[0] as ContentfulProduct,
+        products: data?.products.items as ContentfulProduct[],
+        thumbnails: data?.detail.items[0].thumbnails.items as ThumbNail[],
     };
-}
+};
 
-export default async function Page({ params }: { params: { product: string; category: string } }) {
+const ProductPage = async ({ params }: PathParamsProps) => {
     const { product, category } = params;
     const {
-        detail: { sys, nombre, descripcion, precio, portada, stock },
+        detail: { sys, nombre, precio, portada, stock },
         products,
         thumbnails,
     } = await getProductBySlug(product, category);
@@ -46,7 +46,7 @@ export default async function Page({ params }: { params: { product: string; cate
                     <div data-testid="price" className={styles.pdp__price}>
                         {precio} € <span className={styles.pdp__price__vat}>IVA + envío incluido</span>
                     </div>
-                    <AddToCartButton
+                    <AddToCart
                         item={{
                             id: sys.id,
                             name: nombre,
@@ -59,4 +59,6 @@ export default async function Page({ params }: { params: { product: string; cate
             </div>
         </>
     );
-}
+};
+
+export default ProductPage;

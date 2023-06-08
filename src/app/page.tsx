@@ -1,32 +1,24 @@
 import { fetchGraphQL } from '@helpers/contentful';
 import Image from '@components/Image';
-import Link from 'next/link';
 import GridContainer from '@components/Layout/GridContainer';
 import Card from '@components/Layout/Card';
 import plp from '@queries/plp.graphql';
+import Link from 'next/link';
 
 export const runtime = 'edge';
 
-async function getProducts() {
+const getProducts = async () => {
     const { data } = await fetchGraphQL(plp);
-    return data?.productoCollection?.items;
-}
+    return data.productoCollection.items as ContentfulProduct[];
+};
 
-export default async function Home() {
+const Home = async () => {
     const data = await getProducts();
     return (
         <GridContainer>
-            {data?.map((producto: any, index: number) => (
+            {data.map((producto: ContentfulProduct, index: number) => (
                 <Card key={producto.nombre}>
-                    <Link
-                        href={`/${producto.categoriaPrincipal.slug}/${producto.url}`}
-                        style={{
-                            display: 'block',
-                            width: '100%',
-                            height: '100%',
-                            position: 'inherit',
-                        }}
-                    >
+                    <Link href={`/${producto.categoriaPrincipal.slug}/${producto.url}`}>
                         <Image
                             fill
                             src={producto.portada.url}
@@ -40,4 +32,6 @@ export default async function Home() {
             ))}
         </GridContainer>
     );
-}
+};
+
+export default Home;

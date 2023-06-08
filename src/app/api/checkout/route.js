@@ -63,6 +63,7 @@ export async function POST(request) {
                 },
             ],
         });
+
         return NextResponse.redirect(session.url, { status: 303 });
     } catch (err) {
         return new Response('Error', {

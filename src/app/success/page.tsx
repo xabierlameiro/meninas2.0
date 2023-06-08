@@ -1,10 +1,12 @@
 import Link from 'next/link';
 
-export default function SuccessPage() {
+const SuccessPage = () => {
     return (
         <div>
             Nice!
             <Link href={'/'}>Back home</Link>
         </div>
     );
-}
+};
+
+export default SuccessPage;
