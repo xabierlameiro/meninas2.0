@@ -4,7 +4,7 @@ import styles from './selector.module.css';
 import useModal from '@hooks/useModal';
 import Icon from '@components/Icon';
 
-const Selector = ({ options, selectedSize, onChange }: SelectorProps) => {
+const Selector = ({ options, selectedSize, setSelectedSize }: SelectorProps) => {
     const { open, close } = useModal();
 
     return (
@@ -32,7 +32,7 @@ const Selector = ({ options, selectedSize, onChange }: SelectorProps) => {
                                 `}
                                     onClick={() => {
                                         if (Number(quantity) <= 0) return;
-                                        onChange?.(option);
+                                        setSelectedSize?.(option);
                                         close();
                                     }}
                                 >

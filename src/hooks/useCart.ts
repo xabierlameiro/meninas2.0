@@ -70,7 +70,7 @@ const cart = create(
     )
 );
 
-const useCart = () =>
+const useCartStore = () =>
     useStore(cart, (state) => state) ?? {
         items: [],
         totalItems: () => 0,
@@ -84,6 +84,11 @@ const useCart = () =>
         clearCart: () => {},
     };
 
-const useCartState = () => useStore(cart, (state) => state);
+const useCart = () => {
+    const cart = useCartStore();
+    return {
+        ...cart,
+    };
+};
 
-export { useCart as default, useCartState };
+export default useCart;

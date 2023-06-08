@@ -7,5 +7,5 @@ type NavigationProductsProps = {
 type SelectorProps = {
     options: string[];
     selectedSize: string;
-    onChange: (option: string) => void;
+    setSelectedSize: (option: string) => void;
 };

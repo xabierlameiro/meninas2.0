@@ -1,6 +1,6 @@
 import { fetchGraphQL } from '@helpers/contentful';
 import Image from '@components/Image';
-import AddToCartButton from '@components/Cart/Button';
+import AddToCart from '@components/AddToCart';
 import NavigationProducts from '@components/NavigationProducts';
 import styles from './page.module.css';
 import pdp from '@queries/pdp.graphql';
@@ -46,7 +46,7 @@ const ProductPage = async ({ params }: PathParamsProps) => {
                     <div data-testid="price" className={styles.pdp__price}>
                         {precio} € <span className={styles.pdp__price__vat}>IVA + envío incluido</span>
                     </div>
-                    <AddToCartButton
+                    <AddToCart
                         item={{
                             id: sys.id,
                             name: nombre,
