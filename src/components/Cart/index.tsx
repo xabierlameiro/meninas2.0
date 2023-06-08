@@ -70,7 +70,7 @@ const Cart = () => {
                 <footer>
                     {cart.items.length > 0 ? (
                         <>
-                            <p>Número de prendas: {cart.totalItems()}</p>
+                            <p>Número total de prendas: {cart.totalItems()}</p>
                             <p>Precio total: {cart.totalCost()} €</p>
                         </>
                     ) : (
