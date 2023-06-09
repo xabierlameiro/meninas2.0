@@ -10,6 +10,8 @@ query plp {
             }
             portada {
                 url
+                width
+                height
             }
             categoriasCollection {
                 items {

@@ -17,6 +17,8 @@ type ContentfulProduct = {
     };
     portada: {
         url: string;
+        width: number;
+        height: number;
     };
     categoriasCollection: {
         items: {
