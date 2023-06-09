@@ -35,18 +35,20 @@ const Cart = () => {
                     </Icon>
                 </header>
                 <main>
-                    <div className={styles.cart__dialog__header}>
-                        <div className={styles.cart__dialog__header__name}>Prenda</div>
-                        <div className={styles.cart__dialog__header__price}>Precio</div>
-                        <div className={styles.cart__dialog__header__size}>Talla</div>
-                        <div className={styles.cart__dialog__header__quantity}>Cantidad</div>
-                        <div />
-                    </div>
+                    {cart.items.length > 0 && (
+                        <div className={styles.cart__dialog__header}>
+                            <div className={styles.cart__dialog__header__name}>Prenda</div>
+                            <div className={styles.cart__dialog__header__price}>Precio</div>
+                            <div className={styles.cart__dialog__header__size}>Talla</div>
+                            <div className={styles.cart__dialog__header__quantity}>Cantidad</div>
+                            <div />
+                        </div>
+                    )}
 
                     {cart.items.map((item) => (
                         <div className={styles.cart__dialog__product} key={`${item.id}-${item.size}`}>
                             <div className={styles.cart__dialog__product__name}>
-                                <div>{item.name}</div>
+                                <div title={item.name}>{item.name}</div>
                             </div>
                             <div className={styles.cart__dialog__product__price}>{item.price} €</div>
                             <div className={styles.cart__dialog__product__size}>{item.size.split(':')[0]}</div>
@@ -69,10 +71,18 @@ const Cart = () => {
                 </main>
                 <footer>
                     {cart.items.length > 0 ? (
-                        <>
-                            <p>Número total de prendas: {cart.totalItems()}</p>
-                            <p>Precio total: {cart.totalCost()} €</p>
-                        </>
+                        <div className={styles.footer__total}>
+                            <div className={styles.footer__total__shipping}>
+                                <div className={styles.footer__total__shipping__title}>Número de prendas</div>
+                                <div className={styles.footer__total__shipping__value}>{cart.totalItems()}</div>
+                            </div>
+                            <div className={styles.footer__total__price}>
+                                <div className={styles.footer__total__price__title}>Precio total</div>
+                                <div className={styles.footer__total__price__value}>{cart.totalCost()} €</div>
+                            </div>
+                            <div className={styles.footer__disclaimer}>Envío y impuestos incluidos</div>
+                            <button className={styles.footer__checkout}>Finalizar compra</button>
+                        </div>
                     ) : (
                         <p>No hay productos añadidos todavía</p>
                     )}
