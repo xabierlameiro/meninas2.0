@@ -21,6 +21,18 @@ const Home = async () => {
             }}
         >
             {data.map((product, index) => {
+                let width, height;
+                if (product.portada.width > 2000) {
+                    width = Math.floor(product.portada.width / 4);
+                    height = Math.floor(product.portada.height / 4);
+                } else if (product.portada.width > 1000) {
+                    width = Math.floor(product.portada.width / 2);
+                    height = Math.floor(product.portada.height / 2);
+                } else {
+                    width = product.portada.width;
+                    height = product.portada.height;
+                }
+
                 return (
                     <div
                         key={index}
@@ -31,13 +43,13 @@ const Home = async () => {
                         }}
                     >
                         <Image
-                            src={product.portada.url}
+                            src={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}h_${height},w_${width}/${product.portada.url}`}
                             alt={product.nombre}
-                            width={product.portada.width}
-                            height={product.portada.height}
+                            width={width}
+                            height={height}
+                            quality={100}
                             layout="responsive"
                             style={{
-                                maxWidth: '100%',
                                 borderRadius: '15px',
                             }}
                         />
