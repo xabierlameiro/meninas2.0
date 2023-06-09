@@ -77,11 +77,11 @@
     max-height: 310px;
     overflow-y: auto;
 }
-/* scroll style dont take width */
+
 .cart__dialog::-webkit-scrollbar {
     width: 0px;
 }
-/* if .cart__dialog main have 4 more childs background red */
+
 .cart__dialog main:has(> div:nth-child(11)) + footer::before {
     content: '* más productos haciendo scroll';
     position: absolute;

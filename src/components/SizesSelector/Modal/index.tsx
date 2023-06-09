@@ -1,12 +1,16 @@
 import styles from './modal.module.css';
 import Icon from '@components/Icon';
 import useModal from '@hooks/useModal';
-import { toggleBodyOverflow } from '@helpers/scroll';
+import { useEffect } from 'react';
 
 const Modal = ({ children }: Children) => {
     const { close, isOpen } = useModal();
 
-    toggleBodyOverflow(isOpen);
+    useEffect(() => {
+        return () => {
+            close();
+        };
+    }, [close]);
 
     return (
         <div className={styles.container}>
