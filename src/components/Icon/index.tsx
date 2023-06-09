@@ -12,6 +12,7 @@ const Icon = ({
     strokeWidth = 1.5,
     className,
     onAnimationEnd,
+    viewBoxAspectRatio = false,
 }: Children & IconProps) => {
     return (
         <svg
@@ -20,7 +21,7 @@ const Icon = ({
             stroke="currentColor"
             fill={fill}
             transform={`scale(${scale})`}
-            viewBox={`0 0 ${width} ${height}`}
+            viewBox={`${viewBoxAspectRatio ? 'xMidYMid meet' : '0 0 24 24'}`}
             onClick={() => onClick?.()}
             onKeyDown={(e) => e.key === 'Enter' && onClick?.()}
             strokeWidth={strokeWidth}
