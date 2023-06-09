@@ -1,6 +1,6 @@
 import { fetchGraphQL } from '@helpers/contentful';
 import Image from '@components/Image';
-import AddToCart from '@components/AddToCart';
+import CartManager from '@components/CartManager';
 import NavigationProducts from '@components/NavigationProducts';
 import styles from './page.module.css';
 import pdp from '@queries/pdp.graphql';
@@ -19,7 +19,7 @@ const getProductBySlug = async (product: string, category: string) => {
 const ProductPage = async ({ params }: PathParamsProps) => {
     const { product, category } = params;
     const {
-        detail: { sys, nombre, precio, portada, stock },
+        detail: { sys, nombre, precio, portada, stock, descripcion },
         products,
         thumbnails,
     } = await getProductBySlug(product, category);
@@ -46,10 +46,11 @@ const ProductPage = async ({ params }: PathParamsProps) => {
                     <div data-testid="price" className={styles.pdp__price}>
                         {precio} € <span className={styles.pdp__price__vat}>IVA + envío incluido</span>
                     </div>
-                    <AddToCart
+                    <CartManager
                         item={{
                             id: sys.id,
                             name: nombre,
+                            description: descripcion,
                             price: precio,
                             image: portada.url,
                         }}

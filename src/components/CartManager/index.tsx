@@ -2,9 +2,9 @@
 import useCart from '@hooks/useCart';
 import { useState } from 'react';
 import Selector from '@components/SizesSelector';
-import Button from '@components/Button';
+import AddToCartButton from '@components/AddToCartButton';
 
-const AddToCart = ({ item, sizes }: AddtoCartProps) => {
+const CartManager = ({ item, sizes }: AddtoCartProps) => {
     const [selectedSize, setSelectedSize]: StringState = useState('');
     const cart = useCart();
 
@@ -16,9 +16,9 @@ const AddToCart = ({ item, sizes }: AddtoCartProps) => {
     return (
         <div>
             <Selector options={options} selectedSize={selectedSize} setSelectedSize={setSelectedSize} />
-            <Button item={item} selectedSize={selectedSize} setSelectedSize={setSelectedSize} />
+            <AddToCartButton item={item} selectedSize={selectedSize} setSelectedSize={setSelectedSize} />
         </div>
     );
 };
 
-export default AddToCart;
+export default CartManager;

@@ -14,6 +14,9 @@ export async function POST(request) {
             apiVersion: '2022-11-15',
         });
 
+        // get list of prorducts from request
+        const products = request.body.products;
+
         const session = await stripe.checkout.sessions.create({
             line_items: [
                 // required
@@ -31,11 +34,6 @@ export async function POST(request) {
                         tax_behavior: 'inclusive',
                     },
                     quantity: 1,
-                    adjustable_quantity: {
-                        enabled: true,
-                        minimum: 1,
-                        maximum: 10,
-                    },
                 },
             ],
             mode: 'payment', // payment, setup, subscription
