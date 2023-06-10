@@ -4,7 +4,7 @@
 
 ## Commands
 
--   npx unlighthouse --site meninas2-0.vercel.app --no-cache
--   npx unlighthouse --site meninas2-0.vercel.app --no-cache --desktop
+-   npx unlighthouse --site meninas2-0.vercel.app/masonry --no-cache --urls /masonry
+-   npx unlighthouse --site meninas2-0.vercel.app/masonry --no-cache --desktop --urls /masonry
 
 -   [CLI](https://unlighthouse.dev/integrations/cli)

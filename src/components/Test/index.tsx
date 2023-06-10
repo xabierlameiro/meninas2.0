@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import styles from './test.module.css';
 import React from 'react';
+import { shimmer, toBase64 } from '@helpers/image';
 
 function calculateImageSize(product: ContentfulProduct) {
     const maxWidth = 320; // Ancho máximo deseado
@@ -66,6 +67,8 @@ const ImageEPA = ({ priority, product }: any) => {
                 priority={priority}
                 quality={100}
                 src={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}h_${heightForCloudinary},w_${widthForCloudinary}/${product.portada.url}`}
+                placeholder="blur"
+                blurDataURL={`${process.env.NEXT_PUBLIC_BASE64_URL}${toBase64(shimmer(width, height))}`}
                 alt={product.nombre}
                 width={width}
                 height={height}
