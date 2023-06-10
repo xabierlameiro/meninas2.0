@@ -1,7 +1,7 @@
 import { fetchGraphQL } from '@helpers/contentful';
 import Image from 'next/image';
 import plp from '@queries/plp.graphql';
-
+import styles from './page.module.css';
 export const runtime = 'edge';
 
 const getProducts = async () => {
@@ -25,42 +25,21 @@ function calculateImageSize(product: ContentfulProduct) {
 const Home = async () => {
     const data = await getProducts();
     return (
-        <div
-            style={{
-                width: '100%',
-                columns: 5,
-            }}
-        >
+        <div className={styles.masonry}>
             {data.map((product, index) => {
                 const { widthForCloudinary, heightForCloudinary, width, height } = calculateImageSize(product);
 
                 return (
-                    <div
-                        key={index}
-                        style={{
-                            width: '100%',
-                            marginBottom: '1rem',
-                            breakInside: 'avoid',
-                        }}
-                    >
+                    <div key={index} className={styles.masonry__item}>
                         <Image
+                            className={styles.masonry__item__image}
                             priority={index < 10}
                             quality={100}
                             src={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}h_${heightForCloudinary},w_${widthForCloudinary}/${product.portada.url}`}
                             alt={product.nombre}
                             width={width}
                             height={height}
-                            style={{
-                                borderRadius: '15px',
-                            }}
                         />
-                        <p
-                            style={{
-                                userSelect: 'all',
-                            }}
-                        >
-                            {product.portada.width}x{product.portada.height}
-                        </p>
                     </div>
                 );
             })}
