@@ -16,8 +16,8 @@ function calculateImageSize(product: ContentfulProduct) {
     const width = Math.floor(product.portada.width / scale);
     const height = Math.floor(product.portada.height / scale);
 
-    const widthForCloudinary = Math.floor(width * 1.2);
-    const heightForCloudinary = Math.floor(height * 1.2);
+    const widthForCloudinary = Math.floor(width * 1.5);
+    const heightForCloudinary = Math.floor(height * 1.5);
 
     return { width, height, widthForCloudinary, heightForCloudinary };
 }
@@ -29,8 +29,6 @@ const Home = async () => {
             style={{
                 width: '100%',
                 columns: 5,
-                columnGap: '1rem',
-                margin: '1rem auto',
             }}
         >
             {data.map((product, index) => {
@@ -46,12 +44,12 @@ const Home = async () => {
                         }}
                     >
                         <Image
-                            priority={index < 5}
+                            priority={index < 10}
+                            quality={100}
                             src={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}h_${heightForCloudinary},w_${widthForCloudinary}/${product.portada.url}`}
                             alt={product.nombre}
                             width={width}
                             height={height}
-                            layout="responsive"
                             style={{
                                 borderRadius: '15px',
                             }}
