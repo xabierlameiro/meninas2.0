@@ -3,6 +3,7 @@ import Image from 'next/image';
 import styles from './test.module.css';
 import React from 'react';
 import { shimmer, toBase64 } from '@helpers/image';
+import Link from 'next/link';
 
 function calculateImageSize(product: ContentfulProduct) {
     const maxWidth = 320; // Ancho máximo deseado
@@ -61,7 +62,7 @@ const ImageEPA = ({ priority, product }: any) => {
     const { widthForCloudinary, heightForCloudinary, width, height } = calculateImageSize(product);
 
     return (
-        <>
+        <Link href={`/${product.categoriaPrincipal.slug}/${product.url}`}>
             <Image
                 className={styles.masonry__item__image}
                 priority={priority}
@@ -73,7 +74,7 @@ const ImageEPA = ({ priority, product }: any) => {
                 width={width}
                 height={height}
             />
-        </>
+        </Link>
     );
 };
 
@@ -84,7 +85,6 @@ const Test = ({ data }: any) => {
     React.useEffect(() => {
         const result = getPriorityImages(data, ref);
         if (!result) return;
-        console.log('hola');
         setPriorityImages(result);
     }, [data, ref]);
 

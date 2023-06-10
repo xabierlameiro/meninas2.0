@@ -10,6 +10,8 @@ query categories($category: String!) {
             }
             portada {
                 url
+                width
+                height
             }
             categoriasCollection {
                 items {
