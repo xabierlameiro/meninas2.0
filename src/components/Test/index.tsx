@@ -10,8 +10,8 @@ function calculateImageSize(product: ContentfulProduct) {
     const width = Math.floor(product.portada.width / scale);
     const height = Math.floor(product.portada.height / scale);
 
-    const widthForCloudinary = Math.floor(width * 1.5);
-    const heightForCloudinary = Math.floor(height * 1.5);
+    const widthForCloudinary = Math.floor(width * 1.2);
+    const heightForCloudinary = Math.floor(height * 1.2);
 
     return { width, height, widthForCloudinary, heightForCloudinary };
 }
@@ -33,16 +33,6 @@ const getPriorityImages = (data: ContentfulProduct[], parentRef: React.RefObject
     for (let i = 0; i < columns; i++) {
         let heightColumn = 0;
         for (let j = startNewColumn; j < data.length; j++) {
-            console.table({
-                currentColumn: i + 1,
-                currentImage: j,
-                startNewColumn: startNewColumn,
-                heightColumn: heightColumn,
-                heightImage: calculateImageSize(data[j]).height,
-                heightImageWithMargin: calculateImageSize(data[j]).height + 16,
-                heightColumnPlusImage: heightColumn + calculateImageSize(data[j]).height + 16,
-                heightMasonry: heightMasonry,
-            });
             heightColumn += calculateImageSize(data[j]).height + 16;
 
             if (heightColumn > heightMasonry) {
@@ -91,6 +81,7 @@ const Test = ({ data }: any) => {
     React.useEffect(() => {
         const result = getPriorityImages(data, ref);
         if (!result) return;
+        console.log('hola');
         setPriorityImages(result);
     }, [data, ref]);
 
