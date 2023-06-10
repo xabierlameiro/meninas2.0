@@ -5,6 +5,25 @@ import React from 'react';
 import { shimmer, toBase64 } from '@helpers/image';
 import Link from 'next/link';
 
+const mediaQuerys = [
+    { minWidth: 1536, columns: 5 },
+    { minWidth: 1280, columns: 4 },
+    { minWidth: 1024, columns: 3 },
+    { minWidth: 600, columns: 2 },
+    { minWidth: 0, columns: 1 },
+];
+
+const getColumns = (
+    mediaQueries: {
+        minWidth: number;
+        columns: number;
+    }[]
+) => {
+    const currentWidth = typeof window !== 'undefined' ? window.innerWidth : 0;
+    const matchingQuery = mediaQueries.find((query) => currentWidth >= query.minWidth);
+    return matchingQuery?.columns ?? 1;
+};
+
 function calculateImageSize(product: ContentfulProduct) {
     const maxWidth = 320; // Ancho máximo deseado
     const scale = Math.ceil(product.portada.width / maxWidth);
@@ -19,17 +38,12 @@ function calculateImageSize(product: ContentfulProduct) {
 }
 
 const getPriorityImages = (data: ContentfulProduct[], parentRef: React.RefObject<HTMLDivElement>) => {
-    const heightMasonry = parentRef.current?.scrollHeight;
-    const indexes = [];
+    const heightMasonry = parentRef.current?.clientHeight;
+    const indexes = [0];
 
     if (!heightMasonry) return;
 
-    const totalHeight = data.reduce((acc, product) => {
-        const { height } = calculateImageSize(product);
-        return acc + height + 16;
-    }, 0);
-
-    const columns = Math.ceil(totalHeight / heightMasonry);
+    const columns = getColumns(mediaQuerys);
 
     let startNewColumn = 0;
     for (let i = 0; i < columns; i++) {
@@ -38,19 +52,10 @@ const getPriorityImages = (data: ContentfulProduct[], parentRef: React.RefObject
             heightColumn += calculateImageSize(data[j]).height + 16;
 
             if (heightColumn > heightMasonry) {
+                if (columns === indexes.length) break;
                 startNewColumn = j;
+                indexes.push(j);
                 break;
-            }
-            if (j === data.length - 1) {
-                startNewColumn = data.length;
-            }
-
-            if (j === startNewColumn) {
-                if (i > 1) {
-                    indexes.push(j + 1);
-                } else {
-                    indexes.push(j);
-                }
             }
         }
     }
