@@ -100,15 +100,7 @@ const Test = ({ data }: any) => {
                             parentRef={ref}
                             priority={priorityImages.includes(index)}
                         />
-                        <p
-                            style={{
-                                position: 'absolute',
-                                backgroundColor: 'white',
-                                color: 'black',
-                            }}
-                        >
-                            {index}
-                        </p>
+                        <div className={styles.masonry__item__price}>{product.precio} €</div>
                     </div>
                 );
             })}
