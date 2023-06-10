@@ -21,7 +21,7 @@ const Icon = ({
             stroke="currentColor"
             fill={fill}
             transform={`scale(${scale})`}
-            viewBox={`${viewBoxAspectRatio ? 'xMidYMid meet' : '0 0 24 24'}`}
+            viewBox={`${viewBoxAspectRatio ? '0 0 30 30' : '0 0 24 24'}`}
             onClick={() => onClick?.()}
             onKeyDown={(e) => e.key === 'Enter' && onClick?.()}
             strokeWidth={strokeWidth}
