@@ -9,6 +9,19 @@ const getProducts = async () => {
     return data.productoCollection.items as ContentfulProduct[];
 };
 
+function calculateImageSize(product: ContentfulProduct) {
+    const maxWidth = 320; // Ancho máximo deseado
+    const scale = Math.ceil(product.portada.width / maxWidth);
+
+    const width = Math.floor(product.portada.width / scale);
+    const height = Math.floor(product.portada.height / scale);
+
+    const widthForCloudinary = Math.floor(width * 1.2);
+    const heightForCloudinary = Math.floor(height * 1.2);
+
+    return { width, height, widthForCloudinary, heightForCloudinary };
+}
+
 const Home = async () => {
     const data = await getProducts();
     return (
@@ -21,20 +34,7 @@ const Home = async () => {
             }}
         >
             {data.map((product, index) => {
-                let width, height;
-                if (product.portada.width > 3000) {
-                    width = Math.floor(product.portada.width / 10);
-                    height = Math.floor(product.portada.height / 10);
-                } else if (product.portada.width > 1800) {
-                    width = Math.floor(product.portada.width / 6);
-                    height = Math.floor(product.portada.height / 6);
-                } else if (product.portada.width > 1000) {
-                    width = Math.floor(product.portada.width / 3);
-                    height = Math.floor(product.portada.height / 3);
-                } else {
-                    width = Math.floor(product.portada.width / 2.1);
-                    height = Math.floor(product.portada.height / 2.1);
-                }
+                const { widthForCloudinary, heightForCloudinary, width, height } = calculateImageSize(product);
 
                 return (
                     <div
@@ -47,7 +47,7 @@ const Home = async () => {
                     >
                         <Image
                             priority={index < 5}
-                            src={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}h_${height},w_${width}/${product.portada.url}`}
+                            src={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}h_${heightForCloudinary},w_${widthForCloudinary}/${product.portada.url}`}
                             alt={product.nombre}
                             width={width}
                             height={height}
@@ -56,13 +56,13 @@ const Home = async () => {
                                 borderRadius: '15px',
                             }}
                         />
-                        {/*  <p
+                        <p
                             style={{
                                 userSelect: 'all',
                             }}
                         >
                             {product.portada.width}x{product.portada.height}
-                        </p> */}
+                        </p>
                     </div>
                 );
             })}
