@@ -11,7 +11,7 @@ const Button = ({ children }: Children) => {
 
     return (
         <div className={styles.container}>
-            <Icon onClick={() => setOpenMenu((open) => !open)} width={20} height={18} strokeWidth={1.3} scale={1.2}>
+            <Icon onClick={() => setOpenMenu((open) => !open)} width={22} height={24} strokeWidth={1.3} scale={1.2}>
                 {Icons.menu}
             </Icon>
             <div className={`${styles.menu} ${openMenu ? styles.open : ''}`} onClick={() => setOpenMenu(false)}>

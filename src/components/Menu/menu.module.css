@@ -1,6 +1,8 @@
 .aside {
     background-color: #fff;
     z-index: 1;
+    justify-self: start;
+    align-self: center;
 }
 
 .menu ul {
