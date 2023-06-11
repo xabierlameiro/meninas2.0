@@ -1,8 +1,7 @@
 'use client';
 import styles from './icon.module.css';
-import icons from './icons.constants';
 
-const Icon: React.FC<IconProps> & { type: typeof icons } = ({
+const Icon = ({
     onClick,
     children,
     width,
@@ -34,7 +33,5 @@ const Icon: React.FC<IconProps> & { type: typeof icons } = ({
         </svg>
     );
 };
-
-Icon.type = icons;
 
 export default Icon;
