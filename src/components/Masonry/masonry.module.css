@@ -1,5 +1,6 @@
 .masonry {
     padding-bottom: 1rem;
+    transition: all 0.5s ease;
 }
 .masonry__item {
     display: flex;
@@ -32,6 +33,7 @@
 
 .masonry__item__info {
     position: absolute;
+    display: flex;
     bottom: 0;
     width: 100%;
     height: fit-content;

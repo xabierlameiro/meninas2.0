@@ -26,14 +26,17 @@ export const getColumns = (
 };
 
 export const calculateImageSize = (product: ContentfulProduct) => {
-    const maxWidth = 320; // Ancho máximo deseado
+    const columns = getColumns(mediaQuerys);
+
+    const maxWidth = Math.floor((window.innerWidth - 32 * (columns - 1)) / columns);
+
     const scale = Math.ceil(product.portada.width / maxWidth);
 
     const width = Math.floor(product.portada.width / scale);
     const height = Math.floor(product.portada.height / scale);
 
-    const widthForCloudinary = Math.floor(width * 1.15);
-    const heightForCloudinary = Math.floor(height * 1.15);
+    const widthForCloudinary = Math.floor(width * 1.1);
+    const heightForCloudinary = Math.floor(height * 1.1);
 
     return { width, height, widthForCloudinary, heightForCloudinary };
 };
