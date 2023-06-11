@@ -3,7 +3,7 @@ import Link from 'next/link';
 import styles from './image.module.css';
 import { shimmer, toBase64, calculateImageSize } from '@helpers/image';
 
-const Image = ({ priority, product }: { priority: boolean; product: ContentfulProduct }) => {
+const Image = ({ priority = false, product }: { priority?: boolean; product: ContentfulProduct }) => {
     const { widthForCloudinary, heightForCloudinary, width, height } = calculateImageSize(product);
 
     return (
