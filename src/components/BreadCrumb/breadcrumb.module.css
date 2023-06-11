@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: max-content max-content auto;
     gap: 5px;
-    padding: 5px 0 35px 0;
+    padding: 5px 0 35px 16px;
 }
 
 .breadcrumb a {
@@ -19,6 +19,6 @@
 
 @media (max-width: 768px) {
     .breadcrumb {
-        padding: 10px 0;
+        padding: 10px 16px;
     }
 }

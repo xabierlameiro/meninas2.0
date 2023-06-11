@@ -27,8 +27,13 @@ export const getColumns = (
 
 export const calculateImageSize = (product: ContentfulProduct) => {
     const columns = getColumns(mediaQuerys);
+    const MaxWidthOfScreen = typeof window !== 'undefined' ? window.innerWidth : 0;
 
-    const maxWidth = Math.floor((window.innerWidth - 32 * (columns - 1)) / columns);
+    const spaceBetweenColumns = 16 * (columns - 1);
+
+    const MaxWidthOfScreenWithPadding = MaxWidthOfScreen - 32 - spaceBetweenColumns;
+
+    const maxWidth = Math.floor(MaxWidthOfScreenWithPadding / columns);
 
     const scale = Math.ceil(product.portada.width / maxWidth);
 
