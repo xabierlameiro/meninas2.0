@@ -5,7 +5,7 @@ import pdp from '@queries/pdp.graphql';
 import dynamic from 'next/dynamic';
 
 const CartManager = dynamic(() => import('@components/CartManager'), { ssr: true });
-const SuperImage = dynamic(() => import('@components/SuperImage'), { ssr: true });
+const PDPImage = dynamic(() => import('@components/PDPImage'), { ssr: true });
 
 export const runtime = 'edge';
 
@@ -31,7 +31,7 @@ const ProductPage = async ({ params }: PathParamsProps) => {
         <>
             <div className={styles.pdp}>
                 <div className={styles.pdp__image}>
-                    <SuperImage product={detail} thumbnails={thumbnails} />
+                    <PDPImage product={detail} thumbnails={thumbnails} />
                     <NavigationProducts listOfProducts={products} productSlug={product} categorySlug={category} />
                 </div>
                 <div className={styles.pdp__info}>

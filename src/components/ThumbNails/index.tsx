@@ -1,5 +1,5 @@
 'use client';
-import Image from '@components/Image';
+import Image from 'next/image';
 import styles from './thumbnails.module.css';
 
 const ThumbNails = ({ images, src, onClick, onLoading }: ThumbNailsProps) => {
