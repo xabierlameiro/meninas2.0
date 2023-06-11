@@ -5,7 +5,7 @@ import useModal from '@hooks/useModal';
 import Icons from '@components/Icon/icons.constants';
 import dynamic from 'next/dynamic';
 
-const Icon = dynamic(() => import('@components/Icon'), { ssr: false });
+const Icon = dynamic(() => import('@components/Icon'), { ssr: true });
 
 const Selector = ({ options, selectedSize, setSelectedSize }: SelectorProps) => {
     const { open, close } = useModal();

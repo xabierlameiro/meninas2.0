@@ -6,7 +6,7 @@ import Loading from './Loading';
 import styles from './image.module.css';
 import dynamic from 'next/dynamic';
 
-const ThumbNails = dynamic(() => import('@components/ThumbNails'), { ssr: false });
+const ThumbNails = dynamic(() => import('@components/ThumbNails'), { ssr: true });
 
 const Image = ({
     src: srcByDefault,

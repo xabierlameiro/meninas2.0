@@ -1,12 +1,12 @@
 import './globals.css';
 import Html from '@components/Layout/Html';
-import Header from '@components/Layout/Header';
 import Main from '@components/Layout/Main';
 import Body from '@components/Layout/Body';
 import Footer from '@components/Layout/Footer';
 import dynamic from 'next/dynamic';
 
-const BreadCrumb = dynamic(() => import('@components/BreadCrumb'), { ssr: false });
+const BreadCrumb = dynamic(() => import('@components/BreadCrumb'), { ssr: true });
+const Header = dynamic(() => import('@components/Layout/Header'), { ssr: true });
 
 export const metadata = {
     title: 'Meninas Cambados',

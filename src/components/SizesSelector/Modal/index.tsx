@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import Icons from '@components/Icon/icons.constants';
 import dynamic from 'next/dynamic';
 
-const Icon = dynamic(() => import('@components/Icon'), { ssr: false });
+const Icon = dynamic(() => import('@components/Icon'), { ssr: true });
 
 const Modal = ({ children }: Children) => {
     const { close, isOpen } = useModal();

@@ -5,7 +5,7 @@ import styles from './page.module.css';
 import pdp from '@queries/pdp.graphql';
 import dynamic from 'next/dynamic';
 
-const CartManager = dynamic(() => import('@components/CartManager'), { ssr: false });
+const CartManager = dynamic(() => import('@components/CartManager'), { ssr: true });
 
 export const runtime = 'edge';
 

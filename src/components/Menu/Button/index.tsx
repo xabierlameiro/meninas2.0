@@ -4,7 +4,7 @@ import styles from './button.module.css';
 import dynamic from 'next/dynamic';
 import Icons from '@components/Icon/icons.constants';
 
-const Icon = dynamic(() => import('@components/Icon'), { ssr: false });
+const Icon = dynamic(() => import('@components/Icon'), { ssr: true });
 
 const Button = ({ children }: Children) => {
     const [openMenu, setOpenMenu]: BooleanState = useState(false);

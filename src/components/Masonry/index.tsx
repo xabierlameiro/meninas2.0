@@ -8,7 +8,7 @@ const Masonry = ({ data }: any) => {
     const ref = React.useRef<HTMLDivElement>(null);
     const [priorityImages, setPriorityImages] = React.useState<number[]>([]);
 
-    React.useLayoutEffect(() => {
+    React.useEffect(() => {
         const result = getPriorityImages(data, ref);
         if (!result) return;
         setPriorityImages(result);

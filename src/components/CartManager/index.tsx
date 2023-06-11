@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Selector from '@components/SizesSelector';
 import dynamic from 'next/dynamic';
 
-const AddToCartButton = dynamic(() => import('@components/AddToCartButton'), { ssr: false });
+const AddToCartButton = dynamic(() => import('@components/AddToCartButton'), { ssr: true });
 
 const CartManager = ({ item, sizes }: AddtoCartProps) => {
     const [selectedSize, setSelectedSize]: StringState = useState('');
