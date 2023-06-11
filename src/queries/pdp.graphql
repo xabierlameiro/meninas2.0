@@ -23,6 +23,8 @@ query pdp($product: String!, $category: String!) {
             }
             portada {
                 url
+                width
+                height
             }
             categoriasCollection {
                 items {

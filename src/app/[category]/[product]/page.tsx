@@ -1,9 +1,11 @@
 import { fetchGraphQL } from '@helpers/contentful';
-import Image from '@components/Image';
+import Image from '@components/Masonry/Image';
 import NavigationProducts from '@components/NavigationProducts';
 import styles from './page.module.css';
 import pdp from '@queries/pdp.graphql';
 import dynamic from 'next/dynamic';
+import { shimmer, toBase64, calculateImageSize } from '@helpers/image';
+import NextImage from 'next/image';
 
 const CartManager = dynamic(() => import('@components/CartManager'), { ssr: true });
 
@@ -21,26 +23,27 @@ const getProductBySlug = async (product: string, category: string) => {
 const ProductPage = async ({ params }: PathParamsProps) => {
     const { product, category } = params;
     const {
+        detail,
         detail: { sys, nombre, precio, portada, stock, descripcion },
         products,
         thumbnails,
     } = await getProductBySlug(product, category);
+    const { widthForCloudinary, heightForCloudinary, width, height } = calculateImageSize(detail, 800);
 
     return (
         <>
             <div className={styles.pdp}>
                 <div className={styles.pdp__image}>
-                    <Image
-                        fill
+                    <NextImage
+                        className={styles.masonry__item__image}
                         priority
-                        width={572}
-                        height={762}
-                        src={portada.url}
-                        alt={nombre}
-                        thumbnails={thumbnails}
-                        showLoading
                         quality={100}
-                        sizes="(max-width: 767px) 342px, (min-width: 768px) 924px"
+                        src={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}h_${heightForCloudinary},w_${widthForCloudinary}/${detail.portada.url}`}
+                        placeholder="blur"
+                        blurDataURL={`${process.env.NEXT_PUBLIC_BASE64_URL}${toBase64(shimmer(width, height))}`}
+                        alt={detail.nombre}
+                        width={width}
+                        height={height}
                     />
                     <NavigationProducts listOfProducts={products} productSlug={product} categorySlug={category} />
                 </div>

@@ -1,11 +1,21 @@
 .pdp {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 0 1rem;
 }
 
 .pdp__image {
-    aspect-ratio: 3/4;
     position: relative;
+    height: fit-content;
+}
+
+.pdp__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    aspect-ratio: 0.7/1;
 }
 
 .pdp__info {
