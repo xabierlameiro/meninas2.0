@@ -1,7 +1,9 @@
 import { fetchGraphQL } from '@helpers/contentful';
 import GridContainer from '@components/Layout/GridContainer';
 import categories from '@queries/categories.graphql';
-import Masonry from '@components/Masonry';
+import dynamic from 'next/dynamic';
+
+const Masonry = dynamic(() => import('@components/Masonry'), { ssr: false });
 
 export const runtime = 'edge';
 

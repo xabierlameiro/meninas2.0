@@ -4,7 +4,9 @@ import Header from '@components/Layout/Header';
 import Main from '@components/Layout/Main';
 import Body from '@components/Layout/Body';
 import Footer from '@components/Layout/Footer';
-import BreadCrumb from '@components/BreadCrumb';
+import dynamic from 'next/dynamic';
+
+const BreadCrumb = dynamic(() => import('@components/BreadCrumb'), { ssr: false });
 
 export const metadata = {
     title: 'Meninas Cambados',
