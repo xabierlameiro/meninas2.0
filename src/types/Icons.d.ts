@@ -9,3 +9,9 @@ type IconProps = {
     onAnimationEnd?: () => void;
     viewBoxAspectRatio?: boolean;
 };
+
+type Icon = React.ReactNode;
+
+type Icons = {
+    [key: string]: Icon;
+};

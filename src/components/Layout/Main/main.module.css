@@ -1,11 +1,15 @@
 .main {
     display: grid;
     grid-template-columns: 1fr;
-    padding: 1rem 2rem;
+    margin: 1rem 2rem;
+}
+
+.main::-webkit-scrollbar {
+    width: 0rem;
 }
 
 @media (max-width: 768px) {
     .main {
-        padding: 0 1rem;
+        margin: 0 0;
     }
 }

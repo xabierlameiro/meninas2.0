@@ -17,3 +17,9 @@
 .menu a:hover {
     text-decoration: underline;
 }
+
+@media screen and (max-width: 768px) {
+    .menu a {
+        font-size: 12px;
+    }
+}

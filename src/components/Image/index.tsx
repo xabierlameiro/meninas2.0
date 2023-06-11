@@ -1,10 +1,12 @@
 'use client';
 import { useState } from 'react';
 import LegacyImage from 'next/image';
-import ThumbNails from '@components/ThumbNails';
 import { shimmer, toBase64 } from '@helpers/image';
 import Loading from './Loading';
 import styles from './image.module.css';
+import dynamic from 'next/dynamic';
+
+const ThumbNails = dynamic(() => import('@components/ThumbNails'), { ssr: false });
 
 const Image = ({
     src: srcByDefault,

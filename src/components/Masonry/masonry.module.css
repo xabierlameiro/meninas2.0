@@ -1,0 +1,81 @@
+.masonry {
+    padding-bottom: 1rem;
+    transition: all 0.5s ease;
+}
+.masonry__item {
+    display: flex;
+    position: relative;
+    margin: 0 auto 1rem auto;
+    background-color: #fff;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border-radius: 15px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    width: max-content;
+    flex-direction: column;
+}
+
+.masonry__item:hover {
+    transform: scale(1.001);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.masonry__item__price {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.masonry__item__info {
+    position: absolute;
+    display: flex;
+    bottom: 0;
+    width: 100%;
+    height: fit-content;
+    padding: 1rem;
+    text-align: center;
+    font-size: 14px;
+    background-color: rgba(255, 255, 255, 1);
+    z-index: 2;
+    transition: all 0.5s ease;
+    transform: translateY(100%);
+}
+
+.masonry__item:hover .masonry__item__info {
+    transform: translateY(0);
+}
+
+@media screen and (max-width: 320px) {
+    .masonry {
+        column-count: 1;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .masonry {
+        column-count: 2;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .masonry {
+        column-count: 3;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .masonry {
+        column-count: 4;
+    }
+}
+
+@media screen and (min-width: 1536px) {
+    .masonry {
+        column-count: 5;
+    }
+}

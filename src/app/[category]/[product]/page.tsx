@@ -1,9 +1,11 @@
 import { fetchGraphQL } from '@helpers/contentful';
 import Image from '@components/Image';
-import CartManager from '@components/CartManager';
 import NavigationProducts from '@components/NavigationProducts';
 import styles from './page.module.css';
 import pdp from '@queries/pdp.graphql';
+import dynamic from 'next/dynamic';
+
+const CartManager = dynamic(() => import('@components/CartManager'), { ssr: false });
 
 export const runtime = 'edge';
 

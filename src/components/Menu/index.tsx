@@ -2,7 +2,9 @@ import { fetchGraphQL } from '@helpers/contentful';
 import menu from '@queries/menu.graphql';
 import Link from 'next/link';
 import styles from './menu.module.css';
-import Button from './Button';
+import dynamic from 'next/dynamic';
+
+const Button = dynamic(() => import('./Button'), { ssr: false });
 
 const getMenus = async () => {
     const { data } = await fetchGraphQL(menu);

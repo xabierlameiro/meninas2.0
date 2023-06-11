@@ -3,32 +3,32 @@
 }
 
 .menu {
-    position: absolute;
-    left: 30px;
+    position: fixed;
+    height: 100vh;
+    width: 300px;
+    top: 0;
+    left: 0;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     min-width: max-content;
     padding: 1rem 2rem;
+    transform: translateX(-100%);
+    transition: all 0.3s ease;
 }
 
-.open {
-    display: block;
+.menu.open {
+    transform: translateX(0);
 }
 
 .menu__close {
     width: 40px;
-    display: none;
     float: right;
 }
 
 @media screen and (max-width: 768px) {
     .menu {
-        position: fixed;
-        width: 100vw;
-        height: 100vh;
-        top: 0;
-        left: 0;
-        padding: 0.5rem 1rem;
+        width: 100%;
+        height: 100%;
     }
     .menu__close {
         display: block;

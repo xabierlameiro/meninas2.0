@@ -3,7 +3,7 @@ import useCart from '@hooks/useCart';
 import styles from './button.module.css';
 import useModal from '@hooks/useModal';
 
-const Button = ({ item, selectedSize, setSelectedSize }: any) => {
+const AddToCartButton = ({ item, selectedSize, setSelectedSize }: any) => {
     const cart = useCart();
     const { open } = useModal();
 
@@ -31,4 +31,4 @@ const Button = ({ item, selectedSize, setSelectedSize }: any) => {
     );
 };
 
-export default Button;
+export default AddToCartButton;

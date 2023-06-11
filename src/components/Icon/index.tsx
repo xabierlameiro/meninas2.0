@@ -1,6 +1,5 @@
 'use client';
 import styles from './icon.module.css';
-import icons from './icons.constants';
 
 const Icon = ({
     onClick,
@@ -21,7 +20,7 @@ const Icon = ({
             stroke="currentColor"
             fill={fill}
             transform={`scale(${scale})`}
-            viewBox={`${viewBoxAspectRatio ? 'xMidYMid meet' : '0 0 24 24'}`}
+            viewBox={`${viewBoxAspectRatio ? '0 0 30 30' : '0 0 24 24'}`}
             onClick={() => onClick?.()}
             onKeyDown={(e) => e.key === 'Enter' && onClick?.()}
             strokeWidth={strokeWidth}
@@ -34,7 +33,5 @@ const Icon = ({
         </svg>
     );
 };
-
-Icon.type = icons;
 
 export default Icon;

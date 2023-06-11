@@ -2,7 +2,10 @@
 import { useState, useEffect } from 'react';
 import useCart from '@hooks/useCart';
 import styles from './cart.module.css';
-import Icon from '@components/Icon';
+import dynamic from 'next/dynamic';
+import Icons from '@components/Icon/icons.constants';
+
+const Icon = dynamic(() => import('@components/Icon'), { ssr: false });
 
 const Cart = () => {
     const cart = useCart();
@@ -25,13 +28,13 @@ const Cart = () => {
                 onAnimationEnd={() => setAnimationStarted(false)}
                 className={` ${animationStarted ? styles.cart__icon__animation : ''}`}
             >
-                {Icon.type.cart(cart.totalItems().toString())}
+                {Icons.cart(cart.totalItems().toString())}
             </Icon>
             <dialog open={openCart} className={styles.cart__dialog}>
                 <header>
                     <span className={styles.cart__dialog__title}>Mi carrito</span>
                     <Icon onClick={() => setOpenCart(false)} width={30} height={30} strokeWidth={1.2}>
-                        {Icon.type.close}
+                        {Icons.close}
                     </Icon>
                 </header>
                 <main>
@@ -54,16 +57,16 @@ const Cart = () => {
                             <div className={styles.cart__dialog__product__size}>{item.size.split(':')[0]}</div>
                             <div className={styles.cart__dialog__product__quantity}>
                                 <Icon onClick={() => cart.decrementQuantity(item.id, item.size)} width={20} height={20}>
-                                    {Icon.type.decrement}
+                                    {Icons.decrement}
                                 </Icon>
                                 {item.quantity}
                                 <Icon onClick={() => cart.incrementQuantity(item.id, item.size)} width={19} height={19}>
-                                    {Icon.type.increment}
+                                    {Icons.increment}
                                 </Icon>
                             </div>
                             <div className={styles.cart__dialog__product__delete}>
                                 <Icon onClick={() => cart.removeFromCart(item.id, item.size)} width={18} height={18}>
-                                    {Icon.type.remove}
+                                    {Icons.remove}
                                 </Icon>
                             </div>
                         </div>
