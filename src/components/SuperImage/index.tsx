@@ -7,7 +7,7 @@ type SuperImageProps = {
 };
 
 const SuperImage = ({ product }: SuperImageProps) => {
-    const { widthForCloudinary, heightForCloudinary, width, height } = calculateImageSize(product, 800);
+    const { widthForCloudinary, heightForCloudinary, width, height } = calculateImageSize(product, 1200);
 
     return (
         <NextImage
