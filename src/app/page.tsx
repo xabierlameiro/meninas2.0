@@ -5,8 +5,6 @@ import dynamic from 'next/dynamic';
 
 const Masonry = dynamic(() => import('@components/Masonry'), { ssr: false });
 
-export const runtime = 'edge';
-
 const getProducts = async () => {
     const { data } = await fetchGraphQL(plp);
     return data.productoCollection.items as ContentfulProduct[];

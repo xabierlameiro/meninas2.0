@@ -14,6 +14,8 @@ const Masonry = ({ data }: any) => {
         setPriorityImages(result);
     }, [data, ref]);
 
+    if (!data) return null;
+
     return (
         <div className={styles.masonry} ref={ref}>
             {data.map((product: ContentfulProduct, index: number) => {
