@@ -6,6 +6,7 @@
 
 -   npx unlighthouse --site meninas2-0.vercel.app/masonry --no-cache --urls /masonry
 -   npx unlighthouse --site meninas2-0.vercel.app/masonry --no-cache --desktop --urls /masonry
+-   npx unlighthouse --site meninas2-0.vercel.app --no-cache --desktop
 -   [CLI](https://unlighthouse.dev/integrations/cli)
 
 console.table({

@@ -1,7 +1,7 @@
 import { fetchGraphQL } from '@helpers/contentful';
 import GridContainer from '@components/Layout/GridContainer';
 import plp from '@queries/plp.graphql';
-import Test from '@components/Test';
+import Masonry from '@components/Masonry';
 
 export const runtime = 'edge';
 
@@ -14,7 +14,7 @@ const Home = async () => {
     const data = await getProducts();
     return (
         <GridContainer>
-            <Test data={data} />
+            <Masonry data={data} />
         </GridContainer>
     );
 };
