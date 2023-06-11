@@ -31,7 +31,7 @@ const ProductPage = async ({ params }: PathParamsProps) => {
         <>
             <div className={styles.pdp}>
                 <div className={styles.pdp__image}>
-                    <SuperImage product={detail} />
+                    <SuperImage product={detail} thumbnails={thumbnails} />
                     <NavigationProducts listOfProducts={products} productSlug={product} categorySlug={category} />
                 </div>
                 <div className={styles.pdp__info}>

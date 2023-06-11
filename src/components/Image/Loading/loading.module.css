@@ -13,7 +13,7 @@
     height: 100%;
     background-color: #000;
     position: absolute;
-    animation: loaderAnimation 2s linear infinite;
+    animation: loaderAnimation 2.5s linear infinite;
 }
 
 @media screen and (max-width: 768px) {
