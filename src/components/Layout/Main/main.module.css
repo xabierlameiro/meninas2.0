@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: 1fr;
     margin: 1rem 2rem;
+    position: relative;
 }
 
 .main::-webkit-scrollbar {

@@ -19,10 +19,8 @@ const RootLayout = ({ children }: Children) => {
             <Body>
                 <Header />
                 <Main>
-                    <div style={{ position: 'relative' }}>
-                        <BreadCrumb />
-                        {children}
-                    </div>
+                    <BreadCrumb />
+                    {children}
                 </Main>
                 <Footer />
             </Body>
