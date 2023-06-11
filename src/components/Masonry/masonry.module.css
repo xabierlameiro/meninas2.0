@@ -2,7 +2,7 @@
     padding-bottom: 1rem;
     transition: all 0.5s ease;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
 }
 .masonry__item {
     display: flex;
