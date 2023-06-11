@@ -1,12 +1,11 @@
-'use client';
 import Image from './Image';
 import styles from './masonry.module.css';
 import React from 'react';
-import { getPriorityImages } from '@helpers/image';
-
+/* import { getPriorityImages } from '@helpers/image';
+ */
 const Masonry = ({ data }: any) => {
-    const ref = React.useRef<HTMLDivElement>(null);
-    /*   const [priorityImages, setPriorityImages] = React.useState<number[]>([]);
+    /*     const ref = React.useRef<HTMLDivElement>(null);
+     */ /*   const [priorityImages, setPriorityImages] = React.useState<number[]>([]);
 
     React.useEffect(() => {
         const result = getPriorityImages(data, ref);
@@ -17,7 +16,7 @@ const Masonry = ({ data }: any) => {
     if (!data) return null;
 
     return (
-        <div className={styles.masonry} ref={ref}>
+        <div className={styles.masonry}>
             {data.map((product: ContentfulProduct, index: number) => {
                 return (
                     <div key={index} className={styles.masonry__item}>
