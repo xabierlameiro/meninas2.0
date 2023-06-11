@@ -2,8 +2,8 @@
     position: absolute;
     user-select: none;
     width: 60px;
-    right: 5px;
-    top: 5px;
+    right: 10px;
+    top: 10px;
     display: flex;
     flex-direction: column;
     gap: 10px;

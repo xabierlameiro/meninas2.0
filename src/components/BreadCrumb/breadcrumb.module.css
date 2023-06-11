@@ -6,9 +6,10 @@
 }
 
 .breadcrumb a {
+    text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+    display: block;
 }
 
 .breadcrumb a:nth-child(2)::before,
@@ -19,6 +20,6 @@
 
 @media (max-width: 768px) {
     .breadcrumb {
-        padding: 10px 16px;
+        padding: 12px 16px;
     }
 }
