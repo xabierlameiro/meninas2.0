@@ -1,6 +1,7 @@
 'use client';
 import Image from 'next/image';
 import styles from './thumbnails.module.css';
+import { shimmer, toBase64 } from '@helpers/image';
 
 const ThumbNails = ({ images, src, onClick, onLoading }: ThumbNailsProps) => {
     return (
@@ -17,6 +18,9 @@ const ThumbNails = ({ images, src, onClick, onLoading }: ThumbNailsProps) => {
                         src={image.url}
                         alt={image.title}
                         title={image.title}
+                        placeholder="blur"
+                        blurDataURL={`${process.env.NEXT_PUBLIC_BASE64_URL}${toBase64(shimmer(100, 100))}`}
+                        onError={() => onLoading(false)}
                         onClick={() => {
                             onClick(image.url);
                             if (src !== image.url) onLoading(true);
