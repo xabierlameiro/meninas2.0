@@ -1,7 +1,9 @@
 import styles from './modal.module.css';
-import Icon from '@components/Icon';
 import useModal from '@hooks/useModal';
 import { useEffect } from 'react';
+import dynamic from 'next/dynamic';
+
+const Icon = dynamic(() => import('@components/Icon'), { ssr: false }) as any;
 
 const Modal = ({ children }: Children) => {
     const { close, isOpen } = useModal();

@@ -2,7 +2,7 @@
 import styles from './icon.module.css';
 import icons from './icons.constants';
 
-const Icon = ({
+const Icon: React.FC<IconProps> & { type: typeof icons } = ({
     onClick,
     children,
     width,

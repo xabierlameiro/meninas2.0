@@ -1,7 +1,9 @@
 'use client';
 import { useState } from 'react';
 import styles from './button.module.css';
-import Icon from '@components/Icon';
+import dynamic from 'next/dynamic';
+
+const Icon = dynamic(() => import('@components/Icon'), { ssr: false }) as any;
 
 const Button = ({ children }: Children) => {
     const [openMenu, setOpenMenu]: BooleanState = useState(false);

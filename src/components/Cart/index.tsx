@@ -2,7 +2,9 @@
 import { useState, useEffect } from 'react';
 import useCart from '@hooks/useCart';
 import styles from './cart.module.css';
-import Icon from '@components/Icon';
+import dynamic from 'next/dynamic';
+
+const Icon = dynamic(() => import('@components/Icon'), { ssr: false }) as any;
 
 const Cart = () => {
     const cart = useCart();

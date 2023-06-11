@@ -1,17 +1,15 @@
 'use client';
-import useCart from '@hooks/useCart';
 import styles from './button.module.css';
-import useModal from '@hooks/useModal';
 
 const AddToCartButton = ({ item, selectedSize, setSelectedSize }: any) => {
-    const cart = useCart();
-    const { open } = useModal();
-
     return (
         <div className={styles.pdp__add_to_cart}>
             <button
                 className={styles.pdp__add_to_cart__button}
-                onClick={() => {
+                onClick={async () => {
+                    const cart = await import('@hooks/useCart').then((m) => m.default());
+                    const { open } = await import('@hooks/useModal').then((m) => m.default());
+
                     if (selectedSize) {
                         cart.addToCart({
                             ...item,

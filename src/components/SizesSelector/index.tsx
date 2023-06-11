@@ -1,15 +1,20 @@
 import React from 'react';
 import Modal from '@components/SizesSelector/Modal';
 import styles from './selector.module.css';
-import useModal from '@hooks/useModal';
-import Icon from '@components/Icon';
+import dynamic from 'next/dynamic';
+
+const Icon = dynamic(() => import('@components/Icon'), { ssr: false }) as any;
 
 const Selector = ({ options, selectedSize, setSelectedSize }: SelectorProps) => {
-    const { open, close } = useModal();
-
     return (
         <>
-            <div className={styles.select} onClick={() => open()}>
+            <div
+                className={styles.select}
+                onClick={async () => {
+                    const { open } = await import('@hooks/useModal').then((m) => m.default());
+                    open();
+                }}
+            >
                 <div className={styles.selectedOption}>{selectedSize.split(':')[0] || 'Seleccionar talla'}</div>
                 <Icon width={24} height={24} className={styles.icon}>
                     {Icon.type.chevronDown}
@@ -30,7 +35,8 @@ const Selector = ({ options, selectedSize, setSelectedSize }: SelectorProps) => 
                                     ${option === selectedSize ? styles.selected : ''}
                                     ${Number(quantity) <= 0 ? styles.out_of_stock : ''}
                                 `}
-                                    onClick={() => {
+                                    onClick={async () => {
+                                        const { close } = await import('@hooks/useModal').then((m) => m.default());
                                         if (Number(quantity) <= 0) return;
                                         setSelectedSize?.(option);
                                         close();
