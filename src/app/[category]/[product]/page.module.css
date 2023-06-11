@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: 0.8fr 1fr;
     gap: 2rem;
-    padding: 0 1rem;
+    padding: 0;
 }
 
 .pdp__image {
