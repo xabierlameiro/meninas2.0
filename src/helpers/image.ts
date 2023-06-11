@@ -26,22 +26,14 @@ export const getColumns = (
 };
 
 export const calculateImageSize = (product: ContentfulProduct) => {
-    const columns = getColumns(mediaQuerys);
-    const MaxWidthOfScreen = typeof window !== 'undefined' ? window.innerWidth : 0;
-
-    const spaceBetweenColumns = 16 * (columns - 1);
-
-    const MaxWidthOfScreenWithPadding = MaxWidthOfScreen - 32 - spaceBetweenColumns;
-
-    const maxWidth = Math.floor(MaxWidthOfScreenWithPadding / columns);
-
+    const maxWidth = 320; // Ancho máximo deseado
     const scale = Math.ceil(product.portada.width / maxWidth);
 
     const width = Math.floor(product.portada.width / scale);
     const height = Math.floor(product.portada.height / scale);
 
-    const widthForCloudinary = Math.floor(width * 1.1);
-    const heightForCloudinary = Math.floor(height * 1.1);
+    const widthForCloudinary = Math.floor(width * 1.2);
+    const heightForCloudinary = Math.floor(height * 1.2);
 
     return { width, height, widthForCloudinary, heightForCloudinary };
 };
