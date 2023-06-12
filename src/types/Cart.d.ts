@@ -1,20 +1,3 @@
-type CartState = {
-    isOpen: boolean;
-    open: () => void;
-    close: () => void;
-    toggle: () => void;
-    items: CartProduct[];
-    totalItems: () => number;
-    totalCost: () => number;
-    addToCart: (item: CartProduct) => void;
-    incrementQuantity: (id: string, size: string) => void;
-    decrementQuantity: (id: string, size: string) => void;
-    isIncrementable: (id: string, size: string) => boolean;
-    isDecrementable: (id: string, size: string) => boolean;
-    removeFromCart: (id: string, size: string) => void;
-    clearCart: () => void;
-};
-
 type AddtoCartProps = {
     item: Omit<CartProduct, 'size' | 'quantity'>;
     sizes: string[];

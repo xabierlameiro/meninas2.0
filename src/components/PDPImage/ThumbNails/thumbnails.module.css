@@ -25,6 +25,7 @@
     width: inherit;
     height: inherit;
     object-fit: cover;
+    object-position: top;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 

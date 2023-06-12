@@ -1,10 +1,8 @@
-import useCart from '@hooks/useCart';
-import useSizeSelector from '@hooks/useSizeSelector';
+import useBoundStore from '@hooks/useBoundStore';
 import styles from './button.module.css';
 
 const AddToCartButton = ({ item, selectedSize, setSelectedSize }: any) => {
-    const { addToCart } = useCart();
-    const { open } = useSizeSelector();
+    const { addToCart, openSizeSelector } = useBoundStore();
 
     return (
         <div className={styles.pdp__add_to_cart}>
@@ -20,7 +18,7 @@ const AddToCartButton = ({ item, selectedSize, setSelectedSize }: any) => {
                         });
                         setSelectedSize('');
                     } else {
-                        open();
+                        openSizeSelector();
                     }
                 }}
             >

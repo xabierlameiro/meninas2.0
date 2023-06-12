@@ -1,7 +1,7 @@
-import useCart from '@/hooks/useCart';
+import useBoundStore from '@hooks/useBoundStore';
 
 const useCheckout = () => {
-    const cart = useCart();
+    const cart = useBoundStore();
 
     const checkout = () =>
         fetch('/api/checkout', {
