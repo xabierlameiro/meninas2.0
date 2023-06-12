@@ -1,7 +1,8 @@
 .main {
     display: grid;
     grid-template-columns: 1fr;
-    margin: 1rem 1rem;
+    grid-template-rows: 100px 1fr;
+    margin: 0 1rem 2rem;
     position: relative;
 }
 
@@ -12,5 +13,6 @@
 @media (max-width: 768px) {
     .main {
         margin: 0 0;
+        grid-template-rows: 50px 1fr;
     }
 }

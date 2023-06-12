@@ -2,7 +2,6 @@
     display: grid;
     grid-template-columns: 0.8fr 1fr;
     gap: 2rem;
-    padding: 0;
 }
 
 .pdp__image {
@@ -44,5 +43,6 @@
 @media (max-width: 768px) {
     .pdp {
         grid-template-columns: 1fr;
+        padding: 0 1rem;
     }
 }

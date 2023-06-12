@@ -42,3 +42,10 @@ dialog {
     border: none;
     background: none;
 }
+
+img,
+svg,
+picture {
+    display: block;
+    max-width: 100%;
+}
