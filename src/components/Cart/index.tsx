@@ -30,7 +30,7 @@ const Cart = () => {
             >
                 {Icons.cart(cart.totalItems().toString())}
             </Icon>
-            <dialog open={openCart} className={styles.cart__dialog}>
+            <div className={`${styles.cart__dialog} ${openCart ? styles.open : ''}`}>
                 <header>
                     <span className={styles.cart__dialog__title}>Mi carrito</span>
                     <Icon onClick={() => setOpenCart(false)} width={30} height={30} strokeWidth={1.2}>
@@ -92,7 +92,7 @@ const Cart = () => {
                         <p>No hay productos añadidos todavía</p>
                     )}
                 </footer>
-            </dialog>
+            </div>
         </div>
     );
 };

@@ -15,7 +15,13 @@ const Button = ({ children }: Children) => {
                 {Icons.menu}
             </Icon>
             <div className={`${styles.menu} ${openMenu ? styles.open : ''}`} onClick={() => setOpenMenu(false)}>
-                <Icon onClick={() => setOpenMenu(false)} width={30} height={30} strokeWidth={1.2}>
+                <Icon
+                    onClick={() => setOpenMenu(false)}
+                    width={30}
+                    height={30}
+                    strokeWidth={1.2}
+                    className={styles.close}
+                >
                     {Icons.close}
                 </Icon>
                 {children}
