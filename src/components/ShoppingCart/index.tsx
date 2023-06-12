@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import useCart from '@hooks/useCart';
+import useBoundStore from '@hooks/useBoundStore';
 import styles from './cart.module.css';
 import dynamic from 'next/dynamic';
 import Icons from '@components/Icon/icons.constants';
@@ -8,7 +8,7 @@ import Icons from '@components/Icon/icons.constants';
 const Icon = dynamic(() => import('@components/Icon'), { ssr: true });
 
 const Cart = () => {
-    const cart = useCart();
+    const cart = useBoundStore();
     const [animationStarted, setAnimationStarted]: BooleanState = useState(false);
 
     useEffect(() => {
@@ -19,7 +19,7 @@ const Cart = () => {
         <div className={styles.cart}>
             <Icon
                 viewBoxAspectRatio
-                onClick={cart.toggle}
+                onClick={cart.openCart}
                 width={43}
                 height={27}
                 strokeWidth={1.2}
@@ -29,10 +29,10 @@ const Cart = () => {
             >
                 {Icons.cart(cart.totalItems().toString())}
             </Icon>
-            <div className={`${styles.cart__dialog} ${cart.isOpen ? styles.open : ''}`}>
+            <div className={`${styles.cart__dialog} ${cart.isCartOpen ? styles.open : ''}`}>
                 <header>
                     <span className={styles.cart__dialog__title}>Mi carrito</span>
-                    <Icon onClick={cart.close} width={30} height={30} strokeWidth={1.2}>
+                    <Icon onClick={cart.closeCart} width={30} height={30} strokeWidth={1.2}>
                         {Icons.close}
                     </Icon>
                 </header>

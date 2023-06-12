@@ -1,5 +1,5 @@
 'use client';
-import useCart from '@hooks/useCart';
+import useBoundStore from '@hooks/useBoundStore';
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
 
@@ -8,7 +8,7 @@ const SizesSelector = dynamic(() => import('./SizesSelector'), { ssr: true });
 
 const AddToCart = ({ item, sizes }: AddtoCartProps) => {
     const [selectedSize, setSelectedSize]: StringState = useState('');
-    const cart = useCart();
+    const cart = useBoundStore();
 
     const sizesOnCart = new Set(
         cart.items.filter((i) => i.id === item.id && i.quantity >= Number(i.size.split(':')[1])).map((i) => i.size)
