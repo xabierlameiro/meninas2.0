@@ -15,7 +15,7 @@ const Image = ({
     const { widthForCloudinary, heightForCloudinary, width, height } = calculateImageSize(product, maxWidth);
 
     return (
-        <Link href={`/${product.categoriaPrincipal.slug}/${product.url}#top`}>
+        <Link href={`/${product.categoriaPrincipal.slug}/${product.url}#top`} id={product.url}>
             <NextImage
                 className={styles.masonry__item__image}
                 priority={priority}
