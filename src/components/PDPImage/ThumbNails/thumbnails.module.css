@@ -2,8 +2,8 @@
     position: absolute;
     user-select: none;
     width: 60px;
-    right: 5px;
-    top: 5px;
+    right: 10px;
+    top: 10px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -12,7 +12,7 @@
 .thumbnails__item {
     width: 60px;
     height: 60px;
-    aspect-ratio: 1/1;
+    cursor: pointer;
 }
 
 .thumbnails__item_active {
@@ -24,7 +24,7 @@
 .thumbnails__item img {
     width: inherit;
     height: inherit;
-    aspect-ratio: 1/1;
+    object-fit: cover;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 

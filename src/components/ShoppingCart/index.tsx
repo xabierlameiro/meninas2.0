@@ -5,11 +5,10 @@ import styles from './cart.module.css';
 import dynamic from 'next/dynamic';
 import Icons from '@components/Icon/icons.constants';
 
-const Icon = dynamic(() => import('@components/Icon'), { ssr: false });
+const Icon = dynamic(() => import('@components/Icon'), { ssr: true });
 
 const Cart = () => {
     const cart = useCart();
-    const [openCart, setOpenCart]: BooleanState = useState(false);
     const [animationStarted, setAnimationStarted]: BooleanState = useState(false);
 
     useEffect(() => {
@@ -20,7 +19,7 @@ const Cart = () => {
         <div className={styles.cart}>
             <Icon
                 viewBoxAspectRatio
-                onClick={() => setOpenCart((open) => !open)}
+                onClick={cart.toggle}
                 width={43}
                 height={27}
                 strokeWidth={1.2}
@@ -30,10 +29,10 @@ const Cart = () => {
             >
                 {Icons.cart(cart.totalItems().toString())}
             </Icon>
-            <dialog open={openCart} className={styles.cart__dialog}>
+            <div className={`${styles.cart__dialog} ${cart.isOpen ? styles.open : ''}`}>
                 <header>
                     <span className={styles.cart__dialog__title}>Mi carrito</span>
-                    <Icon onClick={() => setOpenCart(false)} width={30} height={30} strokeWidth={1.2}>
+                    <Icon onClick={cart.close} width={30} height={30} strokeWidth={1.2}>
                         {Icons.close}
                     </Icon>
                 </header>
@@ -84,17 +83,15 @@ const Cart = () => {
                                 <div className={styles.footer__total__price__value}>{cart.totalCost()} €</div>
                             </div>
                             <div className={styles.footer__disclaimer}>Envío y impuestos incluidos</div>
-                            <form action="/api/checkout" method="POST">
-                                <button type="submit" role="link" className={styles.footer__checkout}>
-                                    Finalizar compra
-                                </button>
-                            </form>
+                            <button type="submit" role="link" className={styles.footer__checkout}>
+                                Finalizar compra
+                            </button>
                         </div>
                     ) : (
                         <p>No hay productos añadidos todavía</p>
                     )}
                 </footer>
-            </dialog>
+            </div>
         </div>
     );
 };

@@ -3,7 +3,6 @@
     padding: 0;
     margin: 0;
     outline-color: orangered;
-    outline-offset: calc(0.5rem - 1px);
     user-select: none;
 }
 
@@ -27,7 +26,7 @@ a {
 
 /* scroll */
 ::-webkit-scrollbar {
-    width: 0.5rem;
+    width: 0px;
 }
 
 /* Reset button styles by default */
@@ -41,4 +40,11 @@ button {
 dialog {
     border: none;
     background: none;
+}
+
+img,
+svg,
+picture {
+    display: block;
+    max-width: 100%;
 }

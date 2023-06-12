@@ -1,4 +1,8 @@
 type CartState = {
+    isOpen: boolean;
+    open: () => void;
+    close: () => void;
+    toggle: () => void;
     items: CartProduct[];
     totalItems: () => number;
     totalCost: () => number;

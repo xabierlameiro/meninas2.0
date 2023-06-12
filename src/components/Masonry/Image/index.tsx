@@ -3,15 +3,23 @@ import Link from 'next/link';
 import styles from './image.module.css';
 import { shimmer, toBase64, calculateImageSize } from '@helpers/image';
 
-const Image = ({ priority, product }: { priority: boolean; product: ContentfulProduct }) => {
-    const { widthForCloudinary, heightForCloudinary, width, height } = calculateImageSize(product);
+const Image = ({
+    priority = false,
+    product,
+    maxWidth = 320,
+}: {
+    priority?: boolean;
+    product: ContentfulProduct;
+    maxWidth?: number;
+}) => {
+    const { widthForCloudinary, heightForCloudinary, width, height } = calculateImageSize(product, maxWidth);
 
     return (
-        <Link href={`/${product.categoriaPrincipal.slug}/${product.url}`}>
+        <Link href={`/${product.categoriaPrincipal.slug}/${product.url}#top`} id={product.url}>
             <NextImage
                 className={styles.masonry__item__image}
                 priority={priority}
-                quality={90}
+                quality={100}
                 src={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}h_${heightForCloudinary},w_${widthForCloudinary}/${product.portada.url}`}
                 placeholder="blur"
                 blurDataURL={`${process.env.NEXT_PUBLIC_BASE64_URL}${toBase64(shimmer(width, height))}`}

@@ -1,15 +1,18 @@
 .main {
     display: grid;
     grid-template-columns: 1fr;
-    margin: 1rem 2rem;
+    grid-template-rows: auto 1fr;
+    margin: 0 1rem 2rem;
+    position: relative;
 }
 
 .main::-webkit-scrollbar {
-    width: 0rem;
+    width: 0px;
 }
 
 @media (max-width: 768px) {
     .main {
         margin: 0 0;
+        grid-template-rows: 50px 1fr;
     }
 }

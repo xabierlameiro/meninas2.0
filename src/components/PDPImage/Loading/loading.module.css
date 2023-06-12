@@ -1,6 +1,9 @@
 .loaderContainer {
     width: 100%;
     bottom: 0;
+    position: absolute;
+    bottom: unset;
+    top: 0;
 }
 
 .loaderBar {
@@ -13,13 +16,13 @@
     height: 100%;
     background-color: #000;
     position: absolute;
-    animation: loaderAnimation 2s linear infinite;
+    animation: loaderAnimation 3.5s linear infinite;
 }
 
 @media screen and (max-width: 768px) {
     .loaderContainer {
-        position: absolute;
         bottom: 0;
+        top: unset;
     }
     .loaderBar {
         height: 2px;

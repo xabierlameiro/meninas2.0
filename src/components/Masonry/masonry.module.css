@@ -1,6 +1,8 @@
 .masonry {
     padding-bottom: 1rem;
     transition: all 0.5s ease;
+    width: 100%;
+    min-height: 100vh;
 }
 .masonry__item {
     display: flex;
@@ -9,7 +11,6 @@
     background-color: #fff;
     overflow: hidden;
     transition: all 0.3s ease;
-    border-radius: 15px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     width: max-content;
     flex-direction: column;
@@ -40,7 +41,7 @@
     padding: 1rem;
     text-align: center;
     font-size: 14px;
-    background-color: rgba(255, 255, 255, 1);
+    background-color: rgba(255, 255, 255, 0.6);
     z-index: 2;
     transition: all 0.5s ease;
     transform: translateY(100%);

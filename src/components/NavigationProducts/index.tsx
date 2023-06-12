@@ -8,12 +8,12 @@ const NavigationProducts = ({ listOfProducts, productSlug, categorySlug }: Navig
     return (
         <div className={styles.navigation}>
             {prevItem && (
-                <Link href={`/${categorySlug}/${prevItem}`} title="ANTERIOR" className={styles.navigation__left}>
+                <Link href={`/${categorySlug}/${prevItem}#top`} title="ANTERIOR" className={styles.navigation__left}>
                     Anterior
                 </Link>
             )}
             {nextItem && (
-                <Link href={`/${categorySlug}/${nextItem}`} title="SIGUIENTE" className={styles.navigation__right}>
+                <Link href={`/${categorySlug}/${nextItem}#top`} title="SIGUIENTE" className={styles.navigation__right}>
                     Siguiente
                 </Link>
             )}

@@ -25,23 +25,13 @@ export const getColumns = (
     return matchingQuery?.columns ?? 1;
 };
 
-export const calculateImageSize = (product: ContentfulProduct) => {
-    const columns = getColumns(mediaQuerys);
-    const MaxWidthOfScreen = typeof window !== 'undefined' ? window.innerWidth : 0;
-
-    const spaceBetweenColumns = 16 * (columns - 1);
-
-    const MaxWidthOfScreenWithPadding = MaxWidthOfScreen - 32 - spaceBetweenColumns;
-
-    const maxWidth = Math.floor(MaxWidthOfScreenWithPadding / columns);
-
+export const calculateImageSize = (product: ContentfulProduct, maxWidth: number) => {
     const scale = Math.ceil(product.portada.width / maxWidth);
-
     const width = Math.floor(product.portada.width / scale);
     const height = Math.floor(product.portada.height / scale);
 
-    const widthForCloudinary = Math.floor(width * 1.1);
-    const heightForCloudinary = Math.floor(height * 1.1);
+    const widthForCloudinary = Math.floor(width * 1.3);
+    const heightForCloudinary = Math.floor(height * 1.3);
 
     return { width, height, widthForCloudinary, heightForCloudinary };
 };
@@ -58,7 +48,7 @@ export const getPriorityImages = (data: ContentfulProduct[], parentRef: React.Re
     for (let i = 0; i < columns; i++) {
         let heightColumn = 0;
         for (let j = startNewColumn; j < data.length; j++) {
-            heightColumn += calculateImageSize(data[j]).height + 16;
+            heightColumn += calculateImageSize(data[j], 320).height + 16;
 
             if (heightColumn > heightMasonry) {
                 if (columns === indexes.length) break;

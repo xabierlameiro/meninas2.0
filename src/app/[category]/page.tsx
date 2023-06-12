@@ -1,9 +1,6 @@
 import { fetchGraphQL } from '@helpers/contentful';
-import GridContainer from '@components/Layout/GridContainer';
 import categories from '@queries/categories.graphql';
-import dynamic from 'next/dynamic';
-
-const Masonry = dynamic(() => import('@components/Masonry'), { ssr: false });
+import Masonry from '@components/Masonry';
 
 export const runtime = 'edge';
 
@@ -14,12 +11,7 @@ const getProductsByCategory = async (category: string) => {
 
 const CategoryPage = async ({ params }: PathParamsProps) => {
     const data = await getProductsByCategory(params.category);
-
-    return (
-        <GridContainer>
-            <Masonry data={data} />
-        </GridContainer>
-    );
+    return <Masonry data={data} />;
 };
 
 export default CategoryPage;

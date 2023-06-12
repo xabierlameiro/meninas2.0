@@ -1,11 +1,22 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import useStore from '@hooks/useStore';
+import { toggleBodyOverflow } from '@helpers/scroll';
 
 const cart = create(
     persist<CartState>(
         (set, get) => ({
             items: [],
+            isOpen: false,
+            open: () => {
+                set({ isOpen: true });
+                toggleBodyOverflow(true);
+            },
+            close: () => {
+                set({ isOpen: false });
+                toggleBodyOverflow(false);
+            },
+            toggle: () => set({ isOpen: !get().isOpen }),
             totalItems: () => get().items.reduce((acc, item) => acc + item.quantity, 0) ?? 0,
             totalCost: () => get().items.reduce((acc, item) => acc + item.price * item.quantity, 0) ?? 0,
             addToCart: (item) =>
@@ -72,6 +83,10 @@ const cart = create(
 
 const useCart = () =>
     useStore(cart, (state) => state) ?? {
+        isOpen: false,
+        open: () => {},
+        close: () => {},
+        toggle: () => {},
         items: [],
         totalItems: () => 0,
         totalCost: () => 0,

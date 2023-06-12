@@ -4,7 +4,7 @@ import Link from 'next/link';
 import styles from './menu.module.css';
 import dynamic from 'next/dynamic';
 
-const Button = dynamic(() => import('./Button'), { ssr: false });
+const Button = dynamic(() => import('./Button'), { ssr: true });
 
 const getMenus = async () => {
     const { data } = await fetchGraphQL(menu);

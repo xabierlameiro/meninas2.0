@@ -1,8 +1,10 @@
 'use client';
-import Image from './Image';
 import styles from './masonry.module.css';
 import React from 'react';
 import { getPriorityImages } from '@helpers/image';
+import dynamic from 'next/dynamic';
+
+const Image = dynamic(() => import('./Image'), { ssr: true });
 
 const Masonry = ({ data }: any) => {
     const ref = React.useRef<HTMLDivElement>(null);

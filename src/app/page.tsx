@@ -1,11 +1,6 @@
 import { fetchGraphQL } from '@helpers/contentful';
-import GridContainer from '@components/Layout/GridContainer';
 import plp from '@queries/plp.graphql';
-import dynamic from 'next/dynamic';
-
-const Masonry = dynamic(() => import('@components/Masonry'), { ssr: false });
-
-export const runtime = 'edge';
+import Masonry from '@components/Masonry';
 
 const getProducts = async () => {
     const { data } = await fetchGraphQL(plp);
@@ -14,11 +9,7 @@ const getProducts = async () => {
 
 const Home = async () => {
     const data = await getProducts();
-    return (
-        <GridContainer>
-            <Masonry data={data} />
-        </GridContainer>
-    );
+    return <Masonry data={data} />;
 };
 
 export default Home;

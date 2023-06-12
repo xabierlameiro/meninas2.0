@@ -1,11 +1,10 @@
-'use client';
 import useCart from '@hooks/useCart';
+import useSizeSelector from '@hooks/useSizeSelector';
 import styles from './button.module.css';
-import useModal from '@hooks/useModal';
 
 const AddToCartButton = ({ item, selectedSize, setSelectedSize }: any) => {
-    const cart = useCart();
-    const { open } = useModal();
+    const { addToCart } = useCart();
+    const { open } = useSizeSelector();
 
     return (
         <div className={styles.pdp__add_to_cart}>
@@ -13,7 +12,7 @@ const AddToCartButton = ({ item, selectedSize, setSelectedSize }: any) => {
                 className={styles.pdp__add_to_cart__button}
                 onClick={() => {
                     if (selectedSize) {
-                        cart.addToCart({
+                        addToCart({
                             ...item,
                             id: item.id,
                             size: selectedSize,
