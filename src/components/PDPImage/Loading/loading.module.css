@@ -1,6 +1,9 @@
 .loaderContainer {
     width: 100%;
     bottom: 0;
+    position: absolute;
+    bottom: unset;
+    top: 0;
 }
 
 .loaderBar {
@@ -18,8 +21,8 @@
 
 @media screen and (max-width: 768px) {
     .loaderContainer {
-        position: absolute;
         bottom: 0;
+        top: unset;
     }
     .loaderBar {
         height: 2px;

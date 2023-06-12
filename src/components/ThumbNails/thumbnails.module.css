@@ -13,6 +13,7 @@
     width: 60px;
     height: 60px;
     aspect-ratio: 1/1;
+    cursor: pointer;
 }
 
 .thumbnails__item_active {

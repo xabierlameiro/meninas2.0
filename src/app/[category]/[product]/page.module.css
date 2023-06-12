@@ -56,6 +56,7 @@
         grid-template-rows: max-content;
         padding: 0 1rem;
         margin-right: 0;
+        gap: 1rem;
     }
     .pdp__name,
     .pdp__description {
@@ -64,5 +65,8 @@
     .pdp__price,
     .pdp__price__vat {
         text-align: center;
+    }
+    .pdp__price {
+        font-size: 1.4rem;
     }
 }

@@ -19,7 +19,7 @@ const PDPImage = ({ product, thumbnails }: PDPImageProps) => {
     const [loading, setLoading]: BooleanState = React.useState(true);
 
     return (
-        <>
+        <div style={{ position: 'relative' }}>
             <NextImage
                 className={styles.image}
                 priority
@@ -36,7 +36,7 @@ const PDPImage = ({ product, thumbnails }: PDPImageProps) => {
             />
             {thumbnails && <ThumbNails images={thumbnails} onClick={setSrc} onLoading={setLoading} src={src} />}
             <Loading loading={loading} />
-        </>
+        </div>
     );
 };
 
