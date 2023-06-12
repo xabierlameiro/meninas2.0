@@ -1,12 +1,12 @@
 'use client';
 import useCart from '@hooks/useCart';
 import { useState } from 'react';
-import Selector from '@components/SizesSelector';
 import dynamic from 'next/dynamic';
 
-const AddToCartButton = dynamic(() => import('@components/AddToCartButton'), { ssr: true });
+const AddButton = dynamic(() => import('./AddButton'), { ssr: true });
+const SizesSelector = dynamic(() => import('./SizesSelector'), { ssr: true });
 
-const CartManager = ({ item, sizes }: AddtoCartProps) => {
+const AddToCart = ({ item, sizes }: AddtoCartProps) => {
     const [selectedSize, setSelectedSize]: StringState = useState('');
     const cart = useCart();
 
@@ -17,10 +17,10 @@ const CartManager = ({ item, sizes }: AddtoCartProps) => {
 
     return (
         <div>
-            <Selector options={options} selectedSize={selectedSize} setSelectedSize={setSelectedSize} />
-            <AddToCartButton item={item} selectedSize={selectedSize} setSelectedSize={setSelectedSize} />
+            <SizesSelector options={options} selectedSize={selectedSize} setSelectedSize={setSelectedSize} />
+            <AddButton item={item} selectedSize={selectedSize} setSelectedSize={setSelectedSize} />
         </div>
     );
 };
 
-export default CartManager;
+export default AddToCart;

@@ -3,7 +3,9 @@ import Menu from '@components/Menu';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 
-const Cart = dynamic(() => import('@components/Cart'), { ssr: true, loading: () => <div>Cargando...</div> });
+const ShoppingCart = dynamic(() => import('@components/ShoppingCart'), {
+    ssr: true,
+});
 
 const Header = () => {
     return (
@@ -13,7 +15,7 @@ const Header = () => {
             <Link href="/" title="Link to go to the home page" aria-label="Home">
                 <h1 className={styles.brand}>Meninas</h1>
             </Link>
-            <Cart />
+            <ShoppingCart />
         </header>
     );
 };

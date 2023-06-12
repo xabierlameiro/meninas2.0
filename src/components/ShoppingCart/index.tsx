@@ -9,7 +9,6 @@ const Icon = dynamic(() => import('@components/Icon'), { ssr: true });
 
 const Cart = () => {
     const cart = useCart();
-    const [openCart, setOpenCart]: BooleanState = useState(false);
     const [animationStarted, setAnimationStarted]: BooleanState = useState(false);
 
     useEffect(() => {
@@ -20,7 +19,7 @@ const Cart = () => {
         <div className={styles.cart}>
             <Icon
                 viewBoxAspectRatio
-                onClick={() => setOpenCart((open) => !open)}
+                onClick={cart.toggle}
                 width={43}
                 height={27}
                 strokeWidth={1.2}
@@ -30,10 +29,10 @@ const Cart = () => {
             >
                 {Icons.cart(cart.totalItems().toString())}
             </Icon>
-            <div className={`${styles.cart__dialog} ${openCart ? styles.open : ''}`}>
+            <div className={`${styles.cart__dialog} ${cart.isOpen ? styles.open : ''}`}>
                 <header>
                     <span className={styles.cart__dialog__title}>Mi carrito</span>
-                    <Icon onClick={() => setOpenCart(false)} width={30} height={30} strokeWidth={1.2}>
+                    <Icon onClick={cart.close} width={30} height={30} strokeWidth={1.2}>
                         {Icons.close}
                     </Icon>
                 </header>

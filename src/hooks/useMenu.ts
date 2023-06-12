@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { toggleBodyOverflow } from '@helpers/scroll';
 
-const useModalStore = create(
+const useMenu = create(
     persist<Modal>(
         (set, get) => ({
             isOpen: false,
@@ -17,14 +17,9 @@ const useModalStore = create(
             toggle: () => set({ isOpen: !get().isOpen }),
         }),
         {
-            name: 'modal',
+            name: 'menu',
         }
     )
 );
 
-const useModal = (): Modal => {
-    const { isOpen, open, close, toggle } = useModalStore();
-    return { isOpen, open, close, toggle };
-};
-
-export default useModal;
+export default useMenu;

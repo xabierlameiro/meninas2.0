@@ -4,7 +4,7 @@ import styles from './page.module.css';
 import pdp from '@queries/pdp.graphql';
 import dynamic from 'next/dynamic';
 
-const CartManager = dynamic(() => import('@components/CartManager'), { ssr: true });
+const AddToCart = dynamic(() => import('@components/AddToCart'), { ssr: true });
 const PDPImage = dynamic(() => import('@components/PDPImage'), { ssr: true });
 
 export const runtime = 'edge';
@@ -40,7 +40,7 @@ const ProductPage = async ({ params }: PathParamsProps) => {
                         {precio} € <span className={styles.pdp__price__vat}>IVA + envío incluido</span>
                     </div>
                     <div className={styles.pdp__description}>{descripcion}</div>
-                    <CartManager
+                    <AddToCart
                         item={{
                             id: sys.id,
                             name: nombre,

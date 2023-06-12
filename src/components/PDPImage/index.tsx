@@ -5,7 +5,7 @@ import NextImage from 'next/image';
 import styles from './image.module.css';
 import dynamic from 'next/dynamic';
 
-const ThumbNails = dynamic(() => import('@components/ThumbNails'), { ssr: true });
+const ThumbNails = dynamic(() => import('./ThumbNails'), { ssr: true });
 const Loading = dynamic(() => import('./Loading'), { ssr: true });
 
 type PDPImageProps = {
