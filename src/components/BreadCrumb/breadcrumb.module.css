@@ -3,7 +3,7 @@
     grid-template-columns: max-content max-content auto;
     grid-template-rows: 50px;
     gap: 5px;
-    padding: 5px 0 35px 0;
+    padding: 5px 0 0 0;
     align-items: center;
 }
 

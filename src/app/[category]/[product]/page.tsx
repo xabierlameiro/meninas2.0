@@ -32,12 +32,14 @@ const ProductPage = async ({ params }: PathParamsProps) => {
             <div className={styles.pdp}>
                 <div className={styles.pdp__image}>
                     <PDPImage product={detail} thumbnails={thumbnails} />
-                    <NavigationProducts listOfProducts={products} productSlug={product} categorySlug={category} />
                 </div>
                 <div className={styles.pdp__info}>
+                    <NavigationProducts listOfProducts={products} productSlug={product} categorySlug={category} />
+                    <div className={styles.pdp__name}>{nombre}</div>
                     <div data-testid="price" className={styles.pdp__price}>
                         {precio} € <span className={styles.pdp__price__vat}>IVA + envío incluido</span>
                     </div>
+                    <div className={styles.pdp__description}>{descripcion}</div>
                     <CartManager
                         item={{
                             id: sys.id,

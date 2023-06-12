@@ -11,7 +11,7 @@ const Selector = ({ options, selectedSize, setSelectedSize }: SelectorProps) => 
     const { open, close } = useModal();
 
     return (
-        <>
+        <div className={styles.wrapper}>
             <div className={styles.select} onClick={() => open()}>
                 <div className={styles.selectedOption}>{selectedSize.split(':')[0] || 'Seleccionar talla'}</div>
                 <Icon width={24} height={24} className={styles.icon}>
@@ -49,7 +49,7 @@ const Selector = ({ options, selectedSize, setSelectedSize }: SelectorProps) => 
                     )}
                 </div>
             </Modal>
-        </>
+        </div>
     );
 };
 

@@ -1,7 +1,8 @@
 .pdp {
     display: grid;
-    grid-template-columns: 0.8fr 1fr;
-    gap: 2rem;
+    grid-template-columns: 1fr 0.3fr;
+    gap: 3rem;
+    margin-right: 3rem;
 }
 
 .pdp__image {
@@ -22,17 +23,15 @@
 }
 
 .pdp__price {
-    font-size: 1.2rem;
+    font-size: 2rem;
     font-weight: 600;
     display: flex;
-    text-align: center;
     justify-content: center;
     flex-direction: column;
 }
 .pdp__price__vat {
     font-size: 0.8rem;
     font-weight: 400;
-    text-align: center;
     padding-bottom: 0.5rem;
 }
 .pdp__name {
@@ -40,9 +39,30 @@
     margin-bottom: 1rem;
 }
 
+.pdp__name {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.pdp__description {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+}
+
 @media (max-width: 768px) {
     .pdp {
         grid-template-columns: 1fr;
+        grid-template-rows: max-content;
         padding: 0 1rem;
+        margin-right: 0;
+    }
+    .pdp__name,
+    .pdp__description {
+        display: none;
+    }
+    .pdp__price,
+    .pdp__price__vat {
+        text-align: center;
     }
 }

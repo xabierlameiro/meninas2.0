@@ -27,7 +27,7 @@ a {
 
 /* scroll */
 ::-webkit-scrollbar {
-    width: 0.5rem;
+    width: 0px;
 }
 
 /* Reset button styles by default */

@@ -1,13 +1,13 @@
 .main {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 100px 1fr;
+    grid-template-rows: auto 1fr;
     margin: 0 1rem 2rem;
     position: relative;
 }
 
 .main::-webkit-scrollbar {
-    width: 0rem;
+    width: 0px;
 }
 
 @media (max-width: 768px) {
