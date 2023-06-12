@@ -20,7 +20,10 @@ const ThumbNails = ({ images, src, onClick, onLoading }: ThumbNailsProps) => {
                         title={image.title}
                         placeholder="blur"
                         blurDataURL={`${process.env.NEXT_PUBLIC_BASE64_URL}${toBase64(shimmer(100, 100))}`}
-                        onError={() => onLoading(false)}
+                        onError={() => {
+                            onClick(`${process.env.NEXT_PUBLIC_PLACEHOLDER_URL}`);
+                            onLoading(false);
+                        }}
                         onClick={() => {
                             onClick(image.url);
                             if (src !== image.url) onLoading(true);

@@ -30,6 +30,10 @@ const PDPImage = ({ product, thumbnails }: PDPImageProps) => {
                 alt={product.nombre}
                 width={width}
                 height={height}
+                onError={() => {
+                    setSrc(`${process.env.NEXT_PUBLIC_PLACEHOLDER_URL}`);
+                    setLoading(false);
+                }}
                 onLoadingComplete={() => setLoading(false)}
                 onCompositionEnd={() => setLoading(false)}
                 onLoadedData={() => setLoading(false)}

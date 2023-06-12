@@ -1,6 +1,7 @@
 .pdp {
     display: grid;
-    grid-template-columns: 1fr 0.3fr;
+    /* first column max 1200px */
+    grid-template-columns: minmax(0, 1200px) 1fr;
     gap: 3rem;
     margin-right: 3rem;
 }

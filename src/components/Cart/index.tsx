@@ -84,11 +84,9 @@ const Cart = () => {
                                 <div className={styles.footer__total__price__value}>{cart.totalCost()} €</div>
                             </div>
                             <div className={styles.footer__disclaimer}>Envío y impuestos incluidos</div>
-                            <form action="/api/checkout" method="POST">
-                                <button type="submit" role="link" className={styles.footer__checkout}>
-                                    Finalizar compra
-                                </button>
-                            </form>
+                            <button type="submit" role="link" className={styles.footer__checkout}>
+                                Finalizar compra
+                            </button>
                         </div>
                     ) : (
                         <p>No hay productos añadidos todavía</p>
