@@ -30,6 +30,8 @@ const ProductPage = async ({ params }: PathParamsProps) => {
         thumbnails,
     } = await getProductBySlug(product, category);
 
+    const maxDiscount = Math.max(...categoriasCollection.items.map((categoria) => categoria.descuento));
+
     return (
         <>
             <div className={styles.pdp}>
@@ -40,7 +42,17 @@ const ProductPage = async ({ params }: PathParamsProps) => {
                     <NavigationProducts listOfProducts={products} productSlug={product} categorySlug={category} />
                     <div className={styles.pdp__name}>{nombre}</div>
                     <div data-testid="price" className={styles.pdp__price}>
-                        {precio} € <span className={styles.pdp__price__vat}>IVA + envío incluido</span>
+                        {maxDiscount > 0 ? (
+                            <span className={styles.pdp__price__discount}>
+                                <span className={styles.pdp__price__original}>{precio}€</span>
+                                <span className={styles.pdp__price__final}>
+                                    {Math.round(precio - (precio * maxDiscount) / 100)} €
+                                </span>
+                            </span>
+                        ) : (
+                            <span className={styles.pdp__price__normal}>{precio} €</span>
+                        )}
+                        <span className={styles.pdp__price__vat}>IVA + envío incluido</span>
                     </div>
                     <div className={styles.pdp__tags}>
                         <Icon width={20} height={20} title="Categorias de la prenda">
@@ -52,11 +64,11 @@ const ProductPage = async ({ params }: PathParamsProps) => {
                                 <Link
                                     key={categoria.slug}
                                     href={`/${categoria.slug}`}
-                                    className={categoria.descuento ? styles.pdp__tag__highlight : ''}
+                                    className={categoria.descuento === maxDiscount ? styles.pdp__tag__highlight : ''}
                                 >
                                     {categoria.nombre}
-                                    {categoria.descuento > 0 && (
-                                        <span className={styles.pdp__tag}> - {categoria.descuento}%</span>
+                                    {categoria.descuento === maxDiscount && (
+                                        <span className={styles.pdp__tag}> {categoria.descuento}%</span>
                                     )}
                                 </Link>
                             ))}
