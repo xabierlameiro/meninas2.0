@@ -27,4 +27,4 @@ type ThumbNail = {
     title: string;
 };
 
-type LoaderProps = { loading: boolean };
+type LoaderProps = { loading: boolean; className?: string };

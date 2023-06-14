@@ -3,3 +3,8 @@
     height: auto;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
+
+.loading__large {
+    top: 0 !important;
+    bottom: unset !important;
+}
