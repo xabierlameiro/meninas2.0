@@ -40,7 +40,7 @@ const PDPImage = ({ product, thumbnails }: PDPImageProps) => {
                 onLoadedData={() => setLoading(false)}
             />
             {thumbnails && <ThumbNails images={thumbnails} onClick={setSrc} onLoading={setLoading} src={src} />}
-            <Loading loading={loading} className={height > 600 ? styles.loading__large : styles.loading__small} />
+            <Loading loading={loading} />
         </div>
     );
 };

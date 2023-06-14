@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './loading.module.css';
 
-const Loader = ({ loading, className }: LoaderProps) => {
+const Loader = ({ loading }: LoaderProps) => {
     return (
-        <div className={`${styles.loaderContainer} ${className}`}>
+        <div className={styles.loaderContainer}>
             <div className={styles.loaderBar}>{loading && <div className={styles.loaderProgress} />}</div>
         </div>
     );
