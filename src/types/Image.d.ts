@@ -16,7 +16,7 @@ type ImageProps = {
 type ThumbNailsProps = {
     images: ThumbNail[];
     onLoading: (loading: boolean) => void;
-    onClick: (src: string) => void;
+    setSrc: (src: string) => void;
 } & Pick<ImageProps, 'src'>;
 
 type ThumbNail = {

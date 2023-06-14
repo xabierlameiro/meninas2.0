@@ -35,15 +35,13 @@ const PDPImage = ({ product, thumbnails, isMobile }: PDPImageProps) => {
                 alt={product.nombre}
                 width={width}
                 height={height}
-                onError={() => {
-                    setSrc(`${process.env.NEXT_PUBLIC_PLACEHOLDER_URL}`);
+                onError={(e: any) => {
+                    e.target.src = `${process.env.NEXT_PUBLIC_PLACEHOLDER_URL}`;
                     setLoading(false);
                 }}
                 onLoadingComplete={() => setLoading(false)}
-                onCompositionEnd={() => setLoading(false)}
-                onLoadedData={() => setLoading(false)}
             />
-            {thumbnails && <ThumbNails images={thumbnails} onClick={setSrc} onLoading={setLoading} src={src} />}
+            {thumbnails && <ThumbNails images={thumbnails} setSrc={setSrc} onLoading={setLoading} src={src} />}
             <Loading loading={loading} />
         </div>
     );
