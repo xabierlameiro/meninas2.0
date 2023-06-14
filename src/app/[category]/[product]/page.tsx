@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import Icons from '@components/Icon/icons.constants';
 import Icon from '@components/Icon';
+import { headers } from 'next/headers';
 
 const AddToCart = dynamic(() => import('@components/AddToCart'), { ssr: true });
 const PDPImage = dynamic(() => import('@components/PDPImage'), { ssr: true });
@@ -14,7 +15,10 @@ export const runtime = 'edge';
 
 const getProductBySlug = async (product: string, category: string) => {
     const { data } = await fetchGraphQL(pdp, { product, category });
+    const headersList = headers();
+    const isMobile = headersList.get('user-agent')?.includes('Mobile');
     return {
+        isMobile,
         detail: data?.detail.items[0] as ContentfulProduct,
         products: data?.products.items as ContentfulProduct[],
         thumbnails: data?.detail.items[0].thumbnails.items as ThumbNail[],
@@ -24,6 +28,7 @@ const getProductBySlug = async (product: string, category: string) => {
 const ProductPage = async ({ params }: PathParamsProps) => {
     const { product, category } = params;
     const {
+        isMobile,
         detail,
         detail: { sys, nombre, precio, portada, stock, descripcion, categoriasCollection },
         products,
@@ -36,7 +41,7 @@ const ProductPage = async ({ params }: PathParamsProps) => {
         <>
             <div className={styles.pdp}>
                 <div className={styles.pdp__image}>
-                    <PDPImage product={detail} thumbnails={thumbnails} />
+                    <PDPImage product={detail} thumbnails={thumbnails} isMobile={isMobile} />
                 </div>
                 <div className={styles.pdp__info}>
                     <NavigationProducts listOfProducts={products} productSlug={product} categorySlug={category} />
@@ -73,7 +78,6 @@ const ProductPage = async ({ params }: PathParamsProps) => {
                                 </Link>
                             ))}
                     </div>
-
                     <div className={styles.pdp__description}>{descripcion}</div>
                     <AddToCart
                         item={{

@@ -11,10 +11,14 @@ const Loading = dynamic(() => import('./Loading'), { ssr: true });
 type PDPImageProps = {
     product: ContentfulProduct;
     thumbnails?: any;
+    isMobile?: boolean;
 };
 
-const PDPImage = ({ product, thumbnails }: PDPImageProps) => {
-    const { widthForCloudinary, heightForCloudinary, width, height } = calculateImageSize(product, 1200);
+const PDPImage = ({ product, thumbnails, isMobile }: PDPImageProps) => {
+    const { widthForCloudinary, heightForCloudinary, width, height } = calculateImageSize(
+        product,
+        isMobile ? 400 : 1200
+    );
     const [src, setSrc]: StringState = React.useState(product.portada.url);
     const [loading, setLoading]: BooleanState = React.useState(true);
 
