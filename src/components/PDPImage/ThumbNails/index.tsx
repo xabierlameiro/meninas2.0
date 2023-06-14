@@ -15,7 +15,7 @@ const ThumbNails = ({ images, src, setSrc, onLoading }: ThumbNailsProps) => {
                         key={image.sys.id}
                         width={100}
                         height={100}
-                        src={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}h_${100},w_${100}/${image.url}`}
+                        src={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}h_${100},w_${100},f_auto/${image.url}`}
                         alt={image.title}
                         title={image.title}
                         placeholder="blur"
