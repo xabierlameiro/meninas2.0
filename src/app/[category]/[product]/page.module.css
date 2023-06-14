@@ -10,12 +10,6 @@
     height: fit-content;
 }
 
-.pdp__image img {
-    width: 100%;
-    height: 100%;
-    object-fit: fill;
-}
-
 .pdp__info {
     height: fit-content;
     position: sticky;
