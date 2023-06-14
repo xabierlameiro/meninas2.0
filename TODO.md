@@ -1,2 +1,1 @@
--   Scroll para la lista de tallas en desktop pues si hay muchas se queda por debajo del header
--   Inhabilitar incrementar o decrementar cantidad si no hay stock en el shopping cart
+-   Categories
