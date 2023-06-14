@@ -23,7 +23,6 @@ const nextConfig = {
                 pathname: '/**/*',
             },
         ],
-        deviceSizes: [320, 420, 768, 1024, 1200],
         minimumCacheTTL: 60 * 60 * 24 * 7,
     },
     /* Add cache-control in images */
