@@ -3,7 +3,9 @@ import Image from 'next/image';
 import styles from './thumbnails.module.css';
 import { shimmer, toBase64 } from '@helpers/image';
 
-const ThumbNails = ({ images, src, setSrc, onLoading }: ThumbNailsProps) => {
+const ThumbNails = ({ images, src, setSrc, onLoading, isMobile }: ThumbNailsProps) => {
+    const width = isMobile ? 40 : 60;
+    const height = isMobile ? 40 : 60;
     return (
         <div className={styles.thumbnails__container}>
             {images.map((image: ThumbNail) => (
@@ -13,13 +15,13 @@ const ThumbNails = ({ images, src, setSrc, onLoading }: ThumbNailsProps) => {
                 >
                     <Image
                         key={image.sys.id}
-                        width={100}
-                        height={100}
-                        src={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}h_${100},w_${100},f_auto/${image.url}`}
+                        width={width}
+                        height={height}
+                        src={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}h_${height},w_${width},f_auto/${image.url}`}
                         alt={image.title}
                         title={image.title}
                         placeholder="blur"
-                        blurDataURL={`${process.env.NEXT_PUBLIC_BASE64_URL}${toBase64(shimmer(100, 100))}`}
+                        blurDataURL={`${process.env.NEXT_PUBLIC_BASE64_URL}${toBase64(shimmer(width, height))}`}
                         onError={(e: any) => {
                             e.target.src = `${process.env.NEXT_PUBLIC_PLACEHOLDER_URL}`;
                             onLoading(false);

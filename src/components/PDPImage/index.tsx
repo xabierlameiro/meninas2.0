@@ -41,7 +41,9 @@ const PDPImage = ({ product, thumbnails, isMobile }: PDPImageProps) => {
                 }}
                 onLoadingComplete={() => setLoading(false)}
             />
-            {thumbnails && <ThumbNails images={thumbnails} setSrc={setSrc} onLoading={setLoading} src={src} />}
+            {thumbnails && (
+                <ThumbNails images={thumbnails} setSrc={setSrc} onLoading={setLoading} src={src} isMobile={isMobile} />
+            )}
             <Loading loading={loading} />
         </div>
     );
