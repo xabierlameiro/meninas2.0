@@ -6,14 +6,6 @@
     width: 175px;
 }
 
-.navigation a:after {
-    display: inline-block;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-    color: #6c757d;
-    content: '/';
-}
-
 .navigation a:last-child:after {
     display: none;
 }
@@ -30,6 +22,12 @@
     margin-right: auto;
 }
 
+.navigation__disabled {
+    text-decoration: line-through;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
 @media (max-width: 768px) {
     .navigation {
         top: unset;
@@ -41,6 +39,9 @@
         padding: 0;
     }
     .navigation a:after {
+        display: none;
+    }
+    .navigation__split {
         display: none;
     }
 }

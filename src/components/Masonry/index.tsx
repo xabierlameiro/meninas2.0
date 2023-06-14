@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 
 const Image = dynamic(() => import('./Image'), { ssr: true });
 
-const Masonry = ({ data }: any) => {
+const Masonry = ({ data, category }: any) => {
     const ref = React.useRef<HTMLDivElement>(null);
     const [priorityImages, setPriorityImages] = React.useState<number[]>([]);
 
@@ -24,7 +24,7 @@ const Masonry = ({ data }: any) => {
                 return (
                     <div key={index} className={styles.masonry__item}>
                         {/* eslint-disable jsx-a11y/alt-text */}
-                        <Image product={product} priority={priorityImages.includes(index)} />
+                        <Image product={product} priority={priorityImages.includes(index)} category={category} />
                         <div className={styles.masonry__item__price}>{product.precio} €</div>
                         <div className={styles.masonry__item__info}>
                             <div className={styles.masonry__item__info__name}>{product.nombre}</div>

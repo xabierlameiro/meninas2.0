@@ -23,6 +23,9 @@ type ContentfulProduct = {
     categoriasCollection: {
         items: {
             nombre: string;
+            descuento: number;
+            slug: string;
+            resaltar: boolean;
         }[];
     };
 };
