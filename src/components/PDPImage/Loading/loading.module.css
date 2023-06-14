@@ -8,7 +8,7 @@
 
 .loaderBar {
     height: 3px;
-    background-color: #fff;
+    background-color: transparent;
     position: relative;
 }
 

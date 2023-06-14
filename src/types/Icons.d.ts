@@ -1,4 +1,5 @@
 type IconProps = {
+    tabIndex?: number;
     fill?: string;
     onClick?: Function;
     width: number;
