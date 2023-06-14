@@ -25,7 +25,9 @@ const Menu = async () => {
                             .map((row: MenuRow) => {
                                 return (
                                     <li key={row.nombre}>
-                                        <Link href={`/${row.slug}`}>{row.nombre}</Link>
+                                        <Link href={`/${row.slug}`}>
+                                            {row.nombre} {row.descuento > 0 && `| ${row.descuento}%`}
+                                        </Link>
                                     </li>
                                 );
                             })}

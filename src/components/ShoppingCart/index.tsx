@@ -40,16 +40,41 @@ const Cart = () => {
                             <div className={styles.cart__dialog__product__price}>{item.price} €</div>
                             <div className={styles.cart__dialog__product__size}>{item.size.split(':')[0]}</div>
                             <div className={styles.cart__dialog__product__quantity}>
-                                <Icon onClick={() => cart.decrementQuantity(item.id, item.size)} width={20} height={20}>
+                                <Icon
+                                    width={20}
+                                    height={20}
+                                    onClick={() => cart.decrementQuantity(item.id, item.size)}
+                                    className={cart.isDecrementable(item.id, item.size) ? '' : styles.disabled}
+                                    title={
+                                        cart.isDecrementable(item.id, item.size)
+                                            ? 'Quitar una unidad'
+                                            : 'Lo sentimos, no puedes quitar más unidades'
+                                    }
+                                >
                                     {Icons.decrement}
                                 </Icon>
                                 {item.quantity}
-                                <Icon onClick={() => cart.incrementQuantity(item.id, item.size)} width={19} height={19}>
+                                <Icon
+                                    width={19}
+                                    height={19}
+                                    onClick={() => cart.incrementQuantity(item.id, item.size)}
+                                    className={cart.isIncrementable(item.id, item.size) ? '' : styles.disabled}
+                                    title={
+                                        cart.isIncrementable(item.id, item.size)
+                                            ? 'Añadir una unidad'
+                                            : 'Lo sentimos, no hay más unidades disponibles'
+                                    }
+                                >
                                     {Icons.increment}
                                 </Icon>
                             </div>
                             <div className={styles.cart__dialog__product__delete}>
-                                <Icon onClick={() => cart.removeFromCart(item.id, item.size)} width={18} height={18}>
+                                <Icon
+                                    onClick={() => cart.removeFromCart(item.id, item.size)}
+                                    width={18}
+                                    height={18}
+                                    title={'Eliminar producto del carrito'}
+                                >
                                     {Icons.remove}
                                 </Icon>
                             </div>

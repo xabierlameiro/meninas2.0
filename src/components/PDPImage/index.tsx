@@ -5,16 +5,20 @@ import NextImage from 'next/image';
 import styles from './image.module.css';
 import dynamic from 'next/dynamic';
 
-const ThumbNails = dynamic(() => import('./ThumbNails'), { ssr: true });
-const Loading = dynamic(() => import('./Loading'), { ssr: true });
+const ThumbNails = dynamic(() => import('./ThumbNails'), { ssr: false });
+const Loading = dynamic(() => import('./Loading'), { ssr: false });
 
 type PDPImageProps = {
     product: ContentfulProduct;
     thumbnails?: any;
+    isMobile?: boolean;
 };
 
-const PDPImage = ({ product, thumbnails }: PDPImageProps) => {
-    const { widthForCloudinary, heightForCloudinary, width, height } = calculateImageSize(product, 1200);
+const PDPImage = ({ product, thumbnails, isMobile }: PDPImageProps) => {
+    const { widthForCloudinary, heightForCloudinary, width, height } = calculateImageSize(
+        product,
+        isMobile ? 400 : 1200
+    );
     const [src, setSrc]: StringState = React.useState(product.portada.url);
     const [loading, setLoading]: BooleanState = React.useState(true);
 
@@ -25,21 +29,21 @@ const PDPImage = ({ product, thumbnails }: PDPImageProps) => {
                 style={{ opacity: loading ? 0 : 1, maxWidth: width, maxHeight: height }}
                 priority
                 quality={100}
-                src={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}h_${heightForCloudinary},w_${widthForCloudinary}/${src}`}
+                src={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}h_${heightForCloudinary},w_${widthForCloudinary},f_auto/${src}`}
                 placeholder="blur"
                 blurDataURL={`${process.env.NEXT_PUBLIC_BASE64_URL}${toBase64(shimmer(width, height))}`}
                 alt={product.nombre}
                 width={width}
                 height={height}
-                onError={() => {
-                    setSrc(`${process.env.NEXT_PUBLIC_PLACEHOLDER_URL}`);
+                onError={(e: any) => {
+                    e.target.src = `${process.env.NEXT_PUBLIC_PLACEHOLDER_URL}`;
                     setLoading(false);
                 }}
                 onLoadingComplete={() => setLoading(false)}
-                onCompositionEnd={() => setLoading(false)}
-                onLoadedData={() => setLoading(false)}
             />
-            {thumbnails && <ThumbNails images={thumbnails} onClick={setSrc} onLoading={setLoading} src={src} />}
+            {thumbnails && (
+                <ThumbNails images={thumbnails} setSrc={setSrc} onLoading={setLoading} src={src} isMobile={isMobile} />
+            )}
             <Loading loading={loading} />
         </div>
     );

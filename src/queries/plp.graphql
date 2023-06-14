@@ -16,6 +16,7 @@ query plp {
             categoriasCollection {
                 items {
                     nombre
+                    descuento
                 }
             }
         }

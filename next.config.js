@@ -4,6 +4,7 @@ const nextConfig = {
         keepAlive: true,
     },
     images: {
+        unoptimized: true,
         domains: ['images.ctfassets.net'],
         remotePatterns: [
             {

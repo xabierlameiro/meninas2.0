@@ -20,10 +20,6 @@
 }
 
 @media screen and (max-width: 768px) {
-    .loaderContainer {
-        bottom: 0;
-        top: unset;
-    }
     .loaderBar {
         height: 2px;
     }

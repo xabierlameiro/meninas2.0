@@ -29,6 +29,8 @@ query pdp($product: String!, $category: String!) {
             categoriasCollection {
                 items {
                     nombre
+                    descuento
+                    slug
                 }
             }
         }

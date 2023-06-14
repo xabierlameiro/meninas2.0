@@ -11,7 +11,7 @@ const getProductsByCategory = async (category: string) => {
 
 const CategoryPage = async ({ params }: PathParamsProps) => {
     const data = await getProductsByCategory(params.category);
-    return <Masonry data={data} />;
+    return <Masonry data={data} category={params.category} />;
 };
 
 export default CategoryPage;
