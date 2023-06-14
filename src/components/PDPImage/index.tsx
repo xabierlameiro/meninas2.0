@@ -5,8 +5,8 @@ import NextImage from 'next/image';
 import styles from './image.module.css';
 import dynamic from 'next/dynamic';
 
-const ThumbNails = dynamic(() => import('./ThumbNails'), { ssr: true });
-const Loading = dynamic(() => import('./Loading'), { ssr: true });
+const ThumbNails = dynamic(() => import('./ThumbNails'), { ssr: false });
+const Loading = dynamic(() => import('./Loading'), { ssr: false });
 
 type PDPImageProps = {
     product: ContentfulProduct;
