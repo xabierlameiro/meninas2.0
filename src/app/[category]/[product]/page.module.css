@@ -80,6 +80,10 @@
     .pdp__description {
         display: none;
     }
+    .pdp__price {
+        width: fit-content;
+        margin: -20px auto 0;
+    }
     .pdp__price,
     .pdp__price__vat {
         text-align: center;
