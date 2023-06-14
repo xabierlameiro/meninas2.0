@@ -46,4 +46,5 @@ type BoundStore = CartActions &
         isIncrementable: (id: string, size: string) => boolean;
         isDecrementable: (id: string, size: string) => boolean;
         removeFromCart: (id: string, size: string) => void;
+        closeAll: () => void;
     };

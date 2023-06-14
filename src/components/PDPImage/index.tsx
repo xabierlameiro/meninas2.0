@@ -22,6 +22,7 @@ const PDPImage = ({ product, thumbnails }: PDPImageProps) => {
         <div style={{ position: 'relative' }}>
             <NextImage
                 className={styles.image}
+                style={{ opacity: loading ? 0 : 1, maxWidth: width, maxHeight: height }}
                 priority
                 quality={100}
                 src={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}h_${heightForCloudinary},w_${widthForCloudinary}/${src}`}

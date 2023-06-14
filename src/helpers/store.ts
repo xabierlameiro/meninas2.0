@@ -25,4 +25,9 @@ export const createBoundSlice = (set: SetStore, get: GetStore) => ({
         createSizeSelectorSlice(set, get).closeSizeSelector();
         createCartSlice(set, get).openCart();
     },
+    closeAll: () => {
+        createMenuSlice(set, get).closeMenu();
+        createSizeSelectorSlice(set, get).closeSizeSelector();
+        createCartSlice(set, get).closeCart();
+    },
 });

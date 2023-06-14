@@ -1,5 +1,4 @@
 'use client';
-import { useState, useEffect } from 'react';
 import useBoundStore from '@hooks/useBoundStore';
 import styles from './cart.module.css';
 import dynamic from 'next/dynamic';
@@ -9,24 +8,10 @@ const Icon = dynamic(() => import('@components/Icon'), { ssr: true });
 
 const Cart = () => {
     const cart = useBoundStore();
-    const [animationStarted, setAnimationStarted]: BooleanState = useState(false);
-
-    useEffect(() => {
-        setAnimationStarted(true);
-    }, [cart.items]);
 
     return (
         <div className={styles.cart}>
-            <Icon
-                viewBoxAspectRatio
-                onClick={cart.openCart}
-                width={43}
-                height={27}
-                strokeWidth={1.2}
-                scale={1.2}
-                onAnimationEnd={() => setAnimationStarted(false)}
-                className={` ${animationStarted ? styles.cart__icon__animation : ''}`}
-            >
+            <Icon viewBoxAspectRatio onClick={cart.openCart} width={43} height={27} strokeWidth={1.2} scale={1.2}>
                 {Icons.cart(cart.totalItems().toString())}
             </Icon>
             <div className={`${styles.cart__dialog} ${cart.isCartOpen ? styles.open : ''}`}>
