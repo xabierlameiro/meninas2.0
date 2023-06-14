@@ -16,6 +16,7 @@ query categories($category: String!) {
             categoriasCollection {
                 items {
                     nombre
+                    descuento
                 }
             }
         }

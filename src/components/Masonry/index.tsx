@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 
 const Image = dynamic(() => import('./Image'), { ssr: true });
 
-const Masonry = ({ data, category }: any) => {
+const Masonry = ({ data, category }: { data: ContentfulProduct[]; category?: string }) => {
     const ref = React.useRef<HTMLDivElement>(null);
     const [priorityImages, setPriorityImages] = React.useState<number[]>([]);
 
@@ -21,11 +21,18 @@ const Masonry = ({ data, category }: any) => {
     return (
         <div className={styles.masonry} ref={ref}>
             {data.map((product: ContentfulProduct, index: number) => {
+                const maxDiscount = Math.max(...product.categoriasCollection.items.map((a: any) => a.descuento));
+
                 return (
                     <div key={index} className={styles.masonry__item}>
                         {/* eslint-disable jsx-a11y/alt-text */}
                         <Image product={product} priority={priorityImages.includes(index)} category={category} />
-                        <div className={styles.masonry__item__price}>{product.precio} €</div>
+                        <div className={styles.masonry__item__price}>
+                            <span className={styles.masonry__ite__normal__price}>{product.precio} </span>
+                            <span className={styles.masonry__item__discount__price}>
+                                {Math.round(product.precio - (product.precio * maxDiscount) / 100)} €
+                            </span>
+                        </div>
                         <div className={styles.masonry__item__info}>
                             <div className={styles.masonry__item__info__name}>{product.nombre}</div>
                         </div>
