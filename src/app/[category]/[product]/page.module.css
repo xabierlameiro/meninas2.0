@@ -108,7 +108,11 @@ a.pdp__tag__highlight .pdp__tag {
     }
     .pdp__price {
         width: fit-content;
-        margin: -20px auto 0;
+        margin: -25px auto 0;
+    }
+
+    .pdp__image {
+        min-height: 540px;
     }
     .pdp__price,
     .pdp__price__vat {
@@ -120,6 +124,11 @@ a.pdp__tag__highlight .pdp__tag {
     .pdp__tags {
         justify-content: center;
         font-size: 12px;
+    }
+
+    .pdp__price__discount {
+        display: flex;
+        flex-direction: column;
     }
 
     .pdp__price__discount .pdp__price__original {
