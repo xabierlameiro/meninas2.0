@@ -30,8 +30,8 @@ export const calculateImageSize = (product: ContentfulProduct, maxWidth: number)
     const width = Math.floor(product.portada.width / scale);
     const height = Math.floor(product.portada.height / scale);
 
-    const widthForCloudinary = Math.floor(width * 1.3);
-    const heightForCloudinary = Math.floor(height * 1.3);
+    const widthForCloudinary = Math.floor(width * 1.02);
+    const heightForCloudinary = Math.floor(height * 1.02);
 
     return { width, height, widthForCloudinary, heightForCloudinary };
 };
