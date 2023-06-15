@@ -23,7 +23,7 @@ const ThumbNails = ({ images, src, setSrc, onLoading, isMobile }: ThumbNailsProp
                         placeholder="blur"
                         blurDataURL={`${process.env.NEXT_PUBLIC_BASE64_URL}${toBase64(shimmer(width, height))}`}
                         onError={(e: any) => {
-                            e.target.src = `${process.env.NEXT_PUBLIC_PLACEHOLDER_URL}`;
+                            e.target.style.display = 'none';
                             onLoading(false);
                         }}
                         onClick={() => {
