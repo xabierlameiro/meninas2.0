@@ -23,10 +23,13 @@ const ThumbNails = ({ images, src, setSrc, onLoading, isMobile }: ThumbNailsProp
                         placeholder="blur"
                         blurDataURL={`${process.env.NEXT_PUBLIC_BASE64_URL}${toBase64(shimmer(width, height))}`}
                         onError={(e: any) => {
-                            e.target.style.display = 'none';
+                            e.target.src = `${process.env.NEXT_PUBLIC_PLACEHOLDER_URL}`;
+                            e.target.style.cursor = 'not-allowed';
+                            e.target.title = 'Lo sentimos, pero la imagen no se encuentra disponible';
                             onLoading(false);
                         }}
-                        onClick={() => {
+                        onClick={(e: any) => {
+                            if (e.target.style.cursor === 'not-allowed') return;
                             setSrc(image.url);
                             if (src !== image.url) onLoading(true);
                         }}

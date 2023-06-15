@@ -18,7 +18,6 @@
 .thumbnails__item_active {
     opacity: 0.5;
     user-select: none;
-    cursor: not-allowed;
 }
 
 .thumbnails__item img {
