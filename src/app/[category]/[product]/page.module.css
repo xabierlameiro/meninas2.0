@@ -98,7 +98,7 @@ a.pdp__tag__highlight .pdp__tag {
     .pdp {
         grid-template-columns: 1fr;
         grid-template-rows: max-content;
-        padding: 0 1rem;
+        padding: 0 0;
         margin-right: 0;
         gap: 1rem;
     }
