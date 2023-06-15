@@ -26,14 +26,12 @@ const PDPImage = ({ product, thumbnails, isMobile }: PDPImageProps) => {
         <div style={{ position: 'relative' }}>
             <NextImage
                 className={styles.image}
-                style={{ maxWidth: width, maxHeight: height }}
+                style={{ opacity: loading ? 0 : 1, maxWidth: width, maxHeight: height }}
                 priority
                 quality={100}
-                src={`${
-                    process.env.NEXT_PUBLIC_CLOUDINARY_URL
-                }h_${heightForCloudinary},w_${widthForCloudinary},f_auto,q_${loading ? '20,e_blur:800' : '100'}/${src}`}
+                src={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}h_${heightForCloudinary},w_${widthForCloudinary},f_auto/${src}`}
                 placeholder="blur"
-                blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(width, height))}`}
+                blurDataURL={`${process.env.NEXT_PUBLIC_BASE64_URL}${toBase64(shimmer(width, height))}`}
                 alt={product.nombre}
                 width={width}
                 height={height}
