@@ -54,7 +54,7 @@
     font-size: 1rem;
     margin-bottom: 1rem;
     align-items: center;
-    justify-content: start;
+    justify-content: flex-start;
 }
 
 .pdp__tags a::after {
