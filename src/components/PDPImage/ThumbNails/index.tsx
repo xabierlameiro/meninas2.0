@@ -5,7 +5,7 @@ import { shimmer, toBase64 } from '@helpers/image';
 
 const ThumbNails = ({ images, src, setSrc, onLoading, isMobile }: ThumbNailsProps) => {
     const width = isMobile ? 40 : 60;
-    const height = isMobile ? 40 : 60;
+    const height = isMobile ? 60 : 80;
     return (
         <div className={styles.thumbnails__container}>
             {images.map((image: ThumbNail) => (

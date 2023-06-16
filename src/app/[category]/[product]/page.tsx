@@ -33,7 +33,9 @@ const ProductPage = async ({ params }: PathParamsProps) => {
         thumbnails,
     } = await getProductBySlug(product, category);
 
-    const maxDiscount = Math.max(...categoriasCollection.items.map((categoria) => categoria.descuento));
+    let maxDiscount = Math.max(...categoriasCollection.items.map((categoria) => categoria.descuento));
+
+    maxDiscount = 0;
 
     const shipping = Math.max(...categoriasCollection.items.map((categoria) => categoria?.envio?.cantidad ?? 0));
 

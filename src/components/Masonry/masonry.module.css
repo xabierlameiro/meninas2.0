@@ -41,11 +41,15 @@
     font-size: 16px;
     position: relative;
     text-decoration: line-through;
-    color: grey;
 }
 
 .masonry__item__discount__price {
     font-size: 16px;
+}
+
+.masonry__item__discount__tag + .masonry__item__discount__price {
+    color: red;
+    font-weight: 600;
 }
 
 .masonry__item__discount__tag {

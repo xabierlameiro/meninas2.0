@@ -21,7 +21,7 @@ const Masonry = ({ data, category }: { data: ContentfulProduct[]; category?: str
     return (
         <div className={styles.masonry} ref={ref}>
             {data.map((product: ContentfulProduct, index: number) => {
-                let maxDiscount = Math.max(...product.categoriasCollection.items.map((a: any) => a.descuento));
+                const maxDiscount = Math.max(...product.categoriasCollection.items.map((a: any) => a.descuento));
                 return (
                     <div key={index} className={styles.masonry__item}>
                         {/* eslint-disable jsx-a11y/alt-text */}
