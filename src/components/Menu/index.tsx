@@ -26,7 +26,9 @@ const Menu = async () => {
                                 return (
                                     <li key={row.nombre}>
                                         <Link href={`/${row.slug}`}>
-                                            {row.nombre} {row.descuento > 0 && `| ${row.descuento}%`}
+                                            {row.nombre} {row.descuento > 0 && `| - ${row.descuento}%`}
+                                            {/*                                             {row?.envio?.cantidad > 0 && ` + ${row.envio.cantidad} € de envío`}
+                                             */}
                                         </Link>
                                     </li>
                                 );

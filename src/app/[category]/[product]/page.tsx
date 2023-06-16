@@ -35,6 +35,8 @@ const ProductPage = async ({ params }: PathParamsProps) => {
 
     const maxDiscount = Math.max(...categoriasCollection.items.map((categoria) => categoria.descuento));
 
+    const shipping = Math.max(...categoriasCollection.items.map((categoria) => categoria?.envio?.cantidad ?? 0));
+
     return (
         <>
             <div className={styles.pdp}>
@@ -44,39 +46,39 @@ const ProductPage = async ({ params }: PathParamsProps) => {
                 <div className={styles.pdp__info}>
                     <NavigationProducts listOfProducts={products} productSlug={product} categorySlug={category} />
                     <div className={styles.pdp__name}>{nombre}</div>
+                    <div className={styles.pdp__description}>{descripcion}</div>
+
                     <div data-testid="price" className={styles.pdp__price}>
-                        {maxDiscount > 0 ? (
-                            <span className={styles.pdp__price__discount}>
+                        {maxDiscount > 0 && (
+                            <div className={styles.pdp__price__wrapper}>
                                 <span className={styles.pdp__price__original}>{precio}€</span>
-                                <span className={styles.pdp__price__final}>
-                                    {Math.round(precio - (precio * maxDiscount) / 100)} €
-                                </span>
-                            </span>
-                        ) : (
-                            <span className={styles.pdp__price__normal}>{precio} €</span>
+                                <span className={styles.pdp__price__discount__tag}>-{maxDiscount}%</span>
+                            </div>
                         )}
-                        <span className={styles.pdp__price__vat}>IVA + envío incluido</span>
+                        <span className={styles.pdp__price__final}>
+                            {Math.round(precio - (precio * maxDiscount) / 100)} €
+                        </span>
+                        <span className={styles.pdp__price__vat}>IVA incluido</span>
                     </div>
+
+                    {shipping > 0 && (
+                        <span className={styles.pdp__price__shipping}>
+                            <Icon width={20} height={20} title="Envío">
+                                {Icons.truck}
+                            </Icon>
+                            {shipping} € de envío por pedido
+                        </span>
+                    )}
                     <div className={styles.pdp__tags}>
-                        <Icon width={20} height={20} title="Categorias de la prenda">
-                            {Icons.label}
-                        </Icon>
                         {categoriasCollection.items
                             .sort((a, b) => b.descuento - a.descuento)
                             .map((categoria) => (
-                                <Link
-                                    key={categoria.slug}
-                                    href={`/${categoria.slug}`}
-                                    className={categoria.descuento === maxDiscount ? styles.pdp__tag__highlight : ''}
-                                >
+                                <Link key={categoria.slug} href={`/${categoria.slug}`}>
                                     {categoria.nombre}
-                                    {categoria.descuento === maxDiscount && (
-                                        <span className={styles.pdp__tag}> {categoria.descuento}%</span>
-                                    )}
                                 </Link>
                             ))}
                     </div>
-                    <div className={styles.pdp__description}>{descripcion}</div>
+
                     <AddToCart
                         item={{
                             id: sys.id,

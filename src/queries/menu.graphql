@@ -6,6 +6,9 @@ query menu {
             marca
             resaltar
             slug
+            envio {
+                cantidad
+            }
             disponible: linkedFrom {
                 prendas: productoCollection {
                     total

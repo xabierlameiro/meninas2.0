@@ -4,6 +4,9 @@ type MenuRow = {
     marca: string;
     resaltar: boolean;
     slug: string;
+    envio: {
+        cantidad: number;
+    };
     disponible: {
         prendas: {
             total: number;

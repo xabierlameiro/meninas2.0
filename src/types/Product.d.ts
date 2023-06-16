@@ -26,6 +26,9 @@ type ContentfulProduct = {
             descuento: number;
             slug: string;
             resaltar: boolean;
+            envio: {
+                cantidad: number;
+            };
         }[];
     };
 };
