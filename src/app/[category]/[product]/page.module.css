@@ -171,7 +171,7 @@ a.pdp__tag__highlight .pdp__tag {
         padding: 0 0 5px;
     }
     .pdp__price {
-        margin: 10px auto 0;
+        margin: 0 auto 0;
         width: fit-content;
     }
     .pdp__price__vat {

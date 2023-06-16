@@ -21,14 +21,18 @@ const Masonry = ({ data, category }: { data: ContentfulProduct[]; category?: str
     return (
         <div className={styles.masonry} ref={ref}>
             {data.map((product: ContentfulProduct, index: number) => {
-                const maxDiscount = Math.max(...product.categoriasCollection.items.map((a: any) => a.descuento));
-
+                let maxDiscount = Math.max(...product.categoriasCollection.items.map((a: any) => a.descuento));
                 return (
                     <div key={index} className={styles.masonry__item}>
                         {/* eslint-disable jsx-a11y/alt-text */}
                         <Image product={product} priority={priorityImages.includes(index)} category={category} />
                         <div className={styles.masonry__item__price}>
-                            <span className={styles.masonry__ite__normal__price}>{product.precio} </span>
+                            {maxDiscount > 0 && (
+                                <>
+                                    <span className={styles.masonry__item__normal__price}>{product.precio} €</span>
+                                    <div className={styles.masonry__item__discount__tag}>-{maxDiscount}%</div>
+                                </>
+                            )}
                             <span className={styles.masonry__item__discount__price}>
                                 {Math.round(product.precio - (product.precio * maxDiscount) / 100)} €
                             </span>
