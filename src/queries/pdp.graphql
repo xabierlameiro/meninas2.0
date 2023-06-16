@@ -31,6 +31,9 @@ query pdp($product: String!, $category: String!) {
                     nombre
                     descuento
                     slug
+                    envio {
+                        cantidad
+                    }
                 }
             }
         }
