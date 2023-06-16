@@ -54,7 +54,7 @@
     font-size: 1rem;
     margin-bottom: 1rem;
     align-items: center;
-    justify-content: start;
+    justify-content: flex-start;
 }
 
 .pdp__tags a::after {
@@ -98,7 +98,7 @@ a.pdp__tag__highlight .pdp__tag {
     .pdp {
         grid-template-columns: 1fr;
         grid-template-rows: max-content;
-        padding: 0 1rem;
+        padding: 0 0;
         margin-right: 0;
         gap: 1rem;
     }
@@ -108,7 +108,11 @@ a.pdp__tag__highlight .pdp__tag {
     }
     .pdp__price {
         width: fit-content;
-        margin: -20px auto 0;
+        margin: -25px auto 0;
+    }
+
+    .pdp__image {
+        min-height: 540px;
     }
     .pdp__price,
     .pdp__price__vat {
@@ -120,6 +124,11 @@ a.pdp__tag__highlight .pdp__tag {
     .pdp__tags {
         justify-content: center;
         font-size: 12px;
+    }
+
+    .pdp__price__discount {
+        display: flex;
+        flex-direction: column;
     }
 
     .pdp__price__discount .pdp__price__original {

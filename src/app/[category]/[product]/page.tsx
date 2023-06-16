@@ -11,8 +11,6 @@ import { headers } from 'next/headers';
 const AddToCart = dynamic(() => import('@components/AddToCart'), { ssr: true });
 const PDPImage = dynamic(() => import('@components/PDPImage'), { ssr: true });
 
-export const runtime = 'edge';
-
 const getProductBySlug = async (product: string, category: string) => {
     const { data } = await fetchGraphQL(pdp, { product, category });
     const headersList = headers();

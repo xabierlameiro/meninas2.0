@@ -10,7 +10,6 @@ const ShoppingCart = dynamic(() => import('@components/ShoppingCart'), {
 const Header = () => {
     return (
         <header className={styles.header}>
-            {/* @ts-expect-error Server Component */}
             <Menu />
             <Link href="/" title="Link to go to the home page" aria-label="Home">
                 <h1 className={styles.brand}>Meninas</h1>

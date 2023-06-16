@@ -26,13 +26,13 @@ export const getColumns = (
 };
 
 export const calculateImageSize = (product: ContentfulProduct, maxWidth: number) => {
-    const scale = Math.ceil(product.portada.width / maxWidth);
-    const width = Math.floor(product.portada.width / scale);
-    const height = Math.floor(product.portada.height / scale);
+    const minWidth = 300;
+    const scale = Math.min(maxWidth / product.portada.width, 1);
+    const width = Math.max(product.portada.width * scale, minWidth);
+    const height = product.portada.height * scale;
 
-    const widthForCloudinary = Math.floor(width * 1.3);
-    const heightForCloudinary = Math.floor(height * 1.3);
-
+    const widthForCloudinary = Math.floor(width * 1.02);
+    const heightForCloudinary = Math.floor(height * 1.02);
     return { width, height, widthForCloudinary, heightForCloudinary };
 };
 
