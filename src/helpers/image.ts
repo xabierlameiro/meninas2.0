@@ -8,7 +8,7 @@ const mediaQuerys = [
 
 export const shimmer = (w: number, h: number) => `    
 <svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="${w}" height="${h}" fill="#F0F0F0" />
+    <rect width="${w}" height="${h}" fill="#c1c1c1" />
 </svg>`;
 
 export const toBase64 = (str: string) =>
