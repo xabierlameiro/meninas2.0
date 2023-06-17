@@ -12,6 +12,8 @@ type CartProduct = {
     quantity: number;
     url?: string;
     description?: string;
+    discount?: number;
+    shipping?: number;
 };
 
 type PaymentProduct = {

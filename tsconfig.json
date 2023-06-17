@@ -25,7 +25,8 @@
             "@layout/*": ["./src/components/Layout/*"],
             "@helpers/*": ["./src/helpers/*"],
             "@hooks/*": ["./src/hooks/*"],
-            "@queries/*": ["./src/queries/*"]
+            "@queries/*": ["./src/queries/*"],
+            "@schemas/*": ["./src/schemas/*"]
         }
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/test/page.tsx"],

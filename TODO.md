@@ -1,1 +1,5 @@
 -   Categories
+-   Descuento, precio final y envio en el shopping cart.
+-   Poner en algun sitio del header que hay rebajas
+-   Chequear el performance en cada cambio
+-   Pensar si tiene sentido desabilitar el botón de siguiente o anterior o realmente es mejor hacer una rueda infinita de la misma categoria o pasar a la siguietne

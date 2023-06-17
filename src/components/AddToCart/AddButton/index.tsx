@@ -1,7 +1,7 @@
 import useBoundStore from '@hooks/useBoundStore';
 import styles from './button.module.css';
 
-const AddToCartButton = ({ item, selectedSize, setSelectedSize }: any) => {
+const AddButton = ({ item, selectedSize, setSelectedSize }: any) => {
     const { addToCart, openSizeSelector } = useBoundStore();
 
     return (
@@ -28,4 +28,4 @@ const AddToCartButton = ({ item, selectedSize, setSelectedSize }: any) => {
     );
 };
 
-export default AddToCartButton;
+export default AddButton;
