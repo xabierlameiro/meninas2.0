@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 
 const Image = dynamic(() => import('./Image'), { ssr: true });
 
-const Masonry = ({ data, category }: { data: ContentfulProduct[]; category?: string }) => {
+const Masonry = ({ data, category }: { data: Products; category?: string }) => {
     const ref = React.useRef<HTMLDivElement>(null);
     const [priorityImages, setPriorityImages] = React.useState<number[]>([]);
 
@@ -20,25 +20,24 @@ const Masonry = ({ data, category }: { data: ContentfulProduct[]; category?: str
 
     return (
         <div className={styles.masonry} ref={ref}>
-            {data.map((product: ContentfulProduct, index: number) => {
-                const maxDiscount = Math.max(...product.categoriasCollection.items.map((a: any) => a.descuento));
+            {data.map((product: Product, index: number) => {
                 return (
                     <div key={index} className={styles.masonry__item}>
                         {/* eslint-disable jsx-a11y/alt-text */}
                         <Image product={product} priority={priorityImages.includes(index)} category={category} />
                         <div className={styles.masonry__item__price}>
-                            {maxDiscount > 0 && (
+                            {product.discount > 0 && (
                                 <>
-                                    <span className={styles.masonry__item__normal__price}>{product.precio} €</span>
-                                    <div className={styles.masonry__item__discount__tag}>-{maxDiscount}%</div>
+                                    <span className={styles.masonry__item__normal__price}>
+                                        {product.priceWithoutDiscount} €
+                                    </span>
+                                    <div className={styles.masonry__item__discount__tag}>-{product.discount}%</div>
                                 </>
                             )}
-                            <span className={styles.masonry__item__discount__price}>
-                                {Math.round(product.precio - (product.precio * maxDiscount) / 100)} €
-                            </span>
+                            <span className={styles.masonry__item__discount__price}>{product.priceWithDiscount} €</span>
                         </div>
                         <div className={styles.masonry__item__info}>
-                            <div className={styles.masonry__item__info__name}>{product.nombre}</div>
+                            <div className={styles.masonry__item__info__name}>{product.name}</div>
                         </div>
                     </div>
                 );

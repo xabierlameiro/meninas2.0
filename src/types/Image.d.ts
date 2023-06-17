@@ -14,18 +14,10 @@ type ImageProps = {
 };
 
 type ThumbNailsProps = {
-    images: ThumbNail[];
+    images: ThumbNails;
     onLoading: (loading: boolean) => void;
     setSrc: (src: string) => void;
     isMobile?: boolean;
 } & Pick<ImageProps, 'src'>;
-
-type ThumbNail = {
-    sys: {
-        id: string;
-    };
-    url: string;
-    title: string;
-};
 
 type LoaderProps = { loading: boolean };

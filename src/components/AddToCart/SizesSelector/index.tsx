@@ -5,13 +5,19 @@ import dynamic from 'next/dynamic';
 
 const Icon = dynamic(() => import('@components/Icon'), { ssr: true });
 
+type SelectorProps = {
+    options: Stock;
+    selectedSize: string;
+    setSelectedSize: (option: string) => void;
+};
+
 const Selector = ({ options, selectedSize, setSelectedSize }: SelectorProps) => {
     const { isSizeSelectorOpen, openSizeSelector, closeSizeSelector } = useBoundStore();
 
     return (
         <div className={styles.wrapper}>
             <div className={styles.select} onClick={openSizeSelector}>
-                <div className={styles.selectedOption}>{selectedSize.split(':')[0] || 'Seleccionar talla'}</div>
+                <div className={styles.selectedOption}>{selectedSize || 'Seleccionar talla'}</div>
                 <Icon width={24} height={24} className={styles.icon}>
                     {Icons.chevronDown}
                 </Icon>
@@ -29,24 +35,23 @@ const Selector = ({ options, selectedSize, setSelectedSize }: SelectorProps) => 
                                 </div>
                             ) : (
                                 options.map((option) => {
-                                    const [size, quantity] = option.split(':');
                                     return (
                                         <div
-                                            key={option}
+                                            key={option.size}
                                             className={`
                                     ${styles.option} 
-                                    ${option === selectedSize ? styles.selected : ''}
-                                    ${Number(quantity) <= 0 ? styles.out_of_stock : ''}
+                                    ${option.size === selectedSize ? styles.selected : ''}
+                                    ${option.quantity <= 0 ? styles.out_of_stock : ''}
                                 `}
                                             onClick={() => {
-                                                if (Number(quantity) <= 0) return;
-                                                setSelectedSize?.(option);
+                                                if (option.quantity <= 0) return;
+                                                setSelectedSize?.(option.size);
                                                 closeSizeSelector();
                                             }}
                                         >
                                             <div>
-                                                {size}
-                                                {Number(quantity) <= 0 ? <div>¡No disponible! Lo quiero</div> : null}
+                                                {option.size}
+                                                {option.quantity <= 0 ? <div>¡No disponible! Lo quiero</div> : null}
                                             </div>
                                         </div>
                                     );

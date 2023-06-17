@@ -6,14 +6,10 @@ import dynamic from 'next/dynamic';
 const AddButton = dynamic(() => import('./AddButton'), { ssr: true });
 const SizesSelector = dynamic(() => import('./SizesSelector'), { ssr: true });
 
-const AddToCart = ({ item, sizes }: AddtoCartProps) => {
+const AddToCart = ({ item }: AddtoCartProps) => {
     const [selectedSize, setSelectedSize]: StringState = useState('');
     const cart = useBoundStore();
-
-    const sizesOnCart = new Set(
-        cart.items.filter((i) => i.id === item.id && i.quantity >= Number(i.size.split(':')[1])).map((i) => i.size)
-    );
-    const options = sizes.filter((o) => !sizesOnCart.has(o));
+    const options = cart.getAvailableSizes(item);
 
     return (
         <div>

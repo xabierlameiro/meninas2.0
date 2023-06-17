@@ -1,7 +1,13 @@
 import useBoundStore from '@hooks/useBoundStore';
 import styles from './button.module.css';
 
-const AddButton = ({ item, selectedSize, setSelectedSize }: any) => {
+type AddButtonProps = {
+    item: Product;
+    selectedSize: string;
+    setSelectedSize: React.Dispatch<React.SetStateAction<string>>;
+};
+
+const AddButton = ({ item, selectedSize, setSelectedSize }: AddButtonProps) => {
     const { addToCart, openSizeSelector } = useBoundStore();
 
     return (
@@ -10,12 +16,7 @@ const AddButton = ({ item, selectedSize, setSelectedSize }: any) => {
                 className={styles.pdp__add_to_cart__button}
                 onClick={() => {
                     if (selectedSize) {
-                        addToCart({
-                            ...item,
-                            id: item.id,
-                            size: selectedSize,
-                            quantity: 1,
-                        });
+                        addToCart({ ...item, selectedSize });
                         setSelectedSize('');
                     } else {
                         openSizeSelector();

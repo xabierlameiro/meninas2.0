@@ -8,9 +8,6 @@ const Icon = dynamic(() => import('@components/Icon'), { ssr: true });
 
 const Cart = () => {
     const cart = useBoundStore();
-
-    const shipping = 10;
-
     return (
         <div className={styles.cart}>
             <Icon viewBoxAspectRatio onClick={cart.openCart} width={43} height={27} strokeWidth={1.2} scale={1.2}>
@@ -31,29 +28,33 @@ const Cart = () => {
                             <div className={styles.cart__dialog__header__discount}>Descuento</div>
                             <div className={styles.cart__dialog__header__final_price}>P. Final</div>
                             <div className={styles.cart__dialog__header__size}>Talla</div>
-                            <div className={styles.cart__dialog__header__quantity}>Cantidad</div>
+                            <div className={styles.cart__dialog__header__quantity}>Unidades</div>
                             <div />
                         </div>
                     )}
 
                     {cart.items.map((item) => {
                         return (
-                            <div className={styles.cart__dialog__product} key={`${item.id}-${item.size}`}>
+                            <div className={styles.cart__dialog__product} key={`${item.id}-${item.selectedSize}`}>
                                 <div className={styles.cart__dialog__product__name}>
                                     <div title={item.name}>{item.name}</div>
                                 </div>
-                                <div className={styles.cart__dialog__product__price}>{item.price} €</div>
-                                <div className={styles.cart__dialog__product__discount}> - 20%</div>
-                                <div className={styles.cart__dialog__product__final_price}>100 €</div>
-                                <div className={styles.cart__dialog__product__size}>{item.size.split(':')[0]}</div>
+                                <div className={styles.cart__dialog__product__price}>{item.priceWithoutDiscount} €</div>
+                                <div className={styles.cart__dialog__product__discount}>-{item.discount} %</div>
+                                <div className={styles.cart__dialog__product__final_price}>
+                                    {item.priceWithDiscount} €
+                                </div>
+                                <div className={styles.cart__dialog__product__size}>{item.selectedSize}</div>
                                 <div className={styles.cart__dialog__product__quantity}>
                                     <Icon
                                         width={20}
                                         height={20}
-                                        onClick={() => cart.decrementQuantity(item.id, item.size)}
-                                        className={cart.isDecrementable(item.id, item.size) ? '' : styles.disabled}
+                                        onClick={() => cart.decrementQuantity(item.id, item.selectedSize)}
+                                        className={
+                                            cart.isDecrementable(item.id, item.selectedSize) ? '' : styles.disabled
+                                        }
                                         title={
-                                            cart.isDecrementable(item.id, item.size)
+                                            cart.isDecrementable(item.id, item.selectedSize)
                                                 ? 'Quitar una unidad'
                                                 : 'Lo sentimos, no puedes quitar más unidades'
                                         }
@@ -64,10 +65,12 @@ const Cart = () => {
                                     <Icon
                                         width={19}
                                         height={19}
-                                        onClick={() => cart.incrementQuantity(item.id, item.size)}
-                                        className={cart.isIncrementable(item.id, item.size) ? '' : styles.disabled}
+                                        onClick={() => cart.incrementQuantity(item.id, item.selectedSize)}
+                                        className={
+                                            cart.isIncrementable(item.id, item.selectedSize) ? '' : styles.disabled
+                                        }
                                         title={
-                                            cart.isIncrementable(item.id, item.size)
+                                            cart.isIncrementable(item.id, item.selectedSize)
                                                 ? 'Añadir una unidad'
                                                 : 'Lo sentimos, no hay más unidades disponibles'
                                         }
@@ -77,7 +80,7 @@ const Cart = () => {
                                 </div>
                                 <div className={styles.cart__dialog__product__delete}>
                                     <Icon
-                                        onClick={() => cart.removeFromCart(item.id, item.size)}
+                                        onClick={() => cart.removeFromCart(item.id, item.selectedSize)}
                                         width={18}
                                         height={18}
                                         title={'Eliminar producto del carrito'}
@@ -96,21 +99,21 @@ const Cart = () => {
                                 <div className={styles.footer__basket__items__title}>Número de prendas</div>
                                 <div className={styles.footer__basket__items__value}>{cart.totalItems()}</div>
                             </div>
-                            {shipping > 0 && (
+                            {cart.hasShipping() > 0 && (
                                 <div className={styles.footer__total__shipping}>
                                     <div className={styles.footer__total__shipping__title}>Envío</div>
-                                    <div className={styles.footer__total__shipping__value}>5 €</div>
+                                    <div className={styles.footer__total__shipping__value}>{cart.hasShipping()} €</div>
                                 </div>
                             )}
                             <div className={styles.footer__basket__price}>
                                 <div className={styles.footer__basket__price__title}>Precio de la cesta</div>
-                                <div className={styles.footer__basket__price__value}>{cart.totalCost()} €</div>
+                                <div className={styles.footer__basket__price__value}>{cart.totalBasketPrice()} €</div>
                             </div>
                             <div className={styles.footer__total__price}>
                                 <div className={styles.footer__total__price__title}>Precio final</div>
                                 <div className={styles.footer__total__price__value}>{cart.totalCost()} €</div>
                             </div>
-                            <div className={styles.footer__disclaimer}>Envío y impuestos incluidos</div>
+                            <div className={styles.footer__disclaimer}>Impuestos incluidos</div>
                             <button type="submit" role="link" className={styles.footer__checkout}>
                                 Finalizar compra
                             </button>

@@ -7,34 +7,55 @@ const useBoundStore = create<BoundStore>((set, get) => ({
     ...createCartSlice(set, get),
     ...createSizeSelectorSlice(set, get),
     ...createBoundSlice(set, get),
-    totalItems: () => get().items.reduce((acc, item) => acc + item.quantity, 0) ?? 0,
-    totalCost: () => get().items.reduce((acc, item) => acc + item.price * item.quantity, 0) ?? 0,
-    addToCart: (item) =>
-        set((state) => {
-            const exists = state.items.find((i) => i.id === item.id);
-            if (exists && exists.size === item.size) {
-                exists.quantity += item.quantity;
-                return { items: [...state.items] };
+    hasShipping: () => Math.max(...get().items.map((item) => item.shipping)),
+    totalItems: () => get().items.reduce((acc, item) => acc + item.quantity, 0),
+    totalBasketPrice: () => get().items.reduce((acc, item) => acc + item.priceWithDiscount * item.quantity, 0),
+    totalCost: () => get().totalBasketPrice() + get().hasShipping(),
+    getAvailableSizes: (item) => {
+        const sizes = item?.stock?.map((s) => s);
+        const cartSizes = get()
+            .items.filter((i) => i.id === item.id)
+            .map((i) => {
+                return { size: i.selectedSize, quantity: i.quantity };
+            });
+        return sizes?.filter((s) => !cartSizes.some((cs) => cs.size === s.size && cs.quantity === s.quantity)) ?? [];
+    },
+    addToCart: (item) => {
+        if (get().isIncrementable(item.id, item.selectedSize)) {
+            if (get().items.some((i) => i.id === item.id && i.selectedSize === item.selectedSize)) {
+                set((state) => {
+                    const index = state.items.findIndex(
+                        (i) => i.id === item.id && i.selectedSize === item.selectedSize
+                    );
+                    if (index !== -1) {
+                        state.items[index].quantity += 1;
+                        return { items: [...state.items] };
+                    }
+                    return { items: [...state.items] };
+                });
+                return;
             }
-            return { items: [...state.items, { ...item }] };
-        }),
-    incrementQuantity: (id, size) => {
-        set((state) => {
-            const index = state.items.findIndex((i) => i.id === id && i.size === size);
 
+            set((state) => {
+                return { items: [...state.items, { ...item, quantity: 1 }] };
+            });
+        }
+    },
+    incrementQuantity: (id, selectedSize) => {
+        if (!get().isIncrementable(id, selectedSize)) return;
+        set((state) => {
+            const index = state.items.findIndex((i) => i.id === id && i.selectedSize === selectedSize);
             if (index !== -1) {
-                const max = Number(state.items[index].size.split(':')[1]);
-                if (state.items[index].quantity >= max) return { items: [...state.items] };
                 state.items[index].quantity += 1;
                 return { items: [...state.items] };
             }
             return { items: [...state.items] };
         });
     },
-    decrementQuantity: (id, size) => {
-        if (get().items.find((i) => i.id === id && i.size === size)?.quantity === 1) return;
+    decrementQuantity: (id, selectedSize) => {
+        if (!get().isDecrementable(id, selectedSize)) return;
         set((state) => {
-            const index = state.items.findIndex((i) => i.id === id && i.size === size);
+            const index = state.items.findIndex((i) => i.id === id && i.selectedSize === selectedSize);
             if (index !== -1) {
                 state.items[index].quantity -= 1;
                 return { items: [...state.items] };
@@ -42,20 +63,18 @@ const useBoundStore = create<BoundStore>((set, get) => ({
             return { items: [...state.items] };
         });
     },
-    isIncrementable: (id, size) => {
-        const item = get().items.find((i) => i.id === id && i.size === size);
-        if (!item) return false;
-        const max = Number(item.size.split(':')[1]);
-        return item.quantity < max;
+    isIncrementable: (id, selectedSize) => {
+        const item = get().items.find((i) => i.id === id && i.selectedSize === selectedSize);
+        return item?.stock?.some((s) => s.quantity >= item.quantity + 1) ?? true;
     },
-    isDecrementable: (id, size) => {
-        const item = get().items.find((i) => i.id === id && i.size === size);
+    isDecrementable: (id, selectedSize) => {
+        const item = get().items.find((i) => i.id === id && i.selectedSize === selectedSize);
         if (!item) return false;
         return item.quantity > 1;
     },
-    removeFromCart: (id, size) => {
+    removeFromCart: (id, selectedSize) => {
         set((state) => {
-            const index = state.items.findIndex((i) => i.id === id && i.size === size);
+            const index = state.items.findIndex((i) => i.id === id && i.selectedSize === selectedSize);
             if (index !== -1) {
                 state.items.splice(index, 1);
                 return { items: [...state.items] };

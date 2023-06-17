@@ -25,18 +25,18 @@ export const getColumns = (
     return matchingQuery?.columns ?? 1;
 };
 
-export const calculateImageSize = (product: ContentfulProduct, maxWidth: number) => {
+export const calculateImageSize = (product: Product, maxWidth: number) => {
     const minWidth = 300;
-    const scale = Math.min(maxWidth / product.portada.width, 1);
-    const width = Math.max(product.portada.width * scale, minWidth);
-    const height = product.portada.height * scale;
+    const scale = Math.min(maxWidth / product.image.width, 1);
+    const width = Math.max(product.image.width * scale, minWidth);
+    const height = product.image.height * scale;
 
     const widthForCloudinary = Math.floor(width);
     const heightForCloudinary = Math.floor(height);
     return { width, height, widthForCloudinary, heightForCloudinary };
 };
 
-export const getPriorityImages = (data: ContentfulProduct[], parentRef: React.RefObject<HTMLDivElement>) => {
+export const getPriorityImages = (data: Products, parentRef: React.RefObject<HTMLDivElement>) => {
     const heightMasonry = parentRef.current?.clientHeight;
     const indexes = [0];
 

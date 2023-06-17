@@ -1,15 +1,18 @@
 import { fetchGraphQL } from '@helpers/contentful';
 import plp from '@queries/plp.graphql';
 import Masonry from '@components/Masonry';
+import { ProductsScheme } from '@schemes/product';
 
 const getProducts = async () => {
-    const { data } = await fetchGraphQL(plp);
-    return data.productoCollection.items as ContentfulProduct[];
+    const { data } = await fetchGraphQL(plp, { skip: 0, limit: 100 });
+    return {
+        products: ProductsScheme.parse(data.productoCollection.items),
+    };
 };
 
 const Home = async () => {
-    const data = await getProducts();
-    return <Masonry data={data} />;
+    const { products } = await getProducts();
+    return <Masonry data={products} />;
 };
 
 export default Home;

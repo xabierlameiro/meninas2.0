@@ -26,7 +26,7 @@
             "@helpers/*": ["./src/helpers/*"],
             "@hooks/*": ["./src/hooks/*"],
             "@queries/*": ["./src/queries/*"],
-            "@schemas/*": ["./src/schemas/*"]
+            "@schemes/*": ["./src/schemes/*"]
         }
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/test/page.tsx"],
