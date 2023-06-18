@@ -9,30 +9,30 @@ const ThumbNails = dynamic(() => import('./ThumbNails'), { ssr: false });
 const Loading = dynamic(() => import('./Loading'), { ssr: false });
 
 type PDPImageProps = {
-    product: ContentfulProduct;
-    thumbnails?: any;
+    product: Product;
+    thumbNails?: ThumbNails;
     isMobile?: boolean;
 };
 
-const PDPImage = ({ product, thumbnails, isMobile }: PDPImageProps) => {
+const PDPImage = ({ product, thumbNails, isMobile }: PDPImageProps) => {
     const { widthForCloudinary, heightForCloudinary, width, height } = calculateImageSize(
         product,
         isMobile ? 400 : 1200
     );
-    const [src, setSrc]: StringState = React.useState(product.portada.url);
+    const [src, setSrc]: StringState = React.useState(product.image.url);
     const [loading, setLoading]: BooleanState = React.useState(true);
 
     return (
         <div style={{ position: 'relative' }}>
             <NextImage
                 className={styles.image}
-                style={{ opacity: loading ? 0 : 1, maxWidth: width, maxHeight: height }}
+                style={{ maxWidth: width, maxHeight: height }}
                 priority
                 quality={100}
                 src={`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}h_${heightForCloudinary},w_${widthForCloudinary},f_auto/${src}`}
                 placeholder="blur"
-                blurDataURL={`${process.env.NEXT_PUBLIC_BASE64_URL}${toBase64(shimmer(width, height))}`}
-                alt={product.nombre}
+                blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(width, height))}`}
+                alt={product.name}
                 width={width}
                 height={height}
                 onError={(e: any) => {
@@ -41,8 +41,8 @@ const PDPImage = ({ product, thumbnails, isMobile }: PDPImageProps) => {
                 }}
                 onLoadingComplete={() => setLoading(false)}
             />
-            {thumbnails && (
-                <ThumbNails images={thumbnails} setSrc={setSrc} onLoading={setLoading} src={src} isMobile={isMobile} />
+            {thumbNails && (
+                <ThumbNails images={thumbNails} setSrc={setSrc} onLoading={setLoading} src={src} isMobile={isMobile} />
             )}
             <Loading loading={loading} />
         </div>

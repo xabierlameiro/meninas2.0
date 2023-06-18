@@ -1,5 +1,5 @@
-query plp {
-    productoCollection {
+query plp($skip: Int!, $limit: Int!) {
+    productoCollection(skip: $skip, limit: $limit) {
         items {
             nombre
             descripcion
@@ -17,6 +17,9 @@ query plp {
                 items {
                     nombre
                     descuento
+                    envio {
+                        cantidad
+                    }
                 }
             }
         }

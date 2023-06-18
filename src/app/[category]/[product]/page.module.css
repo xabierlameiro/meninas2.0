@@ -83,9 +83,8 @@ a.pdp__tag__highlight .pdp__tag {
     font-weight: 600;
 }
 
-.pdp__price__discount .pdp__price__final {
-    font-size: 2rem;
-    font-weight: 600;
+.pdp__price__final {
+    color: red;
 }
 
 @media (max-width: 768px) {
@@ -171,7 +170,7 @@ a.pdp__tag__highlight .pdp__tag {
         padding: 0 0 5px;
     }
     .pdp__price {
-        margin: 10px auto 0;
+        margin: 0 auto 0;
         width: fit-content;
     }
     .pdp__price__vat {

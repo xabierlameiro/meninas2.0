@@ -1,17 +1,5 @@
 type AddtoCartProps = {
-    item: Omit<CartProduct, 'size' | 'quantity'>;
-    sizes: string[];
-};
-
-type CartProduct = {
-    id: string;
-    name: string;
-    price: number;
-    image?: string;
-    size: string;
-    quantity: number;
-    url?: string;
-    description?: string;
+    item: Product;
 };
 
 type PaymentProduct = {
