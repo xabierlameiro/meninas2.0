@@ -25,7 +25,7 @@
     .cart__dialog {
         width: 100vw;
         max-height: initial;
-        padding: 0 1rem 2rem;
+        padding: 0 0.5rem 2rem;
         background-color: #fff;
         z-index: 2;
     }
@@ -113,7 +113,8 @@
 .cart__dialog__product__size,
 .cart__dialog__product__delete,
 .cart__dialog__product__discount,
-.cart__dialog__product__final_price {
+.cart__dialog__product__final_price,
+.cart__dialog__header__quantity {
     text-align: center;
     display: flex;
     justify-content: center;
@@ -170,4 +171,26 @@
 
 .disabled {
     opacity: 0.2;
+}
+
+@media screen and (max-width: 768px) {
+    .cart__dialog__header {
+        grid-template-columns: auto 50px 67px 52px 40px 60px 26px;
+        gap: 1px;
+        font-size: 12px;
+    }
+
+    .cart__dialog__product {
+        grid-template-columns: auto 50px 67px 52px 40px 60px 26px;
+        gap: 1px;
+        font-size: 12px;
+    }
+
+    .cart__dialog__product svg {
+        width: 20px;
+        height: 12px;
+    }
+    .footer__total {
+        font-size: 14px;
+    }
 }
