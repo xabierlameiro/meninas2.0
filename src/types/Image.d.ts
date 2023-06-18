@@ -1,16 +1,14 @@
 type ImageProps = {
-    thumbnails?: ThumbNail[];
-    showLoading?: boolean;
-    onClick?: () => void;
-    alt: string;
-    title?: string;
-    fill?: boolean;
-    sizes?: string;
     priority?: boolean;
-    src: string;
-    width: number;
-    height: number;
-    quality?: number;
+    product: Product;
+    maxWidth?: number;
+    category?: string;
+};
+
+type PDPImageProps = {
+    product: Product;
+    thumbNails?: ThumbNails;
+    isMobile?: boolean;
 };
 
 type ThumbNailsProps = {

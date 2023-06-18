@@ -4,7 +4,6 @@ import styles from './page.module.css';
 import pdp from '@queries/pdp.graphql';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import Icons from '@components/Icon/icons.constants';
 import Icon from '@components/Icon';
 import { headers } from 'next/headers';
 import { ProductScheme, NavigationProductsScheme } from '@schemes/product';
@@ -60,9 +59,7 @@ const ProductPage = async ({ params }: PathParamsProps) => {
 
                     {productDetail.shipping > 0 && (
                         <span className={styles.pdp__price__shipping}>
-                            <Icon width={20} height={20} title="Envío">
-                                {Icons.truck}
-                            </Icon>
+                            <Icon width={20} height={20} title="Envío" type="truck" />
                             {productDetail.shipping} € de envío por pedido
                         </span>
                     )}

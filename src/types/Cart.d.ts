@@ -21,3 +21,15 @@ type PaymentProduct = {
         maximum: number;
     };
 };
+
+type AddButtonProps = {
+    item: Product;
+    selectedSize: string;
+    setSelectedSize: (option: string) => void;
+};
+
+type SelectorProps = {
+    options: Stock;
+    selectedSize: string;
+    setSelectedSize: (option: string) => void;
+};

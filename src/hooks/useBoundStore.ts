@@ -1,11 +1,18 @@
 import { create } from 'zustand';
-import { createBoundSlice, createCartSlice, createMenuSlice, createSizeSelectorSlice } from '@helpers/store';
+import {
+    createBoundSlice,
+    createCartSlice,
+    createMenuSlice,
+    createSizeManagerSlice,
+    createSizeSelectorSlice,
+} from '@helpers/store';
 
 const useBoundStore = create<BoundStore>((set, get) => ({
     items: [],
-    ...createMenuSlice(set, get),
-    ...createCartSlice(set, get),
-    ...createSizeSelectorSlice(set, get),
+    ...createMenuSlice(set),
+    ...createCartSlice(set),
+    ...createSizeSelectorSlice(set),
+    ...createSizeManagerSlice(set),
     ...createBoundSlice(set, get),
     hasShipping: () => Math.max(...get().items.map((item) => item.shipping)),
     totalItems: () => get().items.reduce((acc, item) => acc + item.quantity, 0),

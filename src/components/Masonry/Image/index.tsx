@@ -3,12 +3,6 @@ import Link from 'next/link';
 import styles from './image.module.css';
 import { shimmer, toBase64, calculateImageSize } from '@helpers/image';
 
-type ImageProps = {
-    priority?: boolean;
-    product: Product;
-    maxWidth?: number;
-    category?: string;
-};
 const Image = ({ priority = false, product, maxWidth = 320, category }: ImageProps) => {
     const { widthForCloudinary, heightForCloudinary, width, height } = calculateImageSize(product, maxWidth);
 
