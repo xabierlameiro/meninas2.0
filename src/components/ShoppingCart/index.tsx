@@ -2,7 +2,6 @@
 import useBoundStore from '@hooks/useBoundStore';
 import styles from './cart.module.css';
 import dynamic from 'next/dynamic';
-import Icons from '@components/Icon/icons.constants';
 
 const Icon = dynamic(() => import('@components/Icon'), { ssr: true });
 
@@ -10,15 +9,22 @@ const Cart = () => {
     const cart = useBoundStore();
     return (
         <div className={styles.cart}>
-            <Icon viewBoxAspectRatio onClick={cart.openCart} width={43} height={27} strokeWidth={1.2} scale={1.2}>
-                {Icons.cart(cart.totalItems().toString())}
-            </Icon>
+            <Icon
+                viewBoxAspectRatio
+                onClick={cart.openCart}
+                width={43}
+                height={27}
+                strokeWidth={1.2}
+                scale={1.2}
+                title="Carrito"
+                type="cart"
+                value={cart.totalItems()}
+            />
+
             <div className={`${styles.cart__dialog} ${cart.isCartOpen ? styles.open : ''}`}>
                 <header>
                     <span className={styles.cart__dialog__title}>Mi carrito</span>
-                    <Icon onClick={cart.closeCart} width={30} height={30} strokeWidth={1.2}>
-                        {Icons.close}
-                    </Icon>
+                    <Icon onClick={cart.closeCart} width={30} height={30} strokeWidth={1.2} type="close" />
                 </header>
                 <main>
                     {cart.items.length > 0 && (
@@ -58,9 +64,8 @@ const Cart = () => {
                                                 ? 'Quitar una unidad'
                                                 : 'Lo sentimos, no puedes quitar más unidades'
                                         }
-                                    >
-                                        {Icons.decrement}
-                                    </Icon>
+                                        type="decrement"
+                                    />
                                     {item.quantity}
                                     <Icon
                                         width={19}
@@ -74,9 +79,8 @@ const Cart = () => {
                                                 ? 'Añadir una unidad'
                                                 : 'Lo sentimos, no hay más unidades disponibles'
                                         }
-                                    >
-                                        {Icons.increment}
-                                    </Icon>
+                                        type="increment"
+                                    />
                                 </div>
                                 <div className={styles.cart__dialog__product__delete}>
                                     <Icon
@@ -84,9 +88,8 @@ const Cart = () => {
                                         width={18}
                                         height={18}
                                         title={'Eliminar producto del carrito'}
-                                    >
-                                        {Icons.remove}
-                                    </Icon>
+                                        type="remove"
+                                    />
                                 </div>
                             </div>
                         );

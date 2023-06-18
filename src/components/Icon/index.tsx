@@ -1,10 +1,10 @@
 'use client';
 import styles from './icon.module.css';
+import icons from './icons.constants';
 
 const Icon = ({
     tabIndex,
     onClick,
-    children,
     width,
     height,
     title,
@@ -14,7 +14,11 @@ const Icon = ({
     className,
     onAnimationEnd,
     viewBoxAspectRatio = false,
-}: Children & IconProps) => {
+    value,
+    type,
+}: Children & IconProps & { type: keyof typeof icons }) => {
+    const Path = icons[type];
+
     return (
         <div title={title}>
             <svg
@@ -32,10 +36,12 @@ const Icon = ({
                 className={`${styles.icon} ${className}`}
                 onAnimationEnd={onAnimationEnd}
             >
-                {children}
+                <Path value={value ?? 0} />
             </svg>
         </div>
     );
 };
+
+Icon.icons = icons;
 
 export default Icon;

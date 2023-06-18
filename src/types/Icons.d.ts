@@ -10,6 +10,7 @@ type IconProps = {
     className?: string;
     onAnimationEnd?: () => void;
     viewBoxAspectRatio?: boolean;
+    value?: number;
 };
 
 type Icon = React.ReactNode;
