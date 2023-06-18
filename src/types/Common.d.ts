@@ -36,8 +36,14 @@ type SizeSelectorActions = {
     closeSizeSelector: () => void;
 };
 
+type selectedSize = {
+    selectedSize: string;
+    setSelectedSize: (size: string) => void;
+};
+
 type BoundStore = CartActions &
     MenuActions &
+    selectedSize &
     SizeSelectorActions & {
         items: (Product & { quantity: number; selectedSize: string })[];
         totalItems: () => number;

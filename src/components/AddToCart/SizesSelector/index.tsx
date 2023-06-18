@@ -1,17 +1,20 @@
 import styles from './selector.module.css';
 import useBoundStore from '@hooks/useBoundStore';
 import dynamic from 'next/dynamic';
+import { useEffect } from 'react';
+import { set } from 'zod';
 
 const Icon = dynamic(() => import('@components/Icon'), { ssr: true });
 
-type SelectorProps = {
-    options: Stock;
-    selectedSize: string;
-    setSelectedSize: (option: string) => void;
-};
-
 const Selector = ({ options, selectedSize, setSelectedSize }: SelectorProps) => {
     const { isSizeSelectorOpen, openSizeSelector, closeSizeSelector } = useBoundStore();
+
+    useEffect(() => {
+        return () => {
+            setSelectedSize('');
+            closeSizeSelector();
+        };
+    }, [setSelectedSize, closeSizeSelector]);
 
     return (
         <div className={styles.wrapper}>

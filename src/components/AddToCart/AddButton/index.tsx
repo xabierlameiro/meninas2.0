@@ -1,12 +1,6 @@
 import useBoundStore from '@hooks/useBoundStore';
 import styles from './button.module.css';
 
-type AddButtonProps = {
-    item: Product;
-    selectedSize: string;
-    setSelectedSize: React.Dispatch<React.SetStateAction<string>>;
-};
-
 const AddButton = ({ item, selectedSize, setSelectedSize }: AddButtonProps) => {
     const { addToCart, openSizeSelector } = useBoundStore();
 

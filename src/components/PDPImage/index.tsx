@@ -8,12 +8,6 @@ import dynamic from 'next/dynamic';
 const ThumbNails = dynamic(() => import('./ThumbNails'), { ssr: false });
 const Loading = dynamic(() => import('./Loading'), { ssr: false });
 
-type PDPImageProps = {
-    product: Product;
-    thumbNails?: ThumbNails;
-    isMobile?: boolean;
-};
-
 const PDPImage = ({ product, thumbNails, isMobile }: PDPImageProps) => {
     const { widthForCloudinary, heightForCloudinary, width, height } = calculateImageSize(
         product,

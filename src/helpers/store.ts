@@ -1,33 +1,39 @@
-export const createActionsSlice = (set: SetStore, get: GetStore, name: string) => ({
+export const createSlice = (set: SetStore, name: string) => ({
     [`is${name}Open`]: false,
     [`open${name}`]: () => set({ [`is${name}Open`]: true }),
     [`close${name}`]: () => set({ [`is${name}Open`]: false }),
 });
 
-export const createMenuSlice = (set: SetStore, get: GetStore) => createActionsSlice(set, get, 'Menu') as MenuActions;
-export const createSizeSelectorSlice = (set: SetStore, get: GetStore) =>
-    createActionsSlice(set, get, 'SizeSelector') as SizeSelectorActions;
-export const createCartSlice = (set: SetStore, get: GetStore) => createActionsSlice(set, get, 'Cart') as CartActions;
+export const createMenuSlice = (set: SetStore) => createSlice(set, 'Menu') as MenuActions;
+
+export const createCartSlice = (set: SetStore) => createSlice(set, 'Cart') as CartActions;
+
+export const createSizeSelectorSlice = (set: SetStore) => createSlice(set, 'SizeSelector') as SizeSelectorActions;
+
+export const createSizeManagerSlice = (set: SetStore) => ({
+    selectedSize: '',
+    setSelectedSize: (size: string) => set({ selectedSize: size }),
+});
 
 export const createBoundSlice = (set: SetStore, get: GetStore) => ({
     openMenu: () => {
-        createMenuSlice(set, get).openMenu();
-        createSizeSelectorSlice(set, get).closeSizeSelector();
-        createCartSlice(set, get).closeCart();
+        createMenuSlice(set).openMenu();
+        createSizeSelectorSlice(set).closeSizeSelector();
+        createCartSlice(set).closeCart();
     },
     openSizeSelector: () => {
-        createMenuSlice(set, get).closeMenu();
-        createSizeSelectorSlice(set, get).openSizeSelector();
-        createCartSlice(set, get).closeCart();
+        createMenuSlice(set).closeMenu();
+        createSizeSelectorSlice(set).openSizeSelector();
+        createCartSlice(set).closeCart();
     },
     openCart: () => {
-        createMenuSlice(set, get).closeMenu();
-        createSizeSelectorSlice(set, get).closeSizeSelector();
-        createCartSlice(set, get).openCart();
+        createMenuSlice(set).closeMenu();
+        createSizeSelectorSlice(set).closeSizeSelector();
+        createCartSlice(set).openCart();
     },
     closeAll: () => {
-        createMenuSlice(set, get).closeMenu();
-        createSizeSelectorSlice(set, get).closeSizeSelector();
-        createCartSlice(set, get).closeCart();
+        createMenuSlice(set).closeMenu();
+        createSizeSelectorSlice(set).closeSizeSelector();
+        createCartSlice(set).closeCart();
     },
 });

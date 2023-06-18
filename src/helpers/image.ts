@@ -29,7 +29,7 @@ export const calculateImageSize = (product: Product, maxWidth: number) => {
     const minWidth = 300;
     const scale = Math.min(maxWidth / product.image.width, 1);
     const width = Math.max(product.image.width * scale, minWidth);
-    const height = product.image.height * scale;
+    const height = Math.round(product.image.height * scale);
 
     const widthForCloudinary = Math.floor(width);
     const heightForCloudinary = Math.floor(height);

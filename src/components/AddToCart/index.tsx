@@ -7,14 +7,16 @@ const AddButton = dynamic(() => import('./AddButton'), { ssr: true });
 const SizesSelector = dynamic(() => import('./SizesSelector'), { ssr: true });
 
 const AddToCart = ({ item }: AddtoCartProps) => {
-    const [selectedSize, setSelectedSize]: StringState = useState('');
     const cart = useBoundStore();
-    const options = cart.getAvailableSizes(item);
 
     return (
         <div>
-            <SizesSelector options={options} selectedSize={selectedSize} setSelectedSize={setSelectedSize} />
-            <AddButton item={item} selectedSize={selectedSize} setSelectedSize={setSelectedSize} />
+            <SizesSelector
+                options={cart.getAvailableSizes(item)}
+                selectedSize={cart.selectedSize}
+                setSelectedSize={cart.setSelectedSize}
+            />
+            <AddButton item={item} selectedSize={cart.selectedSize} setSelectedSize={cart.setSelectedSize} />
         </div>
     );
 };
