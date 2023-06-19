@@ -2,7 +2,6 @@ import styles from './selector.module.css';
 import useBoundStore from '@hooks/useBoundStore';
 import dynamic from 'next/dynamic';
 import { useEffect } from 'react';
-import { set } from 'zod';
 
 const Icon = dynamic(() => import('@components/Icon'), { ssr: true });
 

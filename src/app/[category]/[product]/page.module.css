@@ -158,6 +158,7 @@ a.pdp__tag__highlight .pdp__tag {
     font-weight: 600;
     align-items: flex-end;
 }
+
 @media (max-width: 768px) {
     .pdp__price__wrapper {
         flex-direction: row;
