@@ -7,6 +7,33 @@ const Icon = dynamic(() => import('@components/Icon'), { ssr: true });
 
 const Cart = () => {
     const cart = useBoundStore();
+
+    const handleCheckout = async () => {
+        try {
+            const response = await fetch('/api/checkout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ items: cart.items }),
+            });
+
+            if (!response.ok) throw new Error('Error creating checkout session');
+
+            const { loadStripe } = await import('@stripe/stripe-js');
+            const session = await response.json();
+            const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
+
+            if (!stripe) throw new Error('Stripe not loaded');
+
+            await stripe.redirectToCheckout({
+                sessionId: session.id,
+            });
+        } catch (error) {
+            console.error(error);
+            throw new Error(error as string);
+        }
+    };
     return (
         <div className={styles.cart}>
             <Icon
@@ -117,7 +144,12 @@ const Cart = () => {
                                 <div className={styles.footer__total__price__value}>{cart.totalCost()} €</div>
                             </div>
                             <div className={styles.footer__disclaimer}>Impuestos incluidos</div>
-                            <button type="submit" role="link" className={styles.footer__checkout}>
+                            <button
+                                type="submit"
+                                role="link"
+                                className={styles.footer__checkout}
+                                onClick={handleCheckout}
+                            >
                                 Finalizar compra
                             </button>
                         </div>

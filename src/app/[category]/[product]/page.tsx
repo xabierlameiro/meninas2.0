@@ -12,6 +12,7 @@ const AddToCart = dynamic(() => import('@components/AddToCart'), {
     ssr: false,
     loading: () => <div>Mirando el almacén...</div>,
 });
+
 const PDPImage = dynamic(() => import('@components/PDPImage'), { ssr: true });
 
 const getProductBySlug = async (product: string, category: string) => {
@@ -43,7 +44,6 @@ const ProductPage = async ({ params }: PathParamsProps) => {
                     <NavigationProducts {...navigation} />
                     <div className={styles.pdp__name}>{productDetail.name}</div>
                     <div className={styles.pdp__description}>{productDetail.description}</div>
-
                     <div data-testid="price" className={styles.pdp__price}>
                         {productDetail.discount > 0 && (
                             <div className={styles.pdp__price__wrapper}>
@@ -63,6 +63,7 @@ const ProductPage = async ({ params }: PathParamsProps) => {
                             {productDetail.shipping} € de envío por pedido
                         </span>
                     )}
+
                     <div className={styles.pdp__tags}>
                         {productDetail.categories.map((categoria) => (
                             <Link key={categoria.slug} href={`/${categoria.slug}`}>
