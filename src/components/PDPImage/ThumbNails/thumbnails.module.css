@@ -21,14 +21,18 @@
 }
 
 .thumbnails__item img {
-    width: inherit;
-    height: inherit;
+    width: 60px;
+    height: 60px;
     object-fit: cover;
     object-position: top;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 @media (max-width: 768px) {
+    .thumbnails__item img {
+        width: 40px;
+        height: 40px;
+    }
     .thumbnails__container {
         width: 40px;
         top: unset;
@@ -37,6 +41,6 @@
     .thumbnails__item {
         width: 40px;
         height: 40px;
-        aspect-ratio: 1/1;
+        aspect-ratio: 0.7/1;
     }
 }
