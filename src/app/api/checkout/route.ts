@@ -1,29 +1,22 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server';
 import Stripe from 'stripe';
+import { getURL } from '@helpers/navigation';
 
-// Success card : 4242 4242 4242 4242
-// El pago requiere autorización : 4000 0025 0000 3155
-// 4000 0000 0000 9995
-// 1.5% + 0.25€ (españa)
-// 3.25% + 0.25€ (non-eu)
-// 2% snipcart fee 10$ min
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? '', {
+    apiVersion: '2022-11-15',
+});
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
     const body = await req.json();
 
     try {
-        const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? '', {
-            apiVersion: '2022-11-15',
-        });
-
         const line_items = body.items.map((item: any) => {
             return {
                 price_data: {
-                    currency: 'eur', // required
+                    currency: 'eur',
                     product_data: {
                         name: item.name,
                         images: [item.image.url],
-                        metadata: {}, // optional
                     },
                     unit_amount: item.priceWithDiscount * 100,
                     tax_behavior: 'inclusive',
@@ -34,11 +27,10 @@ export async function POST(req: Request) {
 
         const session = await stripe.checkout.sessions.create({
             line_items: line_items,
-            mode: 'payment', // payment, setup, subscription
-            success_url: 'http://localhost:3000/success', // required
-            cancel_url: 'http://localhost:3000/cancel', // optional
-            currency: 'eur', // optional
-            metadata: {}, // optional
+            mode: 'payment',
+            success_url: `${getURL()}/success?session_id={CHECKOUT_SESSION_ID}`,
+            cancel_url: `${getURL()}/cancel`,
+            currency: 'eur',
             locale: 'es',
             phone_number_collection: {
                 enabled: true,

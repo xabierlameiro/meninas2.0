@@ -1,39 +1,15 @@
 'use client';
-import useBoundStore from '@hooks/useBoundStore';
 import styles from './cart.module.css';
 import dynamic from 'next/dynamic';
+import useCheckout from '@hooks/useCheckout';
+import useBoundStore from '@hooks/useBoundStore';
 
 const Icon = dynamic(() => import('@components/Icon'), { ssr: true });
 
 const Cart = () => {
     const cart = useBoundStore();
+    const { handleCheckout } = useCheckout(cart.items);
 
-    const handleCheckout = async () => {
-        try {
-            const response = await fetch('/api/checkout', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ items: cart.items }),
-            });
-
-            if (!response.ok) throw new Error('Error creating checkout session');
-
-            const { loadStripe } = await import('@stripe/stripe-js');
-            const session = await response.json();
-            const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
-
-            if (!stripe) throw new Error('Stripe not loaded');
-
-            await stripe.redirectToCheckout({
-                sessionId: session.id,
-            });
-        } catch (error) {
-            console.error(error);
-            throw new Error(error as string);
-        }
-    };
     return (
         <div className={styles.cart}>
             <Icon
