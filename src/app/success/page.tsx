@@ -10,22 +10,13 @@ const SuccessPage = async ({ searchParams }: any) => {
 
     const session = await getSession(session_id);
 
-    // amount_subtotal
-    // amount_total
-
-    // customer_details.email
-    // customer_details.name
-    // customer_details.phone
-
-    // shipping_details.address {}
-    // shipping_details.name
-
     return (
         <div>
-            <h1> ¡ Gracias, {session.customer_details.name} ! </h1>
+            <h1> ¡ Gracias por tu compra, {session.customer_details.name} ! </h1>
             <h2> Tu pedido ha sido realizado con éxito </h2>
-            <h3> Te hemos enviado un email a {session.customer_details.email} con los detalles de tu pedido </h3>
-            <h3> Tu número de pedido es {session.id} </h3>
+            <h3>
+                Te hemos enviado un correo electronico a {session.customer_details.email} con los detalles de tu pedido{' '}
+            </h3>
             <h3> Precio total: {session.amount_total} </h3>
             <h3> Precio subtotal: {session.amount_subtotal} </h3>
             <h3> Tu pedido será enviado a {session.shipping_details.address.line1} </h3>
