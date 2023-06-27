@@ -3,6 +3,7 @@ import styles from './cart.module.css';
 import dynamic from 'next/dynamic';
 import useCheckout from '@hooks/useCheckout';
 import useBoundStore from '@hooks/useBoundStore';
+import React from 'react';
 
 const Icon = dynamic(() => import('@components/Icon'), { ssr: true });
 

@@ -7,6 +7,7 @@ import dynamic from 'next/dynamic';
 
 const BreadCrumb = dynamic(() => import('@components/BreadCrumb'), { ssr: true });
 const Header = dynamic(() => import('@components/Layout/Header'), { ssr: true });
+const Modal = () => <div id="modal" />;
 
 export const metadata = {
     title: 'Meninas Cambados',
@@ -17,6 +18,7 @@ const RootLayout = ({ children }: Children) => {
     return (
         <Html>
             <Body>
+                <Modal />
                 <Header />
                 <Main>
                     <BreadCrumb />
